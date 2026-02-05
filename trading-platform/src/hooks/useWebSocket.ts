@@ -16,38 +16,52 @@ export function useWebSocket() {
     setPortfolio,
     updatePosition,
     setPositions,
-    addOrder,
     updateOrder,
     addTrade,
     addCandle,
     watchlist,
-    selectedSymbol,
+    isConnected,
   } = useTradingStore();
 
   // Initialize WebSocket connection
   useEffect(() => {
     const socket = io(WS_URL, {
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
       autoConnect: true,
       reconnection: true,
       reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
+      timeout: 5000,
     });
 
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      console.log('WebSocket connected');
+      console.log('WebSocket connected, socket id:', socket.id);
       setConnected(true);
 
-      // Subscribe to watchlist symbols
-      socket.emit('subscribe', watchlist);
+      // Subscribe to watchlist symbols - use current store value, not stale closure
+      const currentWatchlist = useTradingStore.getState().watchlist;
+      socket.emit('subscribe', currentWatchlist);
     });
 
-    socket.on('disconnect', () => {
-      console.log('WebSocket disconnected');
+    socket.on('disconnect', (reason) => {
+      console.log('WebSocket disconnected:', reason);
       setConnected(false);
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('WebSocket connection error:', error.message);
+      setConnected(false);
+    });
+
+    socket.io.on('reconnect', (attemptNumber) => {
+      console.log('WebSocket reconnected after', attemptNumber, 'attempts');
+    });
+
+    socket.io.on('reconnect_attempt', (attemptNumber) => {
+      console.log('WebSocket reconnection attempt:', attemptNumber);
     });
 
     socket.on('quote', (quote: Quote) => {
@@ -77,6 +91,14 @@ export function useWebSocket() {
     socket.on('candle', ({ symbol, timeframe, candle }: { symbol: string; timeframe: Timeframe; candle: OHLCV }) => {
       addCandle(symbol, timeframe, candle);
     });
+
+    // Check if socket is already connected (can happen with fast refresh)
+    if (socket.connected) {
+      console.log('WebSocket already connected on mount');
+      setConnected(true);
+      const currentWatchlist = useTradingStore.getState().watchlist;
+      socket.emit('subscribe', currentWatchlist);
+    }
 
     return () => {
       socket.disconnect();
@@ -151,6 +173,6 @@ export function useWebSocket() {
     cancelOrder,
     subscribe,
     unsubscribe,
-    isConnected: socketRef.current?.connected || false,
+    isConnected,
   };
 }
