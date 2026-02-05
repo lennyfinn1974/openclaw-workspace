@@ -1,31 +1,43 @@
-// Market Data Simulator - Generates realistic price movements and order book data
+// Market Data Simulator with Live Feed Integration
+// Provides real-time market data with automatic fallback to simulation
+
 import { EventEmitter } from 'events';
 import type { Quote, OrderBook, OHLCV, Timeframe, MarketSession } from '../../src/types/trading';
+import { marketDataProvider, MarketDataProvider, type MarketQuote, type CandleData, type OrderBookData } from './brokers';
 
 interface SymbolConfig {
   symbol: string;
   basePrice: number;
-  volatility: number; // Daily volatility (e.g., 0.02 = 2%)
+  volatility: number;
   avgVolume: number;
   sector: string;
+  assetType: 'stock' | 'crypto';
 }
 
+// Supported symbols with fallback simulation parameters
 const SYMBOLS: SymbolConfig[] = [
-  { symbol: 'AAPL', basePrice: 185.50, volatility: 0.018, avgVolume: 50000000, sector: 'Technology' },
-  { symbol: 'MSFT', basePrice: 420.25, volatility: 0.016, avgVolume: 25000000, sector: 'Technology' },
-  { symbol: 'GOOGL', basePrice: 175.80, volatility: 0.020, avgVolume: 20000000, sector: 'Technology' },
-  { symbol: 'AMZN', basePrice: 225.60, volatility: 0.022, avgVolume: 35000000, sector: 'Technology' },
-  { symbol: 'NVDA', basePrice: 875.50, volatility: 0.035, avgVolume: 45000000, sector: 'Technology' },
-  { symbol: 'TSLA', basePrice: 175.25, volatility: 0.045, avgVolume: 80000000, sector: 'Automotive' },
-  { symbol: 'META', basePrice: 585.40, volatility: 0.025, avgVolume: 18000000, sector: 'Technology' },
-  { symbol: 'AMD', basePrice: 165.75, volatility: 0.032, avgVolume: 55000000, sector: 'Technology' },
-  { symbol: 'SPY', basePrice: 525.30, volatility: 0.010, avgVolume: 75000000, sector: 'ETF' },
-  { symbol: 'QQQ', basePrice: 485.20, volatility: 0.012, avgVolume: 45000000, sector: 'ETF' },
-  { symbol: 'NFLX', basePrice: 625.80, volatility: 0.028, avgVolume: 8000000, sector: 'Entertainment' },
-  { symbol: 'CRM', basePrice: 295.40, volatility: 0.024, avgVolume: 6000000, sector: 'Technology' },
-  { symbol: 'COIN', basePrice: 245.60, volatility: 0.055, avgVolume: 12000000, sector: 'Finance' },
-  { symbol: 'PLTR', basePrice: 24.85, volatility: 0.042, avgVolume: 35000000, sector: 'Technology' },
-  { symbol: 'SMCI', basePrice: 785.20, volatility: 0.065, avgVolume: 8000000, sector: 'Technology' },
+  // Stocks (Yahoo Finance / Alpaca)
+  { symbol: 'AAPL', basePrice: 185.50, volatility: 0.018, avgVolume: 50000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'MSFT', basePrice: 420.25, volatility: 0.016, avgVolume: 25000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'GOOGL', basePrice: 175.80, volatility: 0.020, avgVolume: 20000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'AMZN', basePrice: 225.60, volatility: 0.022, avgVolume: 35000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'NVDA', basePrice: 875.50, volatility: 0.035, avgVolume: 45000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'TSLA', basePrice: 175.25, volatility: 0.045, avgVolume: 80000000, sector: 'Automotive', assetType: 'stock' },
+  { symbol: 'META', basePrice: 585.40, volatility: 0.025, avgVolume: 18000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'AMD', basePrice: 165.75, volatility: 0.032, avgVolume: 55000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'SPY', basePrice: 525.30, volatility: 0.010, avgVolume: 75000000, sector: 'ETF', assetType: 'stock' },
+  { symbol: 'QQQ', basePrice: 485.20, volatility: 0.012, avgVolume: 45000000, sector: 'ETF', assetType: 'stock' },
+  { symbol: 'NFLX', basePrice: 625.80, volatility: 0.028, avgVolume: 8000000, sector: 'Entertainment', assetType: 'stock' },
+  { symbol: 'CRM', basePrice: 295.40, volatility: 0.024, avgVolume: 6000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'COIN', basePrice: 245.60, volatility: 0.055, avgVolume: 12000000, sector: 'Finance', assetType: 'stock' },
+  { symbol: 'PLTR', basePrice: 24.85, volatility: 0.042, avgVolume: 35000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'SMCI', basePrice: 785.20, volatility: 0.065, avgVolume: 8000000, sector: 'Technology', assetType: 'stock' },
+  // Crypto (Binance)
+  { symbol: 'BTC', basePrice: 68000, volatility: 0.035, avgVolume: 25000000000, sector: 'Crypto', assetType: 'crypto' },
+  { symbol: 'ETH', basePrice: 3500, volatility: 0.040, avgVolume: 15000000000, sector: 'Crypto', assetType: 'crypto' },
+  { symbol: 'SOL', basePrice: 145, volatility: 0.055, avgVolume: 2500000000, sector: 'Crypto', assetType: 'crypto' },
+  { symbol: 'BNB', basePrice: 580, volatility: 0.030, avgVolume: 1500000000, sector: 'Crypto', assetType: 'crypto' },
+  { symbol: 'XRP', basePrice: 0.55, volatility: 0.045, avgVolume: 1200000000, sector: 'Crypto', assetType: 'crypto' },
 ];
 
 interface PriceState {
@@ -39,25 +51,51 @@ interface PriceState {
   ask: number;
   bidSize: number;
   askSize: number;
-  trend: number; // -1 to 1, affects price movement bias
+  trend: number;
   momentum: number;
+  lastLiveUpdate: number;
+  isLive: boolean;
+}
+
+interface DataSourceStatus {
+  yahoo: boolean;
+  binance: boolean;
+  alpaca: boolean;
+  lastCheck: number;
 }
 
 export class MarketDataSimulator extends EventEmitter {
   private prices: Map<string, PriceState> = new Map();
-  private intervalId: NodeJS.Timeout | null = null;
+  private simulationInterval: NodeJS.Timeout | null = null;
+  private liveDataInterval: NodeJS.Timeout | null = null;
   private ohlcvData: Map<string, Map<Timeframe, OHLCV[]>> = new Map();
   private currentMinuteCandle: Map<string, OHLCV> = new Map();
+  private dataProvider: MarketDataProvider;
+  private enableLiveData: boolean;
+  private dataSourceStatus: DataSourceStatus = {
+    yahoo: false,
+    binance: false,
+    alpaca: false,
+    lastCheck: 0,
+  };
 
-  constructor() {
+  constructor(enableLiveData: boolean = true) {
     super();
+    this.enableLiveData = enableLiveData;
+    this.dataProvider = marketDataProvider;
     this.initializePrices();
     this.generateHistoricalData();
+
+    // Set up live data event forwarding
+    this.dataProvider.on('quote', (quote: MarketQuote) => {
+      this.handleLiveQuote(quote);
+    });
+
+    console.log(`[MarketDataSimulator] Initialized with live data ${enableLiveData ? 'enabled' : 'disabled'}`);
   }
 
   private initializePrices(): void {
     for (const config of SYMBOLS) {
-      // Add some random offset to make it realistic
       const randomOffset = (Math.random() - 0.5) * 0.04 * config.basePrice;
       const price = config.basePrice + randomOffset;
 
@@ -74,6 +112,8 @@ export class MarketDataSimulator extends EventEmitter {
         askSize: Math.floor(100 + Math.random() * 1000),
         trend: (Math.random() - 0.5) * 2,
         momentum: 0,
+        lastLiveUpdate: 0,
+        isLive: false,
       });
     }
   }
@@ -98,13 +138,11 @@ export class MarketDataSimulator extends EventEmitter {
     const candleCount = timeframe === '1d' ? 252 : timeframe === '1h' ? 24 * 30 : 500;
     const candles: OHLCV[] = [];
 
-    let price = config.basePrice * (0.85 + Math.random() * 0.3); // Start with historical variance
+    let price = config.basePrice * (0.85 + Math.random() * 0.3);
     const volatility = config.volatility / Math.sqrt(252 * (timeframe === '1d' ? 1 : 390 / (msPerCandle / 60000)));
 
     for (let i = candleCount - 1; i >= 0; i--) {
       const time = Math.floor((endTime - i * msPerCandle) / 1000);
-
-      // Generate realistic OHLCV with trend and mean reversion
       const trend = (config.basePrice - price) / config.basePrice * 0.1;
       const change = (Math.random() - 0.5 + trend) * volatility * price;
 
@@ -146,64 +184,152 @@ export class MarketDataSimulator extends EventEmitter {
     return map[tf];
   }
 
-  start(): void {
-    if (this.intervalId) return;
+  // Handle incoming live quote data
+  private handleLiveQuote(quote: MarketQuote): void {
+    const state = this.prices.get(quote.symbol);
+    if (!state) return;
 
-    // Update prices every 100ms for realistic tick data
-    this.intervalId = setInterval(() => {
-      this.updatePrices();
-    }, 100);
+    // Update state with live data
+    state.price = quote.last;
+    state.bid = quote.bid;
+    state.ask = quote.ask;
+    state.bidSize = quote.bidSize;
+    state.askSize = quote.askSize;
+    state.volume = quote.volume;
+    state.high = Math.max(state.high, quote.high);
+    state.low = Math.min(state.low, quote.low);
+    state.open = quote.open;
+    state.previousClose = quote.previousClose;
+    state.lastLiveUpdate = Date.now();
+    state.isLive = true;
+
+    // Emit the quote
+    this.emit('quote', this.getQuote(quote.symbol));
+  }
+
+  async start(): Promise<void> {
+    // Check health of data sources
+    await this.checkDataSources();
+
+    // Start live data polling for subscribed symbols
+    if (this.enableLiveData) {
+      this.dataProvider.subscribe(SYMBOLS.map(s => s.symbol));
+      this.startLiveDataPolling();
+    }
+
+    // Always run simulation for smooth updates and fallback
+    if (!this.simulationInterval) {
+      this.simulationInterval = setInterval(() => {
+        this.updatePrices();
+      }, 100);
+    }
 
     // Update candles every second
     setInterval(() => {
       this.updateCandles();
     }, 1000);
+
+    console.log('[MarketDataSimulator] Started');
   }
 
-  stop(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+  private async checkDataSources(): Promise<void> {
+    try {
+      const health = await this.dataProvider.checkHealth();
+      this.dataSourceStatus = {
+        yahoo: health.get('yahoo') || false,
+        binance: health.get('binance') || false,
+        alpaca: health.get('alpaca') || false,
+        lastCheck: Date.now(),
+      };
+
+      console.log('[MarketDataSimulator] Data source status:', this.dataSourceStatus);
+    } catch (error) {
+      console.error('[MarketDataSimulator] Error checking data sources:', error);
     }
   }
 
+  private startLiveDataPolling(): void {
+    if (this.liveDataInterval) return;
+
+    // Poll live data every 5 seconds
+    this.liveDataInterval = setInterval(async () => {
+      await this.fetchLiveData();
+    }, 5000);
+
+    // Initial fetch
+    this.fetchLiveData();
+  }
+
+  private async fetchLiveData(): Promise<void> {
+    for (const config of SYMBOLS) {
+      try {
+        const result = await this.dataProvider.getQuote(config.symbol);
+        if (result.success && result.data) {
+          this.handleLiveQuote(result.data);
+        }
+      } catch (error) {
+        // Silently fail - simulation will provide fallback
+      }
+    }
+  }
+
+  stop(): void {
+    if (this.simulationInterval) {
+      clearInterval(this.simulationInterval);
+      this.simulationInterval = null;
+    }
+    if (this.liveDataInterval) {
+      clearInterval(this.liveDataInterval);
+      this.liveDataInterval = null;
+    }
+    this.dataProvider.shutdown();
+    console.log('[MarketDataSimulator] Stopped');
+  }
+
   private updatePrices(): void {
+    const now = Date.now();
+
     for (const config of SYMBOLS) {
       const state = this.prices.get(config.symbol)!;
 
-      // Micro price movement with momentum
-      const tickVolatility = config.volatility / Math.sqrt(252 * 390 * 60 * 10); // Per 100ms
+      // Skip simulation if we have recent live data (within 10 seconds)
+      if (state.isLive && now - state.lastLiveUpdate < 10000) {
+        // Just emit the current state
+        this.emit('quote', this.getQuote(config.symbol));
+        continue;
+      }
+
+      // Mark as not live if data is stale
+      if (now - state.lastLiveUpdate > 10000) {
+        state.isLive = false;
+      }
+
+      // Simulate price movement
+      const tickVolatility = config.volatility / Math.sqrt(252 * 390 * 60 * 10);
       const noise = (Math.random() - 0.5) * 2;
       const trendBias = state.trend * 0.1;
       const meanReversion = (config.basePrice - state.price) / config.basePrice * 0.05;
 
-      // Update momentum
       state.momentum = state.momentum * 0.95 + noise * 0.05;
 
       const change = (noise + trendBias + meanReversion + state.momentum) * tickVolatility * state.price;
       const newPrice = Math.max(state.price * 0.9, Math.min(state.price * 1.1, state.price + change));
 
-      // Update state
       state.price = Number(newPrice.toFixed(2));
       state.high = Math.max(state.high, state.price);
       state.low = Math.min(state.low, state.price);
 
-      // Update spread (tighter for liquid stocks)
-      const spreadBps = 1 + Math.random() * 3; // 1-4 basis points
+      const spreadBps = 1 + Math.random() * 3;
       state.bid = Number((state.price * (1 - spreadBps / 10000)).toFixed(2));
       state.ask = Number((state.price * (1 + spreadBps / 10000)).toFixed(2));
       state.bidSize = Math.floor(100 + Math.random() * 2000);
       state.askSize = Math.floor(100 + Math.random() * 2000);
-
-      // Volume tick
       state.volume += Math.floor(Math.random() * 1000 * (1 + Math.abs(change / state.price) * 100));
 
-      // Random trend shifts
       if (Math.random() < 0.001) {
         state.trend = (Math.random() - 0.5) * 2;
       }
 
-      // Emit quote update
       this.emit('quote', this.getQuote(config.symbol));
     }
   }
@@ -217,15 +343,12 @@ export class MarketDataSimulator extends EventEmitter {
       let candle = this.currentMinuteCandle.get(config.symbol);
 
       if (!candle || candle.time < currentMinute) {
-        // Start new candle
         if (candle) {
-          // Save completed candle to 1m data
           const symbolData = this.ohlcvData.get(config.symbol)!;
           const minuteData = symbolData.get('1m')!;
           minuteData.push(candle);
           if (minuteData.length > 500) minuteData.shift();
 
-          // Update higher timeframes
           this.aggregateCandle(config.symbol, '5m', 5);
           this.aggregateCandle(config.symbol, '15m', 15);
           this.aggregateCandle(config.symbol, '1h', 60);
@@ -243,7 +366,6 @@ export class MarketDataSimulator extends EventEmitter {
         };
         this.currentMinuteCandle.set(config.symbol, candle);
       } else {
-        // Update current candle
         candle.high = Math.max(candle.high, state.price);
         candle.low = Math.min(candle.low, state.price);
         candle.close = state.price;
@@ -306,14 +428,41 @@ export class MarketDataSimulator extends EventEmitter {
     };
   }
 
-  getOrderBook(symbol: string, levels: number = 10): OrderBook | null {
+  async getOrderBook(symbol: string, levels: number = 10): Promise<OrderBook | null> {
+    // Try live order book first
+    if (this.enableLiveData) {
+      const result = await this.dataProvider.getOrderBook(symbol, levels);
+      if (result.success && result.data) {
+        return {
+          symbol: result.data.symbol,
+          bids: result.data.bids.map(b => ({
+            price: b.price,
+            size: b.size,
+            orders: b.orders || 1,
+          })),
+          asks: result.data.asks.map(a => ({
+            price: a.price,
+            size: a.size,
+            orders: a.orders || 1,
+          })),
+          spread: result.data.spread,
+          spreadPercent: result.data.spreadPercent,
+          timestamp: result.data.timestamp,
+        };
+      }
+    }
+
+    // Fallback to simulated order book
+    return this.getSimulatedOrderBook(symbol, levels);
+  }
+
+  private getSimulatedOrderBook(symbol: string, levels: number): OrderBook | null {
     const state = this.prices.get(symbol);
     if (!state) return null;
 
     const bids: { price: number; size: number; orders: number }[] = [];
     const asks: { price: number; size: number; orders: number }[] = [];
 
-    // Generate realistic order book levels
     for (let i = 0; i < levels; i++) {
       const bidPrice = state.bid - (i * state.price * 0.0002);
       const askPrice = state.ask + (i * state.price * 0.0002);
@@ -344,7 +493,21 @@ export class MarketDataSimulator extends EventEmitter {
     };
   }
 
-  getCandles(symbol: string, timeframe: Timeframe): OHLCV[] {
+  async getCandles(symbol: string, timeframe: Timeframe): Promise<OHLCV[]> {
+    // Try live candles first
+    if (this.enableLiveData) {
+      const result = await this.dataProvider.getCandles(symbol, timeframe, 500);
+      if (result.success && result.data && result.data.length > 0) {
+        // Merge with simulated data for continuity
+        const symbolData = this.ohlcvData.get(symbol);
+        if (symbolData) {
+          symbolData.set(timeframe, result.data as OHLCV[]);
+        }
+        return result.data as OHLCV[];
+      }
+    }
+
+    // Fallback to simulated data
     const symbolData = this.ohlcvData.get(symbol);
     if (!symbolData) return [];
     return symbolData.get(timeframe) || [];
@@ -367,13 +530,8 @@ export class MarketDataSimulator extends EventEmitter {
     const isWeekend = now.getDay() === 0 || now.getDay() === 6;
     if (isWeekend) return 'closed';
 
-    // Pre-market: 4:00 AM - 9:30 AM EST
     if (time >= 240 && time < 570) return 'pre_market';
-
-    // Regular: 9:30 AM - 4:00 PM EST
     if (time >= 570 && time < 960) return 'regular';
-
-    // After-hours: 4:00 PM - 8:00 PM EST
     if (time >= 960 && time < 1200) return 'after_hours';
 
     return 'closed';
@@ -383,16 +541,31 @@ export class MarketDataSimulator extends EventEmitter {
     const now = new Date();
     const estHour = (now.getUTCHours() - 5 + 24) % 24;
 
-    // London Kill Zone: 02:00 - 05:00 EST
     if (estHour >= 2 && estHour < 5) {
       return { zone: 'London', active: true };
     }
-
-    // NY Kill Zone: 08:00 - 11:00 EST
     if (estHour >= 8 && estHour < 11) {
       return { zone: 'New York', active: true };
     }
 
     return { zone: 'None', active: false };
+  }
+
+  // Get data source status
+  getDataSourceStatus(): DataSourceStatus & { liveSymbols: string[] } {
+    const liveSymbols = Array.from(this.prices.entries())
+      .filter(([_, state]) => state.isLive)
+      .map(([symbol]) => symbol);
+
+    return {
+      ...this.dataSourceStatus,
+      liveSymbols,
+    };
+  }
+
+  // Check if a symbol is using live data
+  isLive(symbol: string): boolean {
+    const state = this.prices.get(symbol);
+    return state?.isLive || false;
   }
 }

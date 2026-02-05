@@ -27,11 +27,14 @@ app.use(express.json());
 // Initialize services
 const db = initializeDatabase();
 const tradingEngine = new TradingEngine(db);
-const marketData = new MarketDataSimulator();
+const enableLiveData = process.env.ENABLE_LIVE_DATA !== 'false'; // Default to enabled
+const marketData = new MarketDataSimulator(enableLiveData);
 const technicalAnalysis = new TechnicalAnalysis();
 
-// Start market data simulation
-marketData.start();
+// Start market data (async - includes live data initialization)
+(async () => {
+  await marketData.start();
+})();
 
 // Update trading engine prices
 marketData.on('quote', (quote) => {
@@ -200,10 +203,10 @@ app.get('/api/quotes', (_req, res) => {
   }
 });
 
-app.get('/api/orderbook/:symbol', (req, res) => {
+app.get('/api/orderbook/:symbol', async (req, res) => {
   try {
     const { levels = '10' } = req.query;
-    const orderBook = marketData.getOrderBook(req.params.symbol.toUpperCase(), Number(levels));
+    const orderBook = await marketData.getOrderBook(req.params.symbol.toUpperCase(), Number(levels));
     if (!orderBook) {
       return res.status(404).json({ error: 'Symbol not found' });
     }
@@ -213,10 +216,10 @@ app.get('/api/orderbook/:symbol', (req, res) => {
   }
 });
 
-app.get('/api/candles/:symbol', (req, res) => {
+app.get('/api/candles/:symbol', async (req, res) => {
   try {
     const { timeframe = '1m' } = req.query;
-    const candles = marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
+    const candles = await marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
     res.json(candles);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });
@@ -234,11 +237,25 @@ app.get('/api/market/session', (_req, res) => {
   });
 });
 
+// Data source status endpoint - shows which symbols are using live data
+app.get('/api/market/sources', (_req, res) => {
+  try {
+    const status = marketData.getDataSourceStatus();
+    res.json({
+      ...status,
+      enableLiveData,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
 // Technical analysis endpoints
-app.get('/api/analysis/:symbol/indicators', (req, res) => {
+app.get('/api/analysis/:symbol/indicators', async (req, res) => {
   try {
     const { timeframe = '1h' } = req.query;
-    const candles = marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
+    const candles = await marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
 
     if (candles.length < 30) {
       return res.status(400).json({ error: 'Insufficient data for analysis' });
@@ -258,10 +275,10 @@ app.get('/api/analysis/:symbol/indicators', (req, res) => {
   }
 });
 
-app.get('/api/analysis/:symbol/ict', (req, res) => {
+app.get('/api/analysis/:symbol/ict', async (req, res) => {
   try {
     const { timeframe = '1h' } = req.query;
-    const candles = marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
+    const candles = await marketData.getCandles(req.params.symbol.toUpperCase(), timeframe as any);
 
     if (candles.length < 50) {
       return res.status(400).json({ error: 'Insufficient data for ICT analysis' });
@@ -283,9 +300,9 @@ app.get('/api/analysis/:symbol/ict', (req, res) => {
   }
 });
 
-app.get('/api/analysis/:symbol/qullamaggie', (req, res) => {
+app.get('/api/analysis/:symbol/qullamaggie', async (req, res) => {
   try {
-    const candles = marketData.getCandles(req.params.symbol.toUpperCase(), '1d');
+    const candles = await marketData.getCandles(req.params.symbol.toUpperCase(), '1d');
     const setups = technicalAnalysis.findQullamagieSetups(candles, req.params.symbol.toUpperCase());
     res.json(setups);
   } catch (error) {
@@ -428,5 +445,9 @@ app.get('/api/health', (_req, res) => {
 httpServer.listen(PORT, () => {
   console.log(`🚀 Trading Platform Server running on http://localhost:${PORT}`);
   console.log(`📊 WebSocket server ready`);
-  console.log(`💹 Market data simulation active`);
+  console.log(`💹 Live data: ${enableLiveData ? 'ENABLED' : 'DISABLED (simulation mode)'}`);
+  if (enableLiveData) {
+    console.log(`   📈 Stocks: Yahoo Finance (free) / Alpaca (if configured)`);
+    console.log(`   💰 Crypto: Binance (free)`);
+  }
 });
