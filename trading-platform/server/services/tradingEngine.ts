@@ -419,10 +419,11 @@ export class TradingEngine {
 
   // Reset portfolio to initial state
   resetPortfolio(initialBalance: number = 100000): void {
+    // Delete in correct order to respect foreign key constraints
     this.db.exec(`
-      DELETE FROM positions;
-      DELETE FROM orders;
       DELETE FROM trades;
+      DELETE FROM orders;
+      DELETE FROM positions;
       UPDATE portfolio SET cash = ${initialBalance}, initial_balance = ${initialBalance}, updated_at = datetime('now') WHERE id = 1;
     `);
   }
