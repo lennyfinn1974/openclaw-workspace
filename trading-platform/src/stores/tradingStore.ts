@@ -249,6 +249,9 @@ export const useTradingStore = create<TradingState>()(
   }))
 );
 
+// Stable empty array to prevent infinite re-renders
+const EMPTY_CANDLES: OHLCV[] = [];
+
 // Selectors
 export const selectCurrentQuote = (state: TradingState) =>
   state.quotes.get(state.selectedSymbol);
@@ -258,7 +261,7 @@ export const selectCurrentOrderBook = (state: TradingState) =>
 
 export const selectCurrentCandles = (state: TradingState) => {
   const symbolCandles = state.candles.get(state.selectedSymbol);
-  return symbolCandles?.get(state.selectedTimeframe) || [];
+  return symbolCandles?.get(state.selectedTimeframe) ?? EMPTY_CANDLES;
 };
 
 export const selectPositionBySymbol = (symbol: string) => (state: TradingState) =>

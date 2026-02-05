@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { createChart, IChartApi, ISeriesApi, CandlestickData, Time, LineStyle } from 'lightweight-charts';
-import { useTradingStore, selectCurrentCandles } from '@/stores/tradingStore';
+import { useShallow } from 'zustand/react/shallow';
+import { useTradingStore } from '@/stores/tradingStore';
 import { getCandles, getIctAnalysis } from '@/services/api';
-import type { Timeframe, OrderBlock, FairValueGap } from '@/types/trading';
+import type { Timeframe, OrderBlock, FairValueGap, OHLCV } from '@/types/trading';
 
 const TIMEFRAMES: { label: string; value: Timeframe }[] = [
   { label: '1m', value: '1m' },
@@ -29,7 +30,13 @@ export function TradingChart() {
     setIctAnalysis,
   } = useTradingStore();
 
-  const candles = useTradingStore(selectCurrentCandles);
+  // Use memoized selector to prevent infinite re-renders
+  const candles = useTradingStore(
+    useShallow((state) => {
+      const symbolCandles = state.candles.get(state.selectedSymbol);
+      return symbolCandles?.get(state.selectedTimeframe) ?? [];
+    })
+  );
 
   const [showOrderBlocks, setShowOrderBlocks] = useState(true);
   const [showFVGs, setShowFVGs] = useState(true);
