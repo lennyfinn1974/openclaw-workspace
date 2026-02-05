@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useMemo } from 'react';
-import { createChart, IChartApi, ISeriesApi, CandlestickData, Time, LineStyle } from 'lightweight-charts';
+import { createChart, IChartApi, ISeriesApi, CandlestickData, Time, LineStyle, CandlestickSeries, HistogramSeries } from 'lightweight-charts';
 import { useShallow } from 'zustand/react/shallow';
 import { useTradingStore } from '@/stores/tradingStore';
 import { getCandles, getIctAnalysis } from '@/services/api';
@@ -84,8 +84,8 @@ export function TradingChart() {
       },
     });
 
-    // Candlestick series
-    const candleSeries = chart.addCandlestickSeries({
+    // Candlestick series (v5 API)
+    const candleSeries = chart.addSeries(CandlestickSeries, {
       upColor: '#22c55e',
       downColor: '#ef4444',
       borderUpColor: '#22c55e',
@@ -94,8 +94,8 @@ export function TradingChart() {
       wickDownColor: '#ef4444',
     });
 
-    // Volume series
-    const volumeSeries = chart.addHistogramSeries({
+    // Volume series (v5 API)
+    const volumeSeries = chart.addSeries(HistogramSeries, {
       color: '#6366f1',
       priceFormat: { type: 'volume' },
       priceScaleId: '',
