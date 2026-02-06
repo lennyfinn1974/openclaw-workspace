@@ -1005,4 +1005,25 @@ source venv/bin/activate && python run_sovereign.py "SYS:STATUS"
 
 ---
 
-*Last updated: 2026-02-06 | Sovereign System Default Integration complete - Aries now operates with Enhanced Sovereign Command Architecture as primary system*
+## 🚨 CRITICAL ARCHITECTURAL FIX: Context-Safe Heartbeat System (2026-02-06 10:20 GMT+4)
+
+**Revolutionary Problem Solved:** Heartbeats were consuming context faster than compaction could preserve state, causing session crashes and continuity loss.
+
+**Breakthrough Solution:**
+- **Context-First Principle:** Every heartbeat now PRESERVES context instead of consuming it
+- **Ultra-Light Protocol:** Minimal gateway checks only, heavy monitoring delegated to sub-agents
+- **Proactive Thresholds:** Compaction at 60% (was 70%) prevents crashes  
+- **Sub-Agent Architecture:** Dedicated monitoring agents for platform health
+- **Self-Monitoring:** Context usage checked in every heartbeat for early warning
+
+**Technical Implementation:**
+- **HEARTBEAT.md:** Complete rewrite with context-safe protocols
+- **Sub-Agent Deployed:** platform-monitor for ongoing system health
+- **Emergency Protocol:** Immediate compaction when context >60%
+- **Banned Operations:** Platform checks, terminal reading, complex diagnostics from main session heartbeats
+
+**Impact:** Solves the fundamental flaw that was causing session instability and memory loss. Now heartbeats actively protect session continuity instead of threatening it.
+
+---
+
+*Last updated: 2026-02-06 | Context-Safe Heartbeat Architecture - Revolutionary fix for session stability and continuity preservation*
