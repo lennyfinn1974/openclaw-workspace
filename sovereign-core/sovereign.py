@@ -29,12 +29,22 @@ try:
     from .storage import SovereignStorage
     from .context import ContextProtector
     from .search import HybridSearch
+    from .integrations import get_enhanced_router
+    from .handlers import get_handler
 except ImportError:
     from commands import CommandRegistry, MasterCommand
     from routing import TieredRouter, ModelTier
     from storage import SovereignStorage
     from context import ContextProtector
     from search import HybridSearch
+    try:
+        from handlers import get_handler
+    except ImportError:
+        get_handler = None
+    try:
+        from integrations import get_enhanced_router
+    except ImportError:
+        get_enhanced_router = None
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("sovereign")
@@ -54,7 +64,13 @@ class Sovereign:
 
         # Core components
         self.commands = CommandRegistry()
-        self.router = TieredRouter()
+        # Use enhanced router with OpenClaw integration if available
+        if get_enhanced_router:
+            self.router = get_enhanced_router()
+            logger.info("Using enhanced router with OpenClaw integration")
+        else:
+            self.router = TieredRouter()
+            logger.info("Using standard router")
         self.storage = SovereignStorage(self.home / "data")
         self.context = ContextProtector()
         self.search = HybridSearch(self.home / "index")
@@ -96,19 +112,26 @@ class Sovereign:
 
         prefix, action, args = parsed["prefix"], parsed["action"], parsed["args"]
 
-        # Determine model tier based on command complexity
+        # Determine tier for record-keeping
         tier = self._determine_tier(prefix, action)
-        logger.info(f"Executing {prefix}:{action} with tier={tier.name}")
 
-        # Protect context if needed
-        context = self.context.get_protected_context(prefix)
+        # Check for specialized handler first
+        handler = get_handler(prefix, action) if get_handler else None
+        if handler:
+            logger.info(f"Using specialized handler for {prefix}:{action}")
+            result = await handler(parsed, self.router)
+        else:
+            logger.info(f"Executing {prefix}:{action} with tier={tier.name}")
 
-        # Route to appropriate model
-        result = await self.router.route(
-            tier=tier,
-            command=parsed,
-            context=context,
-        )
+            # Protect context if needed
+            context = self.context.get_protected_context(prefix)
+
+            # Route to appropriate model
+            result = await self.router.route(
+                tier=tier,
+                command=parsed,
+                context=context,
+            )
 
         # Store execution record
         record = {
@@ -117,7 +140,7 @@ class Sovereign:
             "command": command_str,
             "prefix": prefix,
             "action": action,
-            "tier": tier.name,
+            "tier": result.get("tier", tier.name),
             "duration_ms": (datetime.now() - start_time).total_seconds() * 1000,
             "success": "error" not in result,
         }

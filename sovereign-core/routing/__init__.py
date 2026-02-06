@@ -205,11 +205,18 @@ class TieredRouter:
 
     def _select_model(self, tier: ModelTier) -> Optional[ModelConfig]:
         """Select best available model for tier."""
-        # Prefer models in order
+        # Prefer models in order (extended models added by integrations)
         tier_preferences = {
-            ModelTier.LOCAL: ["ollama-kimi", "ollama-llama3", "ollama-mistral"],
-            ModelTier.BALANCED: ["claude-haiku"],
-            ModelTier.PREMIUM: ["claude-sonnet", "claude-opus"],
+            ModelTier.LOCAL: [
+                "ollama-kimi", "groq-llama", "groq-mixtral",
+                "deepseek-chat", "ollama-llama3", "ollama-mistral",
+            ],
+            ModelTier.BALANCED: [
+                "claude-haiku", "deepseek-r1", "grok",
+            ],
+            ModelTier.PREMIUM: [
+                "claude-sonnet", "gemini-pro", "claude-opus",
+            ],
         }
 
         for model_name in tier_preferences.get(tier, []):
@@ -226,6 +233,14 @@ class TieredRouter:
 
     def _build_prompt(self, command: Dict[str, Any], context: str) -> str:
         """Build prompt from command and context."""
+        # Handlers can inject a specialized prompt
+        if command.get("prompt_override"):
+            parts = []
+            if context:
+                parts.append(f"{context}\n")
+            parts.append(command["prompt_override"])
+            return "\n".join(parts)
+
         parts = []
 
         if context:
