@@ -16,7 +16,7 @@ session_status | grep "Context:" | grep -o "[0-9]*k/[0-9]*k ([0-9]*%)"
 - **>40% (80k tokens):** Light monitoring only
 
 ## Ultra-Light Heartbeat Protocol
-**When context <40%:** Minimal gateway check only
+**When context <40%:** Gateway check only (no platform monitoring)
 **When context 40-50%:** Gateway + sub-agent delegation 
 **When context 50-60%:** Emergency compaction prep
 **When context >60%:** IMMEDIATE compaction (no other actions)
@@ -32,8 +32,15 @@ openclaw gateway status | grep -q "RPC probe: ok" || echo "GATEWAY_DOWN"
 - **Trigger compaction** when needed
 - **Log critical alerts** to daily memory
 
+## MAINTENANCE SCHEDULE (Reduced Frequency)
+❌ **NO automatic platform monitoring** in heartbeats
+❌ **NO automatic system maintenance** in heartbeats  
+✅ **Platform monitoring:** Once every 24 hours OR when explicitly requested
+✅ **System maintenance:** Once every 24 hours OR when explicitly requested
+
 ## BANNED in Heartbeats
-❌ Platform status checks (delegate to sub-agent)
+❌ Platform status checks (delegate to daily sub-agent or on request)
+❌ System maintenance tasks (daily or on-demand only)
 ❌ Terminal content reading (too verbose)
 ❌ Multi-step diagnostics (context expensive)
 ❌ Complex tool chains (use sub-agents)
