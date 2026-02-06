@@ -1,0 +1,25 @@
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "token": "8156263925:AAE1dx2T1o-Sf6NtEqeN303l8h-39vhXFDQ",
+      "webhook": {
+        "enabled": true,
+        "path": "/webhook/telegram"
+      },
+      "polling": {
+        "enabled": false
+      },
+      "features": {
+        "editMessage": true,
+        "deleteMessage": true,
+        "replyToMessage": true,
+        "forwardMessage": true,
+        "pinMessage": true,
+        "reactions": true,
+        "buttons": true,
+        "polls": true
+      }
+    }
+  }
+}

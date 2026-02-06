@@ -1,0 +1,719 @@
+{
+  "boards": [
+    {
+      "id": "live-board-1770204328669",
+      "name": "🔴 Live OpenClaw Tasks",
+      "description": "Real-time tasks from OpenClaw agent sessions",
+      "createdAt": "2026-02-04T11:25:28.669Z",
+      "updatedAt": "2026-02-04T11:25:28.669Z",
+      "isHistorical": false
+    }
+  ],
+  "columns": [
+    {
+      "id": "live-column-0",
+      "boardId": "live-board-1770204328669",
+      "name": "New Tasks",
+      "position": 0,
+      "color": "#3b82f6",
+      "createdAt": "2026-02-04T11:25:28.669Z",
+      "updatedAt": "2026-02-04T11:25:28.669Z"
+    },
+    {
+      "id": "live-column-1",
+      "boardId": "live-board-1770204328669",
+      "name": "In Progress",
+      "position": 1,
+      "color": "#f59e0b",
+      "createdAt": "2026-02-04T11:25:28.669Z",
+      "updatedAt": "2026-02-04T11:25:28.669Z"
+    },
+    {
+      "id": "live-column-2",
+      "boardId": "live-board-1770204328669",
+      "name": "Completed",
+      "position": 2,
+      "color": "#10b981",
+      "createdAt": "2026-02-04T11:25:28.669Z",
+      "updatedAt": "2026-02-04T11:25:28.669Z"
+    },
+    {
+      "id": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "name": "Agent Pool",
+      "position": 3,
+      "color": "#8b5cf6",
+      "createdAt": "2026-02-04T11:25:28.669Z",
+      "updatedAt": "2026-02-04T11:25:28.669Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "live-task-aries-coordinator-001",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 AI Workflow Coordination",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** aries-coordinator-001\n**Session ID:** session-openclaw-main\n**Objective:** Coordinate AI workflow improvements for Kanban platform\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:25:57.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "aries-coordinator-001",
+      "position": 0,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-04T11:25:57.077Z",
+      "updatedAt": "2026-02-04T11:25:57.077Z",
+      "isAutomated": true,
+      "openclawTaskId": "aries-coordinator-001",
+      "openclawSessionId": "session-openclaw-main"
+    },
+    {
+      "id": "live-task-task-nexus-security-001",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Nexus Security Phase 1",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** task-nexus-security-001\n**Session ID:** session-security-review\n**Objective:** Complete Nexus Agent security remediation (Phase 1)\n**Priority:** urgent\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:26:02.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "urgent",
+      "status": "active",
+      "assigneeId": "task-nexus-security-001",
+      "position": 1,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-urgent"
+      ],
+      "createdAt": "2026-02-04T11:26:02.667Z",
+      "updatedAt": "2026-02-04T11:26:02.667Z",
+      "isAutomated": true,
+      "openclawTaskId": "task-nexus-security-001",
+      "openclawSessionId": "session-security-review"
+    },
+    {
+      "id": "live-task-claude-code-terminal-001",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 tmux + Claude Code Integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** claude-code-terminal-001\n**Session ID:** tmux-session-claude-test\n**Objective:** Implement tmux + Claude Code workflow for cost-effective coding\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:26:09.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-04T11:26:21.419Z\n**Result:** No result provided",
+      "priority": "high",
+      "status": "completed",
+      "assigneeId": "claude-code-terminal-001",
+      "position": 2,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-04T11:26:09.483Z",
+      "updatedAt": "2026-02-04T11:26:21.419Z",
+      "isAutomated": true,
+      "openclawTaskId": "claude-code-terminal-001",
+      "openclawSessionId": "tmux-session-claude-test"
+    },
+    {
+      "id": "live-task-frontend-dev-001",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Frontend UI Enhancement",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** frontend-dev-001\n**Session ID:** session-ui-development\n**Objective:** Enhance Kanban UI for better AI workflow visualization on localhost:5174\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:33:26.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "frontend-dev-001",
+      "position": 2,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-04T11:33:26.462Z",
+      "updatedAt": "2026-02-04T11:33:26.462Z",
+      "isAutomated": true,
+      "openclawTaskId": "frontend-dev-001",
+      "openclawSessionId": "session-ui-development"
+    },
+    {
+      "id": "live-task-dashboard-monitor-002",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Dashboard Monitoring Agent",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** dashboard-monitor-002\n**Session ID:** session-dashboard-monitoring\n**Objective:** Monitor localhost:5174 Kanban board performance and user experience\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:33:32.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "dashboard-monitor-002",
+      "position": 3,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-04T11:33:32.587Z",
+      "updatedAt": "2026-02-04T11:33:32.587Z",
+      "isAutomated": true,
+      "openclawTaskId": "dashboard-monitor-002",
+      "openclawSessionId": "session-dashboard-monitoring"
+    },
+    {
+      "id": "live-task-integration-test-003",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Real-time Integration Test",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** integration-test-003\n**Session ID:** session-integration-testing\n**Objective:** Test real-time task updates on localhost:5174 Kanban board interface\n**Priority:** urgent\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:33:38.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-04T11:33:44.363Z\n**Result:** No result provided",
+      "priority": "urgent",
+      "status": "completed",
+      "assigneeId": "integration-test-003",
+      "position": 4,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-urgent"
+      ],
+      "createdAt": "2026-02-04T11:33:38.306Z",
+      "updatedAt": "2026-02-04T11:33:44.363Z",
+      "isAutomated": true,
+      "openclawTaskId": "integration-test-003",
+      "openclawSessionId": "session-integration-testing"
+    },
+    {
+      "id": "live-task-realtime-test-004",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Live Demo Task",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** realtime-test-004\n**Session ID:** session-realtime-testing\n**Objective:** Demonstrate live task updates on localhost:5174 Kanban board\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:33:59.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-04T11:34:01.023Z\n**Result:** No result provided",
+      "priority": "high",
+      "status": "completed",
+      "assigneeId": "realtime-test-004",
+      "position": 4,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-04T11:33:59.938Z",
+      "updatedAt": "2026-02-04T11:34:01.023Z",
+      "isAutomated": true,
+      "openclawTaskId": "realtime-test-004",
+      "openclawSessionId": "session-realtime-testing"
+    },
+    {
+      "id": "live-task-final-test-005",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Webhook Service Fix Test",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** final-test-005\n**Session ID:** session-final-test\n**Objective:** FINAL TEST: Verify localhost:5174 can see this task after webhook service fix\n**Priority:** urgent\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:37:10.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "urgent",
+      "status": "active",
+      "assigneeId": "final-test-005",
+      "position": 4,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-urgent"
+      ],
+      "createdAt": "2026-02-04T11:37:10.374Z",
+      "updatedAt": "2026-02-04T11:37:10.374Z",
+      "isAutomated": true,
+      "openclawTaskId": "final-test-005",
+      "openclawSessionId": "session-final-test"
+    },
+    {
+      "id": "live-task-debug-test-final",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 FINAL DEBUG TEST",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** debug-test-final\n**Session ID:** session-debug-final\n**Objective:** DEBUG: Force display test after aggressive fixes - this task should appear on localhost:5174\n**Priority:** urgent\n\n### 📊 Task Details\n- **Spawned:** 2026-02-04T11:45:31.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "urgent",
+      "status": "active",
+      "assigneeId": "debug-test-final",
+      "position": 5,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-urgent"
+      ],
+      "createdAt": "2026-02-04T11:45:31.038Z",
+      "updatedAt": "2026-02-04T11:45:31.038Z",
+      "isAutomated": true,
+      "openclawTaskId": "debug-test-final",
+      "openclawSessionId": "session-debug-final"
+    },
+    {
+      "id": "live-task-test-agent-4bizxgxs",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 test-task",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-agent-4bizxgxs\n**Session ID:** test-session-1770301634297\n**Objective:** Test webhook integration\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-05T14:27:14.297Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "test-agent-4bizxgxs",
+      "position": 6,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-05T14:27:14.298Z",
+      "updatedAt": "2026-02-05T14:27:14.298Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-agent-4bizxgxs",
+      "openclawSessionId": "test-session-1770301634297"
+    },
+    {
+      "id": "live-task-nexus-security-agent",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Security & Foundation",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** nexus-security-agent\n**Session ID:** terminal-955\n**Objective:** Nexus Security Hardening & Codebase Consolidation\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-05T14:27:30.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "nexus-security-agent",
+      "position": 7,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-05T14:27:19.666Z",
+      "updatedAt": "2026-02-05T14:27:19.666Z",
+      "isAutomated": true,
+      "openclawTaskId": "nexus-security-agent",
+      "openclawSessionId": "terminal-955"
+    },
+    {
+      "id": "live-task-nexus-architecture-agent",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Architecture Integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** nexus-architecture-agent\n**Session ID:** terminal-961\n**Objective:** Unified Model Router Implementation & OpenClaw Integration Architecture\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-05T14:27:45.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "nexus-architecture-agent",
+      "position": 8,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-05T14:27:24.219Z",
+      "updatedAt": "2026-02-05T14:27:24.219Z",
+      "isAutomated": true,
+      "openclawTaskId": "nexus-architecture-agent",
+      "openclawSessionId": "terminal-961"
+    },
+    {
+      "id": "live-task-nexus-features-agent",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770204328669",
+      "title": "🤖 Features & Testing",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** nexus-features-agent\n**Session ID:** terminal-962\n**Objective:** Bidirectional Communication & Enhanced Features Implementation\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-05T14:28:00.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "nexus-features-agent",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-05T14:27:54.683Z",
+      "updatedAt": "2026-02-05T14:27:54.683Z",
+      "isAutomated": true,
+      "openclawTaskId": "nexus-features-agent",
+      "openclawSessionId": "terminal-962"
+    }
+  ],
+  "agents": [
+    {
+      "id": "aries-coordinator-001",
+      "sessionId": "session-openclaw-main",
+      "label": "AI Workflow Coordination",
+      "status": "active",
+      "startTime": "2026-02-04T11:25:57.077Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:25:57.077Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:25:57.000Z",
+        "objective": "Coordinate AI workflow improvements for Kanban platform",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "task-nexus-security-001",
+      "sessionId": "session-security-review",
+      "label": "Nexus Security Phase 1",
+      "status": "active",
+      "startTime": "2026-02-04T11:26:02.667Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:26:02.667Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:26:02.000Z",
+        "objective": "Complete Nexus Agent security remediation (Phase 1)",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "claude-code-terminal-001",
+      "sessionId": "tmux-session-claude-test",
+      "label": "tmux + Claude Code Integration",
+      "status": "active",
+      "startTime": "2026-02-04T11:26:09.483Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:26:09.483Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:26:09.000Z",
+        "objective": "Implement tmux + Claude Code workflow for cost-effective coding",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "frontend-dev-001",
+      "sessionId": "session-ui-development",
+      "label": "Frontend UI Enhancement",
+      "status": "active",
+      "startTime": "2026-02-04T11:33:26.462Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:33:26.462Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:33:26.000Z",
+        "objective": "Enhance Kanban UI for better AI workflow visualization on localhost:5174",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "dashboard-monitor-002",
+      "sessionId": "session-dashboard-monitoring",
+      "label": "Dashboard Monitoring Agent",
+      "status": "active",
+      "startTime": "2026-02-04T11:33:32.587Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:33:32.587Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:33:32.000Z",
+        "objective": "Monitor localhost:5174 Kanban board performance and user experience",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "integration-test-003",
+      "sessionId": "session-integration-testing",
+      "label": "Real-time Integration Test",
+      "status": "active",
+      "startTime": "2026-02-04T11:33:38.306Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:33:38.306Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:33:38.000Z",
+        "objective": "Test real-time task updates on localhost:5174 Kanban board interface",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "realtime-test-004",
+      "sessionId": "session-realtime-testing",
+      "label": "Live Demo Task",
+      "status": "active",
+      "startTime": "2026-02-04T11:33:59.938Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:33:59.938Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:33:59.000Z",
+        "objective": "Demonstrate live task updates on localhost:5174 Kanban board",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "final-test-005",
+      "sessionId": "session-final-test",
+      "label": "Webhook Service Fix Test",
+      "status": "active",
+      "startTime": "2026-02-04T11:37:10.374Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:37:10.374Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:37:10.000Z",
+        "objective": "FINAL TEST: Verify localhost:5174 can see this task after webhook service fix",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "debug-test-final",
+      "sessionId": "session-debug-final",
+      "label": "FINAL DEBUG TEST",
+      "status": "active",
+      "startTime": "2026-02-04T11:45:31.038Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-04T11:45:31.038Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-04T11:45:31.000Z",
+        "objective": "DEBUG: Force display test after aggressive fixes - this task should appear on localhost:5174",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "test-agent-4bizxgxs",
+      "sessionId": "test-session-1770301634297",
+      "label": "test-task",
+      "status": "active",
+      "startTime": "2026-02-05T14:27:14.298Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-05T14:27:14.298Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-05T14:27:14.297Z",
+        "objective": "Test webhook integration",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "nexus-security-agent",
+      "sessionId": "terminal-955",
+      "label": "Security & Foundation",
+      "status": "active",
+      "startTime": "2026-02-05T14:27:19.666Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-05T14:27:19.666Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-05T14:27:30.000Z",
+        "objective": "Nexus Security Hardening & Codebase Consolidation",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "nexus-architecture-agent",
+      "sessionId": "terminal-961",
+      "label": "Architecture Integration",
+      "status": "active",
+      "startTime": "2026-02-05T14:27:24.219Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-05T14:27:24.219Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-05T14:27:45.000Z",
+        "objective": "Unified Model Router Implementation & OpenClaw Integration Architecture",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "nexus-features-agent",
+      "sessionId": "terminal-962",
+      "label": "Features & Testing",
+      "status": "active",
+      "startTime": "2026-02-05T14:27:54.683Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-05T14:27:54.683Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-05T14:28:00.000Z",
+        "objective": "Bidirectional Communication & Enhanced Features Implementation",
+        "priority": "medium"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "id": "live-activity-aries-coordinator-001-spawned",
+      "timestamp": "2026-02-04T11:25:57.077Z",
+      "message": "Agent spawned: AI Workflow Coordination",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-openclaw-main",
+      "details": {
+        "agentId": "aries-coordinator-001",
+        "objective": "Coordinate AI workflow improvements for Kanban platform",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-task-nexus-security-001-spawned",
+      "timestamp": "2026-02-04T11:26:02.667Z",
+      "message": "Agent spawned: Nexus Security Phase 1",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-security-review",
+      "details": {
+        "agentId": "task-nexus-security-001",
+        "objective": "Complete Nexus Agent security remediation (Phase 1)",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "live-activity-claude-code-terminal-001-spawned",
+      "timestamp": "2026-02-04T11:26:09.483Z",
+      "message": "Agent spawned: tmux + Claude Code Integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "tmux-session-claude-test",
+      "details": {
+        "agentId": "claude-code-terminal-001",
+        "objective": "Implement tmux + Claude Code workflow for cost-effective coding",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-frontend-dev-001-spawned",
+      "timestamp": "2026-02-04T11:33:26.462Z",
+      "message": "Agent spawned: Frontend UI Enhancement",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-ui-development",
+      "details": {
+        "agentId": "frontend-dev-001",
+        "objective": "Enhance Kanban UI for better AI workflow visualization on localhost:5174",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-dashboard-monitor-002-spawned",
+      "timestamp": "2026-02-04T11:33:32.587Z",
+      "message": "Agent spawned: Dashboard Monitoring Agent",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-dashboard-monitoring",
+      "details": {
+        "agentId": "dashboard-monitor-002",
+        "objective": "Monitor localhost:5174 Kanban board performance and user experience",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-integration-test-003-spawned",
+      "timestamp": "2026-02-04T11:33:38.306Z",
+      "message": "Agent spawned: Real-time Integration Test",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-integration-testing",
+      "details": {
+        "agentId": "integration-test-003",
+        "objective": "Test real-time task updates on localhost:5174 Kanban board interface",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "live-activity-realtime-test-004-spawned",
+      "timestamp": "2026-02-04T11:33:59.938Z",
+      "message": "Agent spawned: Live Demo Task",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-realtime-testing",
+      "details": {
+        "agentId": "realtime-test-004",
+        "objective": "Demonstrate live task updates on localhost:5174 Kanban board",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-final-test-005-spawned",
+      "timestamp": "2026-02-04T11:37:10.374Z",
+      "message": "Agent spawned: Webhook Service Fix Test",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-final-test",
+      "details": {
+        "agentId": "final-test-005",
+        "objective": "FINAL TEST: Verify localhost:5174 can see this task after webhook service fix",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "live-activity-debug-test-final-spawned",
+      "timestamp": "2026-02-04T11:45:31.038Z",
+      "message": "Agent spawned: FINAL DEBUG TEST",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-debug-final",
+      "details": {
+        "agentId": "debug-test-final",
+        "objective": "DEBUG: Force display test after aggressive fixes - this task should appear on localhost:5174",
+        "priority": "urgent"
+      }
+    },
+    {
+      "id": "live-activity-test-agent-4bizxgxs-spawned",
+      "timestamp": "2026-02-05T14:27:14.298Z",
+      "message": "Agent spawned: test-task",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "test-session-1770301634297",
+      "details": {
+        "agentId": "test-agent-4bizxgxs",
+        "objective": "Test webhook integration",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-nexus-security-agent-spawned",
+      "timestamp": "2026-02-05T14:27:19.666Z",
+      "message": "Agent spawned: Security & Foundation",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "terminal-955",
+      "details": {
+        "agentId": "nexus-security-agent",
+        "objective": "Nexus Security Hardening & Codebase Consolidation",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-nexus-architecture-agent-spawned",
+      "timestamp": "2026-02-05T14:27:24.219Z",
+      "message": "Agent spawned: Architecture Integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "terminal-961",
+      "details": {
+        "agentId": "nexus-architecture-agent",
+        "objective": "Unified Model Router Implementation & OpenClaw Integration Architecture",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-nexus-features-agent-spawned",
+      "timestamp": "2026-02-05T14:27:54.683Z",
+      "message": "Agent spawned: Features & Testing",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "terminal-962",
+      "details": {
+        "agentId": "nexus-features-agent",
+        "objective": "Bidirectional Communication & Enhanced Features Implementation",
+        "priority": "medium"
+      }
+    }
+  ]
+}

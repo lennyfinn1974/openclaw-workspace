@@ -1,0 +1,267 @@
+{
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "api_key"
+      },
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      },
+      "groq:default": {
+        "provider": "groq",
+        "mode": "api_key"
+      },
+      "tensorix:default": {
+        "provider": "tensorix",
+        "mode": "api_key"
+      },
+      "huggingface:default": {
+        "provider": "huggingface",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "tensorix": {
+        "baseUrl": "https://api.tensorix.ai/v1",
+        "auth": "api-key",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "minimax-m2.1",
+            "name": "MiniMax M2.1",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "glm-4.7",
+            "name": "GLM-4.7",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "huggingface": {
+        "baseUrl": "https://api-inference.huggingface.co/models",
+        "auth": "api-key",
+        "headers": {
+          "Authorization": "Bearer {API_KEY}"
+        },
+        "authHeader": true,
+        "models": [
+          {
+            "id": "black-forest-labs/FLUX.1-schnell",
+            "name": "FLUX.1 Schnell",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256,
+            "maxTokens": 256
+          },
+          {
+            "id": "stabilityai/stable-diffusion-xl-base-1.0",
+            "name": "Stable Diffusion XL",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256,
+            "maxTokens": 256
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-20250514",
+        "fallbacks": [
+          "anthropic/claude-opus-4-20250514",
+          "openrouter/deepseek/deepseek-chat"
+        ]
+      },
+      "imageModel": {
+        "primary": "openrouter/openai/dall-e-3",
+        "fallbacks": [
+          "huggingface/black-forest-labs/FLUX.1-schnell"
+        ]
+      },
+      "models": {
+        "anthropic/claude-sonnet-4-20250514": {
+          "alias": "sonnet"
+        },
+        "anthropic/claude-opus-4-20250514": {
+          "alias": "opus"
+        },
+        "openrouter/deepseek/deepseek-chat": {
+          "alias": "deepseek"
+        },
+        "openrouter/x-ai/grok-2": {
+          "alias": "grok"
+        },
+        "openrouter/openai/dall-e-3": {
+          "alias": "dalle"
+        },
+        "groq/llama-3.1-8b-instant": {
+          "alias": "fast"
+        },
+        "groq/llama-3.3-70b-versatile": {
+          "alias": "llama"
+        },
+        "groq/deepseek-r1-distill-llama-70b": {
+          "alias": "deepseek-fast"
+        },
+        "openrouter/google/gemini-2.5-flash": {
+          "alias": "gemini"
+        },
+        "tensorix/minimax-m2.1": {
+          "alias": "minimax"
+        },
+        "tensorix/glm-4.7": {
+          "alias": "glm"
+        },
+        "huggingface/black-forest-labs/FLUX.1-schnell": {
+          "alias": "banana"
+        },
+        "huggingface/stabilityai/stable-diffusion-xl-base-1.0": {
+          "alias": "sdxl"
+        }
+      },
+      "workspace": "/Users/lennyfinn/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard",
+        "maxHistoryShare": 0.6,
+        "memoryFlush": {
+          "enabled": true
+        }
+      },
+      "heartbeat": {
+        "every": "30m",
+        "activeHours": {
+          "start": "08:00",
+          "end": "23:00",
+          "timezone": "Asia/Dubai"
+        }
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "token": "8156263925:AAE1dx2T1o-Sf6NtEqeN303l8h-39vhXFDQ",
+      "webhook": {
+        "enabled": true,
+        "path": "/webhook/telegram"
+      },
+      "polling": {
+        "enabled": false
+      },
+      "features": {
+        "editMessage": true,
+        "deleteMessage": true,
+        "replyToMessage": true,
+        "forwardMessage": true,
+        "pinMessage": true,
+        "reactions": true,
+        "buttons": true,
+        "polls": true
+      }
+    }
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "brave",
+        "apiKey": "BSAeXWeMOmIkbH3FbuSAveM9GUF3Hmd",
+        "maxResults": 5
+      }
+    }
+  },
+  "memory": {
+    "backend": "qmd",
+    "citations": "auto",
+    "qmd": {
+      "includeDefaultMemory": true,
+      "update": {
+        "interval": "5m",
+        "debounceMs": 15000
+      },
+      "limits": {
+        "maxResults": 6,
+        "timeoutMs": 4000
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "0fa7a31e3bdc058391fa05536e1646bc4acd300bc1debc16"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-04T08:50:36.615Z",
+    "lastRunVersion": "2026.2.2-3",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.2.2-3",
+    "lastTouchedAt": "2026-02-04T08:50:36.627Z"
+  }
+}

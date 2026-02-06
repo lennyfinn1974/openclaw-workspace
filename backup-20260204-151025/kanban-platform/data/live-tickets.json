@@ -1,0 +1,1127 @@
+{
+  "boards": [
+    {
+      "id": "live-board-1770129236913",
+      "name": "🔴 Live OpenClaw Tasks",
+      "description": "Real-time tasks from OpenClaw agent sessions",
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z",
+      "isHistorical": false
+    }
+  ],
+  "columns": [
+    {
+      "id": "live-column-0",
+      "boardId": "live-board-1770129236913",
+      "name": "New Tasks",
+      "position": 0,
+      "color": "#3b82f6",
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z"
+    },
+    {
+      "id": "live-column-1",
+      "boardId": "live-board-1770129236913",
+      "name": "In Progress",
+      "position": 1,
+      "color": "#f59e0b",
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z"
+    },
+    {
+      "id": "live-column-2",
+      "boardId": "live-board-1770129236913",
+      "name": "Completed",
+      "position": 2,
+      "color": "#10b981",
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z"
+    },
+    {
+      "id": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "name": "Agent Pool",
+      "position": 3,
+      "color": "#8b5cf6",
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "live-task-test-123",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 test-task",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-123\n**Session ID:** session-456\n**Objective:** Test webhook\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T18:00:00.000Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "test-123",
+      "position": 0,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-03T14:33:56.913Z",
+      "updatedAt": "2026-02-03T14:33:56.913Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-123",
+      "openclawSessionId": "session-456"
+    },
+    {
+      "id": "live-task-a03ed5",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** a03ed5\n**Session ID:** agent:main:subag...a03ed5\n**Objective:** Subagent task (a03ed5)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.014Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "a03ed5",
+      "position": 1,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.018Z",
+      "updatedAt": "2026-02-03T14:49:33.018Z",
+      "isAutomated": true,
+      "openclawTaskId": "a03ed5",
+      "openclawSessionId": "agent:main:subag...a03ed5"
+    },
+    {
+      "id": "live-task-34d588",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 34d588\n**Session ID:** agent:main:subag...34d588\n**Objective:** Subagent task (34d588)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.020Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "34d588",
+      "position": 2,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.021Z",
+      "updatedAt": "2026-02-03T14:49:33.021Z",
+      "isAutomated": true,
+      "openclawTaskId": "34d588",
+      "openclawSessionId": "agent:main:subag...34d588"
+    },
+    {
+      "id": "live-task-42fc81",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 42fc81\n**Session ID:** agent:main:subag...42fc81\n**Objective:** Subagent task (42fc81)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.022Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "42fc81",
+      "position": 3,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.022Z",
+      "updatedAt": "2026-02-03T14:49:33.022Z",
+      "isAutomated": true,
+      "openclawTaskId": "42fc81",
+      "openclawSessionId": "agent:main:subag...42fc81"
+    },
+    {
+      "id": "live-task-b45402",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** b45402\n**Session ID:** agent:main:subag...b45402\n**Objective:** Subagent task (b45402)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.023Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "b45402",
+      "position": 4,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.023Z",
+      "updatedAt": "2026-02-03T14:49:33.023Z",
+      "isAutomated": true,
+      "openclawTaskId": "b45402",
+      "openclawSessionId": "agent:main:subag...b45402"
+    },
+    {
+      "id": "live-task-afed85",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** afed85\n**Session ID:** agent:main:subag...afed85\n**Objective:** Subagent task (afed85)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.024Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "afed85",
+      "position": 5,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.024Z",
+      "updatedAt": "2026-02-03T14:49:33.024Z",
+      "isAutomated": true,
+      "openclawTaskId": "afed85",
+      "openclawSessionId": "agent:main:subag...afed85"
+    },
+    {
+      "id": "live-task-f7ffea",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** f7ffea\n**Session ID:** agent:main:subag...f7ffea\n**Objective:** Subagent task (f7ffea)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.025Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-03T15:01:48.194Z\n**Result:** Subagent task completed",
+      "priority": "medium",
+      "status": "completed",
+      "assigneeId": "f7ffea",
+      "position": 6,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.025Z",
+      "updatedAt": "2026-02-03T15:01:48.194Z",
+      "isAutomated": true,
+      "openclawTaskId": "f7ffea",
+      "openclawSessionId": "agent:main:subag...f7ffea"
+    },
+    {
+      "id": "live-task-f5d047",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** f5d047\n**Session ID:** agent:main:subag...f5d047\n**Objective:** Subagent task (f5d047)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.026Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-03T15:00:47.162Z\n**Result:** Subagent task completed",
+      "priority": "medium",
+      "status": "completed",
+      "assigneeId": "f5d047",
+      "position": 7,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.027Z",
+      "updatedAt": "2026-02-03T15:00:47.162Z",
+      "isAutomated": true,
+      "openclawTaskId": "f5d047",
+      "openclawSessionId": "agent:main:subag...f5d047"
+    },
+    {
+      "id": "live-task-973293",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 973293\n**Session ID:** agent:main:subag...973293\n**Objective:** Subagent task (973293)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.027Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-03T14:55:45.199Z\n**Result:** Subagent task completed",
+      "priority": "medium",
+      "status": "completed",
+      "assigneeId": "973293",
+      "position": 8,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.028Z",
+      "updatedAt": "2026-02-03T14:55:45.199Z",
+      "isAutomated": true,
+      "openclawTaskId": "973293",
+      "openclawSessionId": "agent:main:subag...973293"
+    },
+    {
+      "id": "live-task-f7019c",
+      "columnId": "live-column-2",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** f7019c\n**Session ID:** agent:main:subag...f7019c\n**Objective:** Subagent task (f7019c)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:49:33.028Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*\n\n## ✅ Task Completed\n**Completed:** 2026-02-03T14:50:48.740Z\n**Result:** Subagent task completed",
+      "priority": "medium",
+      "status": "completed",
+      "assigneeId": "f7019c",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:49:33.029Z",
+      "updatedAt": "2026-02-03T14:50:48.740Z",
+      "isAutomated": true,
+      "openclawTaskId": "f7019c",
+      "openclawSessionId": "agent:main:subag...f7019c"
+    },
+    {
+      "id": "live-task-bb9e1c",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** bb9e1c\n**Session ID:** agent:main:subag...bb9e1c\n**Objective:** Subagent task (bb9e1c)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:53:59.108Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "bb9e1c",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:53:59.110Z",
+      "updatedAt": "2026-02-03T14:53:59.110Z",
+      "isAutomated": true,
+      "openclawTaskId": "bb9e1c",
+      "openclawSessionId": "agent:main:subag...bb9e1c"
+    },
+    {
+      "id": "live-task-7a0a93",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 7a0a93\n**Session ID:** agent:main:subag...7a0a93\n**Objective:** Subagent task (7a0a93)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T14:58:44.614Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "7a0a93",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T14:58:44.617Z",
+      "updatedAt": "2026-02-03T14:58:44.617Z",
+      "isAutomated": true,
+      "openclawTaskId": "7a0a93",
+      "openclawSessionId": "agent:main:subag...7a0a93"
+    },
+    {
+      "id": "live-task-7b0425",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 7b0425\n**Session ID:** agent:main:subag...7b0425\n**Objective:** Subagent task (7b0425)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:01:32.944Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "7b0425",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:01:32.949Z",
+      "updatedAt": "2026-02-03T15:01:32.949Z",
+      "isAutomated": true,
+      "openclawTaskId": "7b0425",
+      "openclawSessionId": "agent:main:subag...7b0425"
+    },
+    {
+      "id": "live-task-58a623",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 58a623\n**Session ID:** agent:main:subag...58a623\n**Objective:** Subagent task (58a623)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:06:20.676Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "58a623",
+      "position": 9,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:06:20.676Z",
+      "updatedAt": "2026-02-03T15:06:20.676Z",
+      "isAutomated": true,
+      "openclawTaskId": "58a623",
+      "openclawSessionId": "agent:main:subag...58a623"
+    },
+    {
+      "id": "live-task-774b20",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** 774b20\n**Session ID:** agent:main:subag...774b20\n**Objective:** Subagent task (774b20)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:09:36.900Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "774b20",
+      "position": 10,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:09:36.900Z",
+      "updatedAt": "2026-02-03T15:09:36.900Z",
+      "isAutomated": true,
+      "openclawTaskId": "774b20",
+      "openclawSessionId": "agent:main:subag...774b20"
+    },
+    {
+      "id": "live-task-c26dba",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** c26dba\n**Session ID:** agent:main:subag...c26dba\n**Objective:** Subagent task (c26dba)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:15:00.085Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "c26dba",
+      "position": 11,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:15:00.086Z",
+      "updatedAt": "2026-02-03T15:15:00.086Z",
+      "isAutomated": true,
+      "openclawTaskId": "c26dba",
+      "openclawSessionId": "agent:main:subag...c26dba"
+    },
+    {
+      "id": "live-task-cdae7b",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 fix-webhook-bridge-integration",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** cdae7b\n**Session ID:** agent:main:subag...cdae7b\n**Objective:** Subagent task (cdae7b)\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:17:40.080Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "cdae7b",
+      "position": 12,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:17:40.080Z",
+      "updatedAt": "2026-02-03T15:17:40.080Z",
+      "isAutomated": true,
+      "openclawTaskId": "cdae7b",
+      "openclawSessionId": "agent:main:subag...cdae7b"
+    },
+    {
+      "id": "live-task-test-agent-tlzusu4q",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 webhook-test",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-agent-tlzusu4q\n**Session ID:** test-session-1770132352963\n**Objective:** Test webhook functionality\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:25:52.963Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "test-agent-tlzusu4q",
+      "position": 13,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-03T15:25:52.963Z",
+      "updatedAt": "2026-02-03T15:25:52.963Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-agent-tlzusu4q",
+      "openclawSessionId": "test-session-1770132352963"
+    },
+    {
+      "id": "live-task-test-agent-xfuokdr6",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 board-switch-test",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-agent-xfuokdr6\n**Session ID:** test-session-1770132457481\n**Objective:** Test board switching\n**Priority:** high\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:27:37.481Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "high",
+      "status": "active",
+      "assigneeId": "test-agent-xfuokdr6",
+      "position": 14,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-high"
+      ],
+      "createdAt": "2026-02-03T15:27:37.481Z",
+      "updatedAt": "2026-02-03T15:27:37.481Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-agent-xfuokdr6",
+      "openclawSessionId": "test-session-1770132457481"
+    },
+    {
+      "id": "live-task-test-agent-7o9l17vm",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 test-webhook-task",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-agent-7o9l17vm\n**Session ID:** test-session-1770132808216\n**Objective:** Verification Agent Build\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:33:28.216Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "test-agent-7o9l17vm",
+      "position": 15,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:33:28.216Z",
+      "updatedAt": "2026-02-03T15:33:28.216Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-agent-7o9l17vm",
+      "openclawSessionId": "test-session-1770132808216"
+    },
+    {
+      "id": "live-task-test-agent-q3r6cdia",
+      "columnId": "live-column-3",
+      "boardId": "live-board-1770129236913",
+      "title": "🤖 test-webhook-task",
+      "description": "## 🔴 Live OpenClaw Task\n      \n**Agent ID:** test-agent-q3r6cdia\n**Session ID:** test-session-1770132809720\n**Objective:** Verification Agent Build\n**Priority:** medium\n\n### 📊 Task Details\n- **Spawned:** 2026-02-03T15:33:29.720Z\n- **Status:** Active\n- **Type:** Live Agent Task\n\n*This is a real-time task created from OpenClaw webhook events*",
+      "priority": "medium",
+      "status": "active",
+      "assigneeId": "test-agent-q3r6cdia",
+      "position": 16,
+      "tags": [
+        "live",
+        "agent-task",
+        "priority-medium"
+      ],
+      "createdAt": "2026-02-03T15:33:29.720Z",
+      "updatedAt": "2026-02-03T15:33:29.720Z",
+      "isAutomated": true,
+      "openclawTaskId": "test-agent-q3r6cdia",
+      "openclawSessionId": "test-session-1770132809720"
+    }
+  ],
+  "agents": [
+    {
+      "id": "test-123",
+      "sessionId": "session-456",
+      "label": "test-task",
+      "status": "active",
+      "startTime": "2026-02-03T14:33:56.913Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:33:56.913Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T18:00:00.000Z",
+        "objective": "Test webhook",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "a03ed5",
+      "sessionId": "agent:main:subag...a03ed5",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.018Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.018Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.014Z",
+        "objective": "Subagent task (a03ed5)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "34d588",
+      "sessionId": "agent:main:subag...34d588",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.021Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.021Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.020Z",
+        "objective": "Subagent task (34d588)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "42fc81",
+      "sessionId": "agent:main:subag...42fc81",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.022Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.022Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.022Z",
+        "objective": "Subagent task (42fc81)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "b45402",
+      "sessionId": "agent:main:subag...b45402",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.023Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.023Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.023Z",
+        "objective": "Subagent task (b45402)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "afed85",
+      "sessionId": "agent:main:subag...afed85",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.024Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.024Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.024Z",
+        "objective": "Subagent task (afed85)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "f7ffea",
+      "sessionId": "agent:main:subag...f7ffea",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.025Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.025Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.025Z",
+        "objective": "Subagent task (f7ffea)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "f5d047",
+      "sessionId": "agent:main:subag...f5d047",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.027Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.027Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.026Z",
+        "objective": "Subagent task (f5d047)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "973293",
+      "sessionId": "agent:main:subag...973293",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.028Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.028Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.027Z",
+        "objective": "Subagent task (973293)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "f7019c",
+      "sessionId": "agent:main:subag...f7019c",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:49:33.029Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:49:33.029Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:49:33.028Z",
+        "objective": "Subagent task (f7019c)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "bb9e1c",
+      "sessionId": "agent:main:subag...bb9e1c",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:53:59.110Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:53:59.110Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:53:59.108Z",
+        "objective": "Subagent task (bb9e1c)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "7a0a93",
+      "sessionId": "agent:main:subag...7a0a93",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T14:58:44.617Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T14:58:44.617Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T14:58:44.614Z",
+        "objective": "Subagent task (7a0a93)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "7b0425",
+      "sessionId": "agent:main:subag...7b0425",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T15:01:32.949Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:01:32.949Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:01:32.944Z",
+        "objective": "Subagent task (7b0425)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "58a623",
+      "sessionId": "agent:main:subag...58a623",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T15:06:20.676Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:06:20.676Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:06:20.676Z",
+        "objective": "Subagent task (58a623)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "774b20",
+      "sessionId": "agent:main:subag...774b20",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T15:09:36.900Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:09:36.900Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:09:36.900Z",
+        "objective": "Subagent task (774b20)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "c26dba",
+      "sessionId": "agent:main:subag...c26dba",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T15:15:00.086Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:15:00.086Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:15:00.085Z",
+        "objective": "Subagent task (c26dba)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "cdae7b",
+      "sessionId": "agent:main:subag...cdae7b",
+      "label": "fix-webhook-bridge-integration",
+      "status": "active",
+      "startTime": "2026-02-03T15:17:40.080Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:17:40.080Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:17:40.080Z",
+        "objective": "Subagent task (cdae7b)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "test-agent-tlzusu4q",
+      "sessionId": "test-session-1770132352963",
+      "label": "webhook-test",
+      "status": "active",
+      "startTime": "2026-02-03T15:25:52.963Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:25:52.963Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:25:52.963Z",
+        "objective": "Test webhook functionality",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "test-agent-xfuokdr6",
+      "sessionId": "test-session-1770132457481",
+      "label": "board-switch-test",
+      "status": "active",
+      "startTime": "2026-02-03T15:27:37.481Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:27:37.481Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:27:37.481Z",
+        "objective": "Test board switching",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "test-agent-7o9l17vm",
+      "sessionId": "test-session-1770132808216",
+      "label": "test-webhook-task",
+      "status": "active",
+      "startTime": "2026-02-03T15:33:28.216Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:33:28.216Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:33:28.216Z",
+        "objective": "Verification Agent Build",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "test-agent-q3r6cdia",
+      "sessionId": "test-session-1770132809720",
+      "label": "test-webhook-task",
+      "status": "active",
+      "startTime": "2026-02-03T15:33:29.720Z",
+      "endTime": null,
+      "model": "unknown",
+      "tokensUsed": 0,
+      "lastActivity": "2026-02-03T15:33:29.720Z",
+      "_liveData": {
+        "spawnedAt": "2026-02-03T15:33:29.720Z",
+        "objective": "Verification Agent Build",
+        "priority": "medium"
+      }
+    }
+  ],
+  "activities": [
+    {
+      "id": "live-activity-test-123-spawned",
+      "timestamp": "2026-02-03T14:33:56.913Z",
+      "message": "Agent spawned: test-task",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "session-456",
+      "details": {
+        "agentId": "test-123",
+        "objective": "Test webhook",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-a03ed5-spawned",
+      "timestamp": "2026-02-03T14:49:33.018Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...a03ed5",
+      "details": {
+        "agentId": "a03ed5",
+        "objective": "Subagent task (a03ed5)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-34d588-spawned",
+      "timestamp": "2026-02-03T14:49:33.021Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...34d588",
+      "details": {
+        "agentId": "34d588",
+        "objective": "Subagent task (34d588)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-42fc81-spawned",
+      "timestamp": "2026-02-03T14:49:33.022Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...42fc81",
+      "details": {
+        "agentId": "42fc81",
+        "objective": "Subagent task (42fc81)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-b45402-spawned",
+      "timestamp": "2026-02-03T14:49:33.023Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...b45402",
+      "details": {
+        "agentId": "b45402",
+        "objective": "Subagent task (b45402)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-afed85-spawned",
+      "timestamp": "2026-02-03T14:49:33.024Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...afed85",
+      "details": {
+        "agentId": "afed85",
+        "objective": "Subagent task (afed85)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-f7ffea-spawned",
+      "timestamp": "2026-02-03T14:49:33.025Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...f7ffea",
+      "details": {
+        "agentId": "f7ffea",
+        "objective": "Subagent task (f7ffea)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-f5d047-spawned",
+      "timestamp": "2026-02-03T14:49:33.027Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...f5d047",
+      "details": {
+        "agentId": "f5d047",
+        "objective": "Subagent task (f5d047)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-973293-spawned",
+      "timestamp": "2026-02-03T14:49:33.028Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...973293",
+      "details": {
+        "agentId": "973293",
+        "objective": "Subagent task (973293)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-f7019c-spawned",
+      "timestamp": "2026-02-03T14:49:33.029Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...f7019c",
+      "details": {
+        "agentId": "f7019c",
+        "objective": "Subagent task (f7019c)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-bb9e1c-spawned",
+      "timestamp": "2026-02-03T14:53:59.110Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...bb9e1c",
+      "details": {
+        "agentId": "bb9e1c",
+        "objective": "Subagent task (bb9e1c)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-7a0a93-spawned",
+      "timestamp": "2026-02-03T14:58:44.617Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...7a0a93",
+      "details": {
+        "agentId": "7a0a93",
+        "objective": "Subagent task (7a0a93)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-7b0425-spawned",
+      "timestamp": "2026-02-03T15:01:32.949Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...7b0425",
+      "details": {
+        "agentId": "7b0425",
+        "objective": "Subagent task (7b0425)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-58a623-spawned",
+      "timestamp": "2026-02-03T15:06:20.676Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...58a623",
+      "details": {
+        "agentId": "58a623",
+        "objective": "Subagent task (58a623)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-774b20-spawned",
+      "timestamp": "2026-02-03T15:09:36.900Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...774b20",
+      "details": {
+        "agentId": "774b20",
+        "objective": "Subagent task (774b20)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-c26dba-spawned",
+      "timestamp": "2026-02-03T15:15:00.086Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...c26dba",
+      "details": {
+        "agentId": "c26dba",
+        "objective": "Subagent task (c26dba)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-cdae7b-spawned",
+      "timestamp": "2026-02-03T15:17:40.080Z",
+      "message": "Agent spawned: fix-webhook-bridge-integration",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "agent:main:subag...cdae7b",
+      "details": {
+        "agentId": "cdae7b",
+        "objective": "Subagent task (cdae7b)",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-test-agent-tlzusu4q-spawned",
+      "timestamp": "2026-02-03T15:25:52.963Z",
+      "message": "Agent spawned: webhook-test",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "test-session-1770132352963",
+      "details": {
+        "agentId": "test-agent-tlzusu4q",
+        "objective": "Test webhook functionality",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-test-agent-xfuokdr6-spawned",
+      "timestamp": "2026-02-03T15:27:37.481Z",
+      "message": "Agent spawned: board-switch-test",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "test-session-1770132457481",
+      "details": {
+        "agentId": "test-agent-xfuokdr6",
+        "objective": "Test board switching",
+        "priority": "high"
+      }
+    },
+    {
+      "id": "live-activity-test-agent-7o9l17vm-spawned",
+      "timestamp": "2026-02-03T15:33:28.216Z",
+      "message": "Agent spawned: test-webhook-task",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "test-session-1770132808216",
+      "details": {
+        "agentId": "test-agent-7o9l17vm",
+        "objective": "Verification Agent Build",
+        "priority": "medium"
+      }
+    },
+    {
+      "id": "live-activity-test-agent-q3r6cdia-spawned",
+      "timestamp": "2026-02-03T15:33:29.720Z",
+      "message": "Agent spawned: test-webhook-task",
+      "type": "agent_spawn",
+      "level": "info",
+      "source": "OpenClaw Webhook",
+      "sessionId": "test-session-1770132809720",
+      "details": {
+        "agentId": "test-agent-q3r6cdia",
+        "objective": "Verification Agent Build",
+        "priority": "medium"
+      }
+    }
+  ]
+}

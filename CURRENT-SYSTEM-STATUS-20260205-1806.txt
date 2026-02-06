@@ -1,0 +1,94 @@
+🔍 TERMINAL AUTOMATION MONITOR STATUS
+=====================================
+❌ Monitor Process: STOPPED
+
+📋 Recent Activity (last 10 lines):
+-----------------------------------
+2026-02-05 18:06:20 - 👀 Window 836 being monitored...
+2026-02-05 18:06:20 - 👀 Window 836 being monitored...
+2026-02-05 18:06:20 - 👀 Window 476 being monitored...
+2026-02-05 18:06:20 - 👀 Window 476 being monitored...
+2026-02-05 18:06:20 - 👀 Window 302 being monitored...
+2026-02-05 18:06:20 - 👀 Window 302 being monitored...
+2026-02-05 18:06:20 - 👀 Window 143 being monitored...
+2026-02-05 18:06:20 - 👀 Window 143 being monitored...
+2026-02-05 18:06:20 - 👀 Window 142 being monitored...
+2026-02-05 18:06:20 - 👀 Window 142 being monitored...
+
+🪟 Current Window Status:
+------------------------
+[
+    {
+        "id": 962,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:20+04:00"
+    },
+    {
+        "id": 955,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:20+04:00"
+    },
+    {
+        "id": 961,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 941,
+        "status": "MONITORING",
+        "completion": "COMPLETED",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 953,
+        "status": "MONITORING",
+        "completion": "ERROR",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 836,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 476,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 302,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 143,
+        "status": "MONITORING",
+        "completion": "IN_PROGRESS",
+        "timestamp": "2026-02-05T18:06:21+04:00"
+    },
+    {
+        "id": 142,
+        "status": "MONITORING",
+        "completion": "COMPLETED",
+        "timestamp": "2026-02-05T18:06:22+04:00"
+    }
+]
+
+🖥️ Active Terminal Windows:
+--------------------------
+Window ID: 962
+Window ID: 955
+Window ID: 961
+Window ID: 941
+Window ID: 953
+Window ID: 836
+Window ID: 476
+Window ID: 302
+Window ID: 143
+Window ID: 142

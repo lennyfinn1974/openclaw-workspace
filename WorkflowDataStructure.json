@@ -1,0 +1,132 @@
+{
+  "commandLibrary": {
+    "version": "1.0",
+    "lastUpdated": "2026-02-05",
+    "categories": {
+      "terminalControl": {
+        "description": "Commands for managing Terminal windows and Claude Code interactions",
+        "priority": "critical",
+        "commands": {
+          "checkTerminalStatus": {
+            "syntax": "osascript -e 'tell application \"Terminal\" to get contents of tab 1 of window id XXX' | tail -10",
+            "purpose": "Verify terminal state before interaction",
+            "safetyCheck": "Look for ❯ prompt = SAFE, ✳ Thinking... = DO NOT INTERRUPT"
+          },
+          "sendEnterKey": {
+            "syntax": "osascript -e 'tell application \"Terminal\" to do script \"\" in front window'",
+            "purpose": "Submit/continue in Claude Code",
+            "prerequisites": ["terminalIdle"]
+          },
+          "handlePrompts": {
+            "syntax": "osascript -e 'tell application \"Terminal\" to do script \"1\" in front window'",
+            "purpose": "Respond to interactive prompts",
+            "variations": ["1 = Accept", "2 = Deny", "custom response"]
+          }
+        }
+      },
+      "developmentWorkflows": {
+        "description": "High-level development workflow commands",
+        "priority": "high",
+        "commands": {
+          "codeBuilderActivation": {
+            "syntax": "Follow CodeBuilder.md for [project/task]",
+            "purpose": "Execute universal development methodology",
+            "triggers": [
+              "Load reference skills",
+              "Apply expert knowledge", 
+              "Check context usage",
+              "Check terminal status",
+              "Select appropriate model",
+              "Execute with methodology"
+            ]
+          }
+        }
+      },
+      "systemOperations": {
+        "description": "System health and maintenance commands",
+        "priority": "critical",
+        "commands": {
+          "gatewayHealthCheck": {
+            "syntax": "openclaw gateway status | grep \"RPC probe: ok\"",
+            "purpose": "Verify gateway operational status",
+            "emergencyThreshold": "If fails, immediate restart required"
+          },
+          "epipeMonitoring": {
+            "syntax": "grep -c \"EPIPE|broken pipe\" /tmp/openclaw/openclaw-YYYY-MM-DD.log",
+            "purpose": "Monitor connection errors",
+            "emergencyThreshold": ">5 errors in 1 hour = preemptive restart"
+          }
+        }
+      },
+      "costOptimization": {
+        "description": "Resource and cost management commands",
+        "priority": "medium",
+        "commands": {
+          "modelSelection": {
+            "tiers": {
+              "tier1": {
+                "models": ["fast", "deepseek-fast"],
+                "costMultiplier": "150x cheaper",
+                "useCase": "routine tasks"
+              },
+              "tier2": {
+                "models": ["deepseek", "gemini"], 
+                "costMultiplier": "7x cheaper",
+                "useCase": "development work"
+              },
+              "tier3": {
+                "models": ["sonnet", "opus"],
+                "costMultiplier": "baseline",
+                "useCase": "critical analysis only"
+              }
+            }
+          }
+        }
+      }
+    },
+    "executionPatterns": {
+      "safeTerminalInteraction": {
+        "steps": [
+          "Check terminal count and status",
+          "Identify idle terminals (❯ prompt)",
+          "Verify no active processes (✳ Thinking...)",
+          "Send command to idle terminal only",
+          "Monitor response before next action"
+        ]
+      },
+      "contextProtection": {
+        "monitors": ["session_status for context usage"],
+        "thresholds": {
+          "warning": "70% (140k/200k tokens)",
+          "critical": "85% (170k/200k tokens)"
+        },
+        "actions": {
+          "warning": ["Document terminal states", "Prepare for compaction"],
+          "critical": ["Emergency compaction", "/new session", "Restore states"]
+        }
+      },
+      "costEffectiveExecution": {
+        "strategy": "Match model complexity to task requirements",
+        "fallbackChain": ["local models (FREE)", "Groq (cheap)", "Claude (premium)"],
+        "subAgentUsage": "Isolated work, non-terminal tasks"
+      }
+    },
+    "emergencyProtocols": {
+      "gatewayDown": {
+        "detection": "RPC probe fails",
+        "action": "openclaw gateway restart",
+        "logging": "echo \"$(date): Gateway restart triggered\" >> ~/gateway-restarts.log"
+      },
+      "contextOverflow": {
+        "detection": "Context >85%",
+        "action": "/new session",
+        "preservation": "MEMORY.md + workspace files preserved"
+      },
+      "terminalUnresponsive": {
+        "detection": "No response to commands",
+        "action": "Find alternative idle terminal",
+        "prevention": "Never interrupt active processes"
+      }
+    }
+  }
+}

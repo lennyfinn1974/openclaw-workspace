@@ -1,0 +1,41 @@
+
+> hybrid-kanban-platform@1.0.0 dev:full
+> concurrently "npm run server" "npm run dev"
+
+[1] 
+[1] > hybrid-kanban-platform@1.0.0 dev
+[1] > vite
+[1] 
+[0] 
+[0] > hybrid-kanban-platform@1.0.0 server
+[0] > node server.js
+[0] 
+[0] node:events:486
+[0]       throw er; // Unhandled 'error' event
+[0]       ^
+[0] 
+[0] Error: listen EADDRINUSE: address already in use :::3002
+[0]     at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+[0]     at listenInCluster (node:net:1997:12)
+[0]     at Server.listen (node:net:2102:7)
+[0]     at file:///Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/server.js:555:19
+[0]     at new Promise (<anonymous>)
+[0]     at KanbanBackendServer.start (file:///Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/server.js:554:12)
+[0]     at file:///Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/server.js:589:10
+[0]     at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+[0]     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:655:26)
+[0]     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+[0] Emitted 'error' event on Server instance at:
+[0]     at emitErrorNT (node:net:1976:8)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+[0]   code: 'EADDRINUSE',
+[0]   errno: -48,
+[0[0] [2026-02-05T15:53:43.762Z] GET /api/data/combined
+[0] [2026-02-05T15:53:43.766Z] GET /api/data/combined
+er exited with code 1
+[1] Port 5174 is in use, trying another one...
+[1] 
+[1]   VITE v5.4.21  ready in 131 ms
+[1] 
+[1]   ➜  Local:   http://localhost:5175/
+[1]   ➜  Network: http://192.168.1.160:5175/

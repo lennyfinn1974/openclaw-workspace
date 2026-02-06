@@ -1,0 +1,23 @@
+INFO:     Started server process [96545]
+INFO:     Waiting for application startup.
+2026-02-05 19:53:43 [nexus] INFO: Starting Nexus v2...
+2026-02-05 19:53:43 [nexus] INFO: Security audit logging initialized
+2026-02-05 19:53:43 [nexus.encryption] INFO: Loaded encryption key from file
+2026-02-05 19:53:43 [nexus.encryption] INFO: Encryption initialized (storage: file)
+2026-02-05 19:53:43 [nexus.config] INFO: ConfigManager ready — 19 settings loaded
+2026-02-05 19:53:43 [nexus] INFO: Database connected
+2026-02-05 19:53:43 [httpx] INFO: HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2026-02-05 19:53:43 [nexus.router] INFO: Ollama available: True
+2026-02-05 19:53:43 [nexus.skills] INFO: Skills engine: 0 skills ready
+2026-02-05 19:53:43 [nexus.tasks] INFO: Registered task handler: research
+2026-02-05 19:53:43 [nexus.tasks] INFO: Registered task handler: ingest
+2026-02-05 19:53:43 [plugins.manager] WARNING: Plugin discovery failed: entry_points() got an unexpected keyword argument 'group'
+2026-02-05 19:53:43 [plugins.manager] INFO: Loaded plugins: []
+2026-02-05 19:53:43 [nexus] WARNING: JWT_SECRET not configured - using random secret (will not persist)
+2026-02-05 19:53:43 [nexus] INFO: OpenClaw bridge not configured (OPENCLAW_GATEWAY_URL not set)
+2026-02-05 19:53:43 [nexus] INFO: Nexus v2.1 ready at http://127.0.0.1:8080
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('127.0.0.1', 8081): address already in use
+INFO:     Waiting for application shutdown.
+2026-02-05 19:53:43 [nexus] INFO: Shutting down...
+INFO:     Application shutdown complete.

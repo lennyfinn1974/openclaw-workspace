@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hybrid Kanban Platform - Lovable Design System + OpenClaw Integration */
+
+@layer base {
+  :root {
+    /* Core colors - Clean, professional palette from Lovable */
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary - Refined indigo */
+    --primary: 234 89% 63%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft gray-blue */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Accent - Vibrant teal for highlights */
+    --accent: 173 80% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Status colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Priority colors */
+    --priority-low: 142 71% 45%;
+    --priority-medium: 38 92% 50%;
+    --priority-high: 25 95% 53%;
+    --priority-urgent: 0 84% 60%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 89% 63%;
+
+    --radius: 0.625rem;
+
+    /* Kanban column colors */
+    --column-todo: 220 14% 96%;
+    --column-progress: 199 89% 96%;
+    --column-review: 38 92% 96%;
+    --column-done: 142 71% 96%;
+
+    /* OpenClaw-specific colors */
+    --openclaw-primary: 234 89% 63%;
+    --openclaw-secondary: 173 80% 40%;
+    --openclaw-success: 142 71% 45%;
+    --openclaw-error: 0 84% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 234 89% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 173 80% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 50%;
+    --warning: 38 92% 55%;
+    --info: 199 89% 53%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 234 89% 67%;
+
+    --column-todo: 217 33% 12%;
+    --column-progress: 199 50% 12%;
+    --column-review: 38 50% 12%;
+    --column-done: 142 40% 12%;
+
+    --openclaw-primary: 234 89% 67%;
+    --openclaw-secondary: 173 80% 45%;
+    --openclaw-success: 142 71% 50%;
+    --openclaw-error: 0 63% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Glass effect for cards */
+  .glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Subtle shadow for elevated elements */
+  .shadow-soft {
+    box-shadow: 0 1px 3px 0 hsl(var(--foreground) / 0.04),
+                0 1px 2px -1px hsl(var(--foreground) / 0.04);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 4px 6px -1px hsl(var(--foreground) / 0.05),
+                0 2px 4px -2px hsl(var(--foreground) / 0.05);
+  }
+
+  /* Kanban card drag styles */
+  .kanban-card-dragging {
+    box-shadow: 0 10px 25px -5px hsl(var(--foreground) / 0.1),
+                0 8px 10px -6px hsl(var(--foreground) / 0.1);
+    transform: rotate(2deg);
+  }
+
+  /* OpenClaw integration styles */
+  .openclaw-status-connected {
+    @apply border-openclaw-success bg-openclaw-success/10;
+  }
+
+  .openclaw-status-disconnected {
+    @apply border-openclaw-error bg-openclaw-error/10;
+  }
+
+  .openclaw-task-active {
+    @apply border-l-4 border-l-openclaw-primary bg-gradient-to-r from-openclaw-primary/5 to-transparent;
+  }
+
+  .openclaw-pulse {
+    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Real-time update animations */
+  .task-updated {
+    animation: slide-in 0.3s ease-out;
+  }
+
+  .task-new {
+    animation: slide-in 0.3s ease-out, pulse-subtle 3s ease-in-out;
+  }
+}

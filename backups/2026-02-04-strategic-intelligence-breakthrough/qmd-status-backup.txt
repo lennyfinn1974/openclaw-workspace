@@ -1,0 +1,13 @@
+Memory Search (main)
+Provider: qmd (requested: qmd)
+Model: qmd
+Sources: memory
+Indexed: 7/6 files · 7 chunks
+Dirty: no
+Store: ~/.openclaw/agents/main/qmd/xdg-cache/qmd/index.sqlite
+Workspace: ~/.openclaw/workspace
+By source:
+  memory · 7/6 files · 7 chunks
+Vector: ready
+Batch: disabled (failures 0/0)
+
