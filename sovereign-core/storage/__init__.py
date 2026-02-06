@@ -33,7 +33,7 @@ class SovereignStorage:
         self.data_path = Path(data_path)
         self._ensure_structure()
         self._db = self._init_database()
-        self._write_lock = asyncio.Lock()
+        self._write_lock = None  # Lazy init for asyncio compatibility
 
     def _ensure_structure(self):
         """Create storage directory structure."""
@@ -89,6 +89,8 @@ class SovereignStorage:
 
     async def append_jsonl(self, filename: str, record: Dict[str, Any]) -> bool:
         """Append record to JSONL file."""
+        if self._write_lock is None:
+            self._write_lock = asyncio.Lock()
         async with self._write_lock:
             try:
                 filepath = self.data_path / "jsonl" / filename
@@ -138,6 +140,8 @@ class SovereignStorage:
         frontmatter: Optional[Dict[str, Any]] = None,
     ) -> bool:
         """Write markdown file with optional frontmatter."""
+        if self._write_lock is None:
+            self._write_lock = asyncio.Lock()
         async with self._write_lock:
             try:
                 filepath = self.data_path / "markdown" / filename

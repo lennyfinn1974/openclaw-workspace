@@ -23,11 +23,18 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from .commands import CommandRegistry, MasterCommand
-from .routing import TieredRouter, ModelTier
-from .storage import SovereignStorage
-from .context import ContextProtector
-from .search import HybridSearch
+try:
+    from .commands import CommandRegistry, MasterCommand
+    from .routing import TieredRouter, ModelTier
+    from .storage import SovereignStorage
+    from .context import ContextProtector
+    from .search import HybridSearch
+except ImportError:
+    from commands import CommandRegistry, MasterCommand
+    from routing import TieredRouter, ModelTier
+    from storage import SovereignStorage
+    from context import ContextProtector
+    from search import HybridSearch
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("sovereign")

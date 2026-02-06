@@ -35,12 +35,21 @@ Command Format:
         MEM - Memory (save, load, list)
 """
 
-from .sovereign import Sovereign, get_sovereign, execute, search
-from .commands import CommandRegistry, CommandPrefix, MasterCommand
-from .routing import TieredRouter, ModelTier, ModelConfig
-from .storage import SovereignStorage
-from .context import ContextProtector, ProtectionLevel
-from .search import HybridSearch
+try:
+    from .sovereign import Sovereign, get_sovereign, execute, search
+    from .commands import CommandRegistry, CommandPrefix, MasterCommand
+    from .routing import TieredRouter, ModelTier, ModelConfig
+    from .storage import SovereignStorage
+    from .context import ContextProtector, ProtectionLevel
+    from .search import HybridSearch
+except ImportError:
+    # Direct import when running from package directory
+    from sovereign import Sovereign, get_sovereign, execute, search
+    from commands import CommandRegistry, CommandPrefix, MasterCommand
+    from routing import TieredRouter, ModelTier, ModelConfig
+    from storage import SovereignStorage
+    from context import ContextProtector, ProtectionLevel
+    from search import HybridSearch
 
 __version__ = "1.0.0"
 __author__ = "Aries"

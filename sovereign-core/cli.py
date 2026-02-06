@@ -20,7 +20,12 @@ from pathlib import Path
 # Add parent to path for local development
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from sovereign import Sovereign, get_sovereign
+try:
+    from sovereign import Sovereign, get_sovereign
+except ImportError:
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from sovereign import Sovereign, get_sovereign
 
 
 def print_result(result: dict, json_output: bool = False):
@@ -103,7 +108,10 @@ def print_help(sov: Sovereign):
         print(f"  {cmd['command']:15} - {cmd['description']}")
 
     print("\n📝 Shortcuts:")
-    from sovereign.commands import SHORTCUTS
+    try:
+        from sovereign.commands import SHORTCUTS
+    except ImportError:
+        from commands import SHORTCUTS
     for shortcut, full in SHORTCUTS.items():
         print(f"  {shortcut:10} -> {full}")
     print()
