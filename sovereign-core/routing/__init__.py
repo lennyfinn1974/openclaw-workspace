@@ -213,9 +213,11 @@ class TieredRouter:
             ],
             ModelTier.BALANCED: [
                 "claude-haiku", "deepseek-r1", "grok",
+                "ollama-kimi", "ollama-llama3", "ollama-mistral",
             ],
             ModelTier.PREMIUM: [
                 "claude-sonnet", "gemini-pro", "claude-opus",
+                "ollama-kimi", "ollama-llama3", "ollama-mistral",
             ],
         }
 
