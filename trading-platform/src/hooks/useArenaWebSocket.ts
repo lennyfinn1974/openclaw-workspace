@@ -9,21 +9,12 @@ import type {
   ArenaLeaderboardEvent,
   ArenaEvolutionEvent,
   ArenaTournamentEvent,
-  ArenaStatus,
 } from '@/types/arena';
 
 const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:8101';
 
 export function useArenaWebSocket() {
   const socketRef = useRef<Socket | null>(null);
-  const {
-    addActivityEvent,
-    setLeaderboard,
-    setTournament,
-    setStatus,
-    updateTournamentRound,
-    setBots,
-  } = useArenaStore();
 
   useEffect(() => {
     const socket = io(WS_URL, {
@@ -38,48 +29,38 @@ export function useArenaWebSocket() {
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      // Subscribe to arena events
       socket.emit('arena:subscribe');
     });
 
-    // Arena status
-    socket.on('arena:status', (status: ArenaStatus) => {
-      setStatus(status);
-    });
-
-    // Bot trades (activity feed)
+    // Use getState() to avoid subscribing the component to the store
     socket.on('arena:bot:trade', (event: ArenaBotTradeEvent) => {
-      addActivityEvent(event);
+      useArenaStore.getState().addActivityEvent(event);
     });
 
-    // Leaderboard updates
     socket.on('arena:leaderboard', (event: ArenaLeaderboardEvent) => {
-      setLeaderboard(event.entries);
+      useArenaStore.getState().setLeaderboard(event.entries);
     });
 
-    // Tournament lifecycle events
     socket.on('arena:tournament', (event: ArenaTournamentEvent) => {
+      const store = useArenaStore.getState();
       if (event.type === 'round_start' || event.type === 'round_end') {
         if (event.round !== undefined) {
-          updateTournamentRound(event.round);
+          store.updateTournamentRound(event.round);
         }
       }
       if (event.type === 'complete') {
-        const store = useArenaStore.getState();
         if (store.tournament) {
-          setTournament({ ...store.tournament, status: 'completed' });
+          store.setTournament({ ...store.tournament, status: 'completed' });
         }
       }
     });
 
-    // Evolution events
     socket.on('arena:evolution', (event: ArenaEvolutionEvent) => {
       if (event.type === 'complete' && event.results) {
         useArenaStore.getState().setEvolutionHistory(event.results);
-        // Refresh bots after evolution
         fetch(`${WS_URL}/api/arena/bots`)
           .then(r => r.json())
-          .then(bots => setBots(bots))
+          .then(bots => useArenaStore.getState().setBots(bots))
           .catch(() => {});
       }
     });

@@ -22,6 +22,7 @@ import { evolveGroupAdvanced, DEFAULT_ADVANCED_CONFIG } from './advancedGenetics
 import { applyFitnessSharing, speciateBots, calculatePopulationDiversity } from './populationDiversity';
 import { buildPersonality, getPersonalityDistribution, getPersonalitySummaries, getPersonalityTitle, breedingCompatibility } from './botPersonality';
 import { HallOfFame, buildGenerationAnalytics, saveGenerationAnalytics, getGenerationAnalyticsHistory, getEvolutionSummary } from './evolutionAnalytics';
+import { getAllSessionsStatus, getSymbolSession } from './marketTiming';
 import type { MarketDataSimulator } from '../marketDataSimulator';
 
 export class TournamentManager extends EventEmitter {
@@ -529,6 +530,8 @@ export class TournamentManager extends EventEmitter {
     totalTrades: number;
     topBot: LeaderboardEntry | null;
     groups: { name: BotGroupName; assetClass: string; botCount: number; avgPnL: number }[];
+    marketSessions: Record<string, unknown>;
+    dataFeed: { botId: string; botName: string; symbol: string; group: BotGroupName; isLive: boolean; canTrade: boolean; sessionName: string; price: number }[];
   } {
     const leaderboard = this.currentTournament ? this.calculateLeaderboard() : [];
     const te = this.botEngine.getTradingEngine();
@@ -555,6 +558,22 @@ export class TournamentManager extends EventEmitter {
       };
     });
 
+    // Market session and data feed status
+    const sessions = getAllSessionsStatus();
+    const dataFeed = this.bots.map(b => {
+      const session = getSymbolSession(b.symbol, b.groupName);
+      return {
+        botId: b.id,
+        botName: b.name,
+        symbol: b.symbol,
+        group: b.groupName,
+        isLive: this.marketData.isLive(b.symbol),
+        canTrade: session.canTrade,
+        sessionName: session.sessionName,
+        price: this.marketData.getArenaPrice(b.symbol),
+      };
+    });
+
     return {
       isRunning: this.currentTournament?.status === 'running',
       generation: this.generation,
@@ -563,6 +582,8 @@ export class TournamentManager extends EventEmitter {
       totalTrades,
       topBot: leaderboard[0] || null,
       groups,
+      marketSessions: sessions,
+      dataFeed,
     };
   }
 

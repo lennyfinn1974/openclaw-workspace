@@ -1,6 +1,6 @@
 'use client';
 
-import { useArenaStore, selectBotsByGroup, selectLeaderboardByGroup } from '@/stores/arenaStore';
+import { useArenaStore } from '@/stores/arenaStore';
 import type { BotGroupName } from '@/types/arena';
 import { DNAHeatmap } from './DNAHeatmap';
 import { ArrowLeft, BarChart3 } from 'lucide-react';
@@ -15,8 +15,8 @@ export function GroupDetailPanel() {
   const { selectedGroupName, setSelectedGroupName, setView, setSelectedBotId } = useArenaStore();
   if (!selectedGroupName) return null;
 
-  const bots = useArenaStore(selectBotsByGroup(selectedGroupName));
-  const entries = useArenaStore(selectLeaderboardByGroup(selectedGroupName));
+  const bots = useArenaStore(state => state.bots.filter(b => b.groupName === selectedGroupName));
+  const entries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === selectedGroupName));
   const { label, color } = GROUP_INFO[selectedGroupName];
 
   const handleBack = () => {

@@ -4,7 +4,8 @@ import { useArenaStore } from '@/stores/arenaStore';
 import { Swords, Dna, Trophy } from 'lucide-react';
 
 export function ArenaHeader() {
-  const { status, tournament } = useArenaStore();
+  const status = useArenaStore(s => s.status);
+  const tournament = useArenaStore(s => s.tournament);
   const generation = status?.generation || 0;
 
   return (

@@ -1,9 +1,10 @@
 'use client';
 
-import { useArenaStore, selectBotsByGroup, selectLeaderboardByGroup } from '@/stores/arenaStore';
+import { useMemo } from 'react';
+import { useArenaStore } from '@/stores/arenaStore';
 import type { BotGroupName } from '@/types/arena';
 import { BotCard } from './BotCard';
-import { DollarSign, BarChart3 } from 'lucide-react';
+import { BarChart3 } from 'lucide-react';
 
 const GROUP_COLORS: Record<BotGroupName, string> = {
   Alpha: 'border-blue-500/30 bg-blue-950/20',
@@ -22,11 +23,14 @@ interface GroupCardProps {
 }
 
 export function GroupCard({ groupName }: GroupCardProps) {
-  const bots = useArenaStore(selectBotsByGroup(groupName));
-  const entries = useArenaStore(selectLeaderboardByGroup(groupName));
+  const allBots = useArenaStore(s => s.bots);
+  const leaderboard = useArenaStore(s => s.leaderboard);
   const setSelectedGroupName = useArenaStore(s => s.setSelectedGroupName);
 
-  const entryMap = new Map(entries.map(e => [e.botId, e]));
+  const bots = useMemo(() => allBots.filter(b => b.groupName === groupName), [allBots, groupName]);
+  const entries = useMemo(() => leaderboard.filter(e => e.groupName === groupName), [leaderboard, groupName]);
+
+  const entryMap = useMemo(() => new Map(entries.map(e => [e.botId, e])), [entries]);
   const avgPnL = entries.length > 0 ? entries.reduce((sum, e) => sum + e.totalPnLPercent, 0) / entries.length : 0;
   const { color, label } = GROUP_LABELS[groupName];
 

@@ -14,14 +14,17 @@ import type {
 import { yahooFinance, YahooFinanceAdapter } from './yahooFinance';
 import { binance, BinanceAdapter } from './binance';
 import { alpaca, AlpacaAdapter } from './alpaca';
-import { isCryptoSymbol, isFxSymbol, isCommoditySymbol, logMarketData, sleep } from './utils';
+import { isCryptoSymbol, isFxSymbol, isCommoditySymbol, isEodhdRestOnly, hasEodhdMapping, getEodhdRestPollSymbols, logMarketData, sleep } from './utils';
 import { forexSimulator, ForexSimulator } from './forexSimulator';
 import { commoditySimulator, CommoditySimulator } from './commoditySimulator';
+import { EODHDWebSocketManager } from './eodhdWebSocket';
+import { EODHDRestAdapter } from './eodhd';
 
 export interface MarketDataConfig {
   enableLiveData: boolean;
   primaryStockSource: 'yahoo' | 'alpaca';
   primaryCryptoSource: 'binance';
+  enableEodhd: boolean;
   cacheTtlMs: number;
   pollingIntervalMs: number;
   maxRetries: number;
@@ -37,6 +40,7 @@ const DEFAULT_CONFIG: MarketDataConfig = {
   enableLiveData: true,
   primaryStockSource: 'yahoo',
   primaryCryptoSource: 'binance',
+  enableEodhd: !!process.env.EODHD_API_KEY,
   cacheTtlMs: 5000, // 5 seconds for quotes
   pollingIntervalMs: 1000, // Poll every second
   maxRetries: 2,
@@ -55,6 +59,9 @@ export class MarketDataProvider extends EventEmitter {
   private yahooAdapter: YahooFinanceAdapter;
   private binanceAdapter: BinanceAdapter;
   private alpacaAdapter: AlpacaAdapter;
+  private eodhdWsManager: EODHDWebSocketManager | null = null;
+  private eodhdRestAdapter: EODHDRestAdapter | null = null;
+  private eodhdRestPollTimer: NodeJS.Timeout | null = null;
 
   constructor(config: Partial<MarketDataConfig> = {}) {
     super();
@@ -67,13 +74,93 @@ export class MarketDataProvider extends EventEmitter {
     this.healthStatus.set('yahoo', true);
     this.healthStatus.set('binance', true);
     this.healthStatus.set('alpaca', this.alpacaAdapter.isApiConfigured());
+    this.healthStatus.set('eodhd', !!this.eodhdRestAdapter);
     this.healthStatus.set('simulated', true);
 
     logMarketData('provider', 'initialized', {
       enableLiveData: this.config.enableLiveData,
       primaryStockSource: this.config.primaryStockSource,
       primaryCryptoSource: this.config.primaryCryptoSource,
+      eodhd: !!this.eodhdRestAdapter,
+      eodhdWs: !!this.eodhdWsManager,
     });
+  }
+
+  private startEodhdRestPolling(): void {
+    if (!this.eodhdRestAdapter) return;
+
+    const restOnlySymbols = getEodhdRestPollSymbols();
+    if (restOnlySymbols.length === 0) return;
+
+    logMarketData('provider', 'eodhd-rest-polling-start', { symbols: restOnlySymbols });
+
+    this.eodhdRestPollTimer = setInterval(async () => {
+      for (const symbol of restOnlySymbols) {
+        const result = await this.eodhdRestAdapter!.getQuote(symbol);
+        if (result.success && result.data) {
+          this.quoteCache.set(symbol.toUpperCase(), {
+            data: result.data,
+            timestamp: Date.now(),
+            source: 'eodhd',
+          });
+          this.emit('quote', result.data);
+        }
+      }
+    }, 15_000); // Poll every 15 seconds
+
+    // Initial poll immediately
+    (async () => {
+      for (const symbol of restOnlySymbols) {
+        const result = await this.eodhdRestAdapter!.getQuote(symbol);
+        if (result.success && result.data) {
+          this.quoteCache.set(symbol.toUpperCase(), {
+            data: result.data,
+            timestamp: Date.now(),
+            source: 'eodhd',
+          });
+          this.emit('quote', result.data);
+        }
+      }
+    })();
+  }
+
+  // Initialize EODHD adapters — call after env vars are loaded
+  async initEodhd(): Promise<void> {
+    const eodhdKey = process.env.EODHD_API_KEY;
+    if (!eodhdKey || this.eodhdRestAdapter) return; // already initialized or no key
+
+    this.eodhdRestAdapter = new EODHDRestAdapter(eodhdKey);
+    this.eodhdWsManager = new EODHDWebSocketManager(eodhdKey);
+
+    // Forward EODHD WS quotes to this provider's 'quote' event
+    this.eodhdWsManager.on('quote', (quote: MarketQuote) => {
+      this.quoteCache.set(quote.symbol.toUpperCase(), {
+        data: quote,
+        timestamp: Date.now(),
+        source: 'eodhd',
+      });
+      this.emit('quote', quote);
+    });
+
+    // Connect EODHD WebSockets
+    try {
+      await this.eodhdWsManager.connect();
+    } catch (err) {
+      logMarketData('provider', 'eodhd-ws-connect-error', { error: String(err) });
+    }
+
+    // Start REST polling for symbols without WS coverage (CL, NG, HG)
+    this.startEodhdRestPolling();
+
+    this.healthStatus.set('eodhd', true);
+    logMarketData('provider', 'eodhd-initialized', {
+      wsConnected: this.eodhdWsManager.isConnected(),
+      restPollSymbols: getEodhdRestPollSymbols(),
+    });
+  }
+
+  isEodhdEnabled(): boolean {
+    return !!this.eodhdRestAdapter;
   }
 
   // Determine asset type from symbol
@@ -88,7 +175,19 @@ export class MarketDataProvider extends EventEmitter {
   private getAdapter(symbol: string): BrokerAdapter {
     const assetType = this.getAssetType(symbol);
 
+    // EODHD REST for symbols that are REST-only (CL, NG, HG)
+    if (this.eodhdRestAdapter && isEodhdRestOnly(symbol)) {
+      return this.eodhdRestAdapter;
+    }
+
+    // EODHD REST for FX and commodity symbols with EODHD mapping (WS handles streaming,
+    // but REST provides candles and on-demand quotes)
+    if (this.eodhdRestAdapter && hasEodhdMapping(symbol) && (assetType === 'forex' || assetType === 'commodity')) {
+      return this.eodhdRestAdapter;
+    }
+
     if (assetType === 'crypto') {
+      // Keep Binance as primary for crypto; EODHD is fallback
       return this.binanceAdapter;
     }
 
@@ -100,7 +199,11 @@ export class MarketDataProvider extends EventEmitter {
       return commoditySimulator;
     }
 
-    // For stocks, check Alpaca first if configured, otherwise use Yahoo
+    // For stocks: EODHD if available, then Alpaca, then Yahoo
+    if (this.eodhdRestAdapter && hasEodhdMapping(symbol)) {
+      return this.eodhdRestAdapter;
+    }
+
     if (this.config.primaryStockSource === 'alpaca' && this.alpacaAdapter.isApiConfigured()) {
       return this.alpacaAdapter;
     }
@@ -113,15 +216,28 @@ export class MarketDataProvider extends EventEmitter {
     const assetType = this.getAssetType(symbol);
 
     if (assetType === 'stock') {
-      if (failedSource === 'yahoo' && this.alpacaAdapter.isApiConfigured()) {
-        return this.alpacaAdapter;
-      }
-      if (failedSource === 'alpaca') {
-        return this.yahooAdapter;
+      if (failedSource === 'eodhd') return this.yahooAdapter;
+      if (failedSource === 'yahoo' && this.alpacaAdapter.isApiConfigured()) return this.alpacaAdapter;
+      if (failedSource === 'alpaca') return this.yahooAdapter;
+    }
+
+    if (assetType === 'forex') {
+      // EODHD failed → fall back to simulator
+      if (failedSource === 'eodhd') return forexSimulator;
+    }
+
+    if (assetType === 'commodity') {
+      // EODHD failed → fall back to simulator
+      if (failedSource === 'eodhd') return commoditySimulator;
+    }
+
+    if (assetType === 'crypto') {
+      // Binance failed → try EODHD if available
+      if (failedSource === 'binance' && this.eodhdRestAdapter && hasEodhdMapping(symbol)) {
+        return this.eodhdRestAdapter;
       }
     }
 
-    // No fallback for crypto (Binance is the only source)
     return null;
   }
 
@@ -379,20 +495,33 @@ export class MarketDataProvider extends EventEmitter {
 
   // Health check for all adapters
   async checkHealth(): Promise<Map<DataSource, boolean>> {
-    const [yahooHealth, binanceHealth, alpacaHealth] = await Promise.all([
+    const checks: Promise<boolean>[] = [
       this.yahooAdapter.isHealthy(),
       this.binanceAdapter.isHealthy(),
       this.alpacaAdapter.isHealthy(),
-    ]);
+    ];
 
-    this.healthStatus.set('yahoo', yahooHealth);
-    this.healthStatus.set('binance', binanceHealth);
-    this.healthStatus.set('alpaca', alpacaHealth);
+    if (this.eodhdRestAdapter) {
+      checks.push(this.eodhdRestAdapter.isHealthy());
+    }
+
+    const results = await Promise.all(checks);
+
+    this.healthStatus.set('yahoo', results[0]);
+    this.healthStatus.set('binance', results[1]);
+    this.healthStatus.set('alpaca', results[2]);
+    if (this.eodhdRestAdapter) {
+      this.healthStatus.set('eodhd', results[3]);
+    }
+
+    const eodhdWsConnected = this.eodhdWsManager?.isConnected() ?? false;
 
     logMarketData('provider', 'healthCheck', {
-      yahoo: yahooHealth,
-      binance: binanceHealth,
-      alpaca: alpacaHealth,
+      yahoo: results[0],
+      binance: results[1],
+      alpaca: results[2],
+      eodhdRest: this.eodhdRestAdapter ? results[3] : 'not configured',
+      eodhdWs: eodhdWsConnected,
     });
 
     return this.healthStatus;
@@ -418,6 +547,7 @@ export class MarketDataProvider extends EventEmitter {
     cachedCandles: number;
     cachedOrderbooks: number;
     healthStatus: Record<string, boolean>;
+    eodhdWs?: Record<string, { connected: boolean; messages: number; lastMessage: number }>;
   } {
     return {
       subscribedSymbols: this.subscribedSymbols.size,
@@ -425,12 +555,20 @@ export class MarketDataProvider extends EventEmitter {
       cachedCandles: this.candleCache.size,
       cachedOrderbooks: this.orderbookCache.size,
       healthStatus: Object.fromEntries(this.healthStatus),
+      ...(this.eodhdWsManager ? { eodhdWs: this.eodhdWsManager.getStats() } : {}),
     };
   }
 
   // Shutdown
   shutdown(): void {
     this.stopPolling();
+    if (this.eodhdRestPollTimer) {
+      clearInterval(this.eodhdRestPollTimer);
+      this.eodhdRestPollTimer = null;
+    }
+    if (this.eodhdWsManager) {
+      this.eodhdWsManager.shutdown();
+    }
     this.clearCache();
     this.subscribedSymbols.clear();
     logMarketData('provider', 'shutdown', {});

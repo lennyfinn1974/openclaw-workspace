@@ -24,3 +24,65 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Arena Animations */
+@keyframes arena-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes arena-glow {
+  0%, 100% { box-shadow: 0 0 4px rgba(245, 158, 11, 0.2); }
+  50% { box-shadow: 0 0 16px rgba(245, 158, 11, 0.4); }
+}
+
+@keyframes rank-slide-up {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rank-slide-down {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes trade-flash {
+  0% { background-color: rgba(34, 197, 94, 0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes trade-flash-sell {
+  0% { background-color: rgba(239, 68, 68, 0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes dna-spiral {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes crown-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.4); }
+}
+
+@keyframes fitness-bar-fill {
+  from { width: 0%; }
+}
+
+.animate-arena-pulse { animation: arena-pulse 2s ease-in-out infinite; }
+.animate-arena-glow { animation: arena-glow 2s ease-in-out infinite; }
+.animate-rank-up { animation: rank-slide-up 0.4s ease-out; }
+.animate-rank-down { animation: rank-slide-down 0.4s ease-out; }
+.animate-trade-buy { animation: trade-flash 0.8s ease-out; }
+.animate-trade-sell { animation: trade-flash-sell 0.8s ease-out; }
+.animate-dna-spiral { animation: dna-spiral 2s ease-in-out; }
+.animate-crown-shimmer { animation: crown-shimmer 1.5s ease-in-out infinite; }
+.animate-fitness-fill { animation: fitness-bar-fill 0.7s ease-out; }
+
+/* Scrollbar styling for dark theme */
+.arena-scrollbar::-webkit-scrollbar { width: 4px; }
+.arena-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.arena-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+.arena-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }

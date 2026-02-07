@@ -5,7 +5,7 @@ import { useArenaStore } from '@/stores/arenaStore';
 import { Timer } from 'lucide-react';
 
 export function TournamentTimer() {
-  const { tournament } = useArenaStore();
+  const tournament = useArenaStore(s => s.tournament);
   const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {

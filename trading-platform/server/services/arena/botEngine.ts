@@ -4,6 +4,7 @@ import type Database from 'better-sqlite3';
 import type { Bot, BotGroupName, BOT_GROUPS, ArenaBotTradeEvent } from './types';
 import { BotTradingEngine } from './botTradingEngine';
 import { BotStrategyEvaluator } from './botStrategyEvaluator';
+import { getSymbolSession } from './marketTiming';
 import type { MarketDataSimulator } from '../marketDataSimulator';
 import type { OHLCV } from '../../../src/types/trading';
 
@@ -116,6 +117,10 @@ export class BotEngine extends EventEmitter {
 
   private evaluateBot(bot: Bot): void {
     try {
+      // Check market session — skip if market is closed for this symbol
+      const session = getSymbolSession(bot.symbol, bot.groupName);
+      if (!session.canTrade) return;
+
       // Update price in trading engine
       const price = this.marketData.getArenaPrice(bot.symbol);
       if (price <= 0) return;
@@ -177,16 +182,17 @@ export class BotEngine extends EventEmitter {
   }
 
   private getCandles(symbol: string): OHLCV[] {
-    // Try to get from market data simulator's OHLCV data
-    // Use synchronous access to the stored data
     try {
-      // The simulator stores OHLCV data that we can access
-      // For arena symbols (FX/commodity), we generate synthetic candles from price history
+      // First try real candles from the simulator's OHLCV cache
+      // (populated by live EODHD ticks or simulation updates)
+      const realCandles = this.marketData.getStoredCandles(symbol, '5m');
+      if (realCandles && realCandles.length >= 30) {
+        return realCandles;
+      }
+
+      // Fall back to synthetic candles from current price
       const quote = this.marketData.getArenaQuote(symbol);
       if (!quote) return [];
-
-      // Build synthetic candles from the current price + some random history
-      // This gives the TA enough data to work with
       return this.generateSyntheticCandles(symbol, quote.last);
     } catch {
       return [];

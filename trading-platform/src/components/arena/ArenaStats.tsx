@@ -1,13 +1,13 @@
 'use client';
 
-import { useArenaStore, selectTopBot, selectGroupStats } from '@/stores/arenaStore';
+import { useArenaStore } from '@/stores/arenaStore';
 import { BarChart3, Users, Trophy, TrendingUp } from 'lucide-react';
 
 export function ArenaStats() {
-  const { status, leaderboard, activityFeed } = useArenaStore();
-  const topBot = useArenaStore(selectTopBot);
+  const status = useArenaStore(s => s.status);
+  const leaderboard = useArenaStore(s => s.leaderboard);
 
-  const totalTrades = status?.totalTrades || activityFeed.length;
+  const totalTrades = status?.totalTrades || 0;
   const bestReturn = leaderboard.length > 0 ? Math.max(...leaderboard.map(e => e.totalPnLPercent)) : 0;
   const worstReturn = leaderboard.length > 0 ? Math.min(...leaderboard.map(e => e.totalPnLPercent)) : 0;
   const avgReturn = leaderboard.length > 0 ? leaderboard.reduce((s, e) => s + e.totalPnLPercent, 0) / leaderboard.length : 0;
@@ -16,7 +16,7 @@ export function ArenaStats() {
     { label: 'Total Bots', value: status?.totalBots || 21, icon: Users, color: 'text-blue-400' },
     { label: 'Total Trades', value: totalTrades, icon: BarChart3, color: 'text-cyan-400' },
     { label: 'Best Return', value: `${bestReturn >= 0 ? '+' : ''}${bestReturn.toFixed(1)}%`, icon: TrendingUp, color: 'text-green-400' },
-    { label: 'Top Bot', value: topBot?.botName || '-', icon: Trophy, color: 'text-amber-400' },
+    { label: 'Top Bot', value: leaderboard[0]?.botName || '-', icon: Trophy, color: 'text-amber-400' },
   ];
 
   return (

@@ -9,7 +9,11 @@ import {
 import { Play, Pause, Square, Zap, Brain, Loader2 } from 'lucide-react';
 
 export function TournamentControls() {
-  const { tournament, setTournament, setLeaderboard, setMasterBot, setBots, setError } = useArenaStore();
+  const tournament = useArenaStore(s => s.tournament);
+  const setTournament = useArenaStore(s => s.setTournament);
+  const setMasterBot = useArenaStore(s => s.setMasterBot);
+  const setBots = useArenaStore(s => s.setBots);
+  const setError = useArenaStore(s => s.setError);
   const [loading, setLoading] = useState<string | null>(null);
 
   const handleStart = async () => {

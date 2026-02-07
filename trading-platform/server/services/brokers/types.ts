@@ -43,7 +43,7 @@ export interface OrderBookData {
 }
 
 export type AssetType = 'stock' | 'crypto' | 'forex' | 'commodity';
-export type DataSource = 'yahoo' | 'binance' | 'alpaca' | 'simulated';
+export type DataSource = 'yahoo' | 'binance' | 'alpaca' | 'eodhd' | 'simulated';
 
 export interface SymbolMapping {
   symbol: string;
@@ -52,6 +52,7 @@ export interface SymbolMapping {
   binanceSymbol?: string;
   alpacaSymbol?: string;
   coingeckoId?: string;
+  eodhdSymbol?: string;
 }
 
 export interface RateLimitConfig {
@@ -175,4 +176,59 @@ export interface AlpacaTrade {
   c: string[]; // conditions
   i: number;   // trade ID
   z: string;   // tape
+}
+
+// EODHD WebSocket message types
+export interface EODHDForexTick {
+  s: string;   // symbol e.g. "EURUSD"
+  a: number;   // ask
+  b: number;   // bid
+  dc: string;  // daily change percent
+  dd: string;  // daily change absolute
+  t: number;   // timestamp (ms)
+}
+
+export interface EODHDUSQuote {
+  s: string;   // symbol e.g. "NVDA"
+  ap: number;  // ask price
+  as: number;  // ask size
+  bp: number;  // bid price
+  bs: number;  // bid size
+  t: number;   // timestamp (ms)
+}
+
+export interface EODHDCryptoTick {
+  s: string;   // symbol e.g. "BTC-USD"
+  p: string;   // price
+  q: string;   // quantity
+  dc: string;  // daily change percent
+  dd: string;  // daily change absolute
+  t: number;   // timestamp (ms)
+}
+
+export type EODHDEndpoint = 'forex' | 'us-quote' | 'crypto';
+
+export interface EODHDRealTimeResponse {
+  code: string;
+  timestamp: number;
+  gmtoffset: number;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  previousClose: number;
+  change: number;
+  change_p: number;
+}
+
+export interface EODHDIntradayBar {
+  timestamp: number;
+  gmtoffset: number;
+  datetime: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
 }

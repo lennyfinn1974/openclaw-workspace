@@ -1,6 +1,6 @@
 'use client';
 
-import { useArenaStore, selectGroupStats, selectLeaderboardByGroup } from '@/stores/arenaStore';
+import { useArenaStore } from '@/stores/arenaStore';
 import type { BotGroupName } from '@/types/arena';
 import { Shield, Trophy, Target } from 'lucide-react';
 
@@ -54,10 +54,20 @@ function MetricBar({ label, groups, format, higherIsBetter = true }: MetricBarPr
 }
 
 export function GroupBattle() {
-  const groupStats = useArenaStore(selectGroupStats);
-  const alphaEntries = useArenaStore(selectLeaderboardByGroup('Alpha'));
-  const betaEntries = useArenaStore(selectLeaderboardByGroup('Beta'));
-  const gammaEntries = useArenaStore(selectLeaderboardByGroup('Gamma'));
+  const groupStats = useArenaStore(state => {
+    const groups = { Alpha: { avgPnL: 0, botCount: 0 }, Beta: { avgPnL: 0, botCount: 0 }, Gamma: { avgPnL: 0, botCount: 0 } };
+    for (const entry of state.leaderboard) {
+      groups[entry.groupName].avgPnL += entry.totalPnLPercent;
+      groups[entry.groupName].botCount++;
+    }
+    for (const g of Object.values(groups)) {
+      if (g.botCount > 0) g.avgPnL /= g.botCount;
+    }
+    return groups;
+  });
+  const alphaEntries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === 'Alpha'));
+  const betaEntries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === 'Beta'));
+  const gammaEntries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === 'Gamma'));
 
   const entriesByGroup: Record<BotGroupName, typeof alphaEntries> = {
     Alpha: alphaEntries,

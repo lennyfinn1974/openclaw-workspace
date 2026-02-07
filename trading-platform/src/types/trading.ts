@@ -84,6 +84,7 @@ export interface Quote {
   open: number;
   previousClose: number;
   timestamp: Date;
+  source?: 'yahoo' | 'binance' | 'alpaca' | 'eodhd' | 'simulated'; // ARENA: Track data source for real data validation
 }
 
 export interface OrderBookLevel {

@@ -1,4 +1,7 @@
 // Main Server - Express API + WebSocket for Trading Platform
+import { config } from 'dotenv';
+config({ path: '.env.local' });
+
 import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
@@ -40,8 +43,25 @@ const technicalAnalysis = new TechnicalAnalysis();
   await marketData.start();
 })();
 
-// Update trading engine prices
+// Arena symbols that require real data
+const ARENA_SYMBOLS = new Set([
+  'GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD',
+  'NVDA', 'TSLA', 'AMD', 'COIN', 'ROKU', 'PLTR', 'MSTR',
+  'GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F', 'LTHM', 'BTC'
+]);
+const arenaSimRejected = new Set<string>(); // track logged rejections
+
+// Update trading engine prices - ARENA REAL DATA ENFORCEMENT
 marketData.on('quote', (quote) => {
+  // For Arena symbols, only accept quotes from real sources
+  if (ARENA_SYMBOLS.has(quote.symbol) && quote.source === 'simulated') {
+    if (!arenaSimRejected.has(quote.symbol)) {
+      arenaSimRejected.add(quote.symbol);
+      console.log(`[ARENA] Rejected simulated data for ${quote.symbol} — waiting for real source`);
+    }
+    return;
+  }
+
   tradingEngine.updatePrice(quote.symbol, quote.last);
 
   // Check pending orders
@@ -245,9 +265,12 @@ app.get('/api/market/session', (_req, res) => {
 app.get('/api/market/sources', (_req, res) => {
   try {
     const status = marketData.getDataSourceStatus();
+    const providerStats = marketData.getProviderStats();
     res.json({
       ...status,
       enableLiveData,
+      eodhdConfigured: !!process.env.EODHD_API_KEY,
+      providerStats,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
@@ -894,13 +917,26 @@ app.get('/api/health', (_req, res) => {
 });
 
 // Start server
+const eodhdConfigured = !!process.env.EODHD_API_KEY;
 httpServer.listen(PORT, () => {
   console.log(`🚀 Trading Platform Server running on http://localhost:${PORT}`);
   console.log(`📊 WebSocket server ready`);
   console.log(`💹 Live data: ${enableLiveData ? 'ENABLED' : 'DISABLED (simulation mode)'}`);
   if (enableLiveData) {
-    console.log(`   📈 Stocks: Yahoo Finance (free) / Alpaca (if configured)`);
-    console.log(`   💰 Crypto: Binance (free)`);
+    if (eodhdConfigured) {
+      console.log(`   📡 EODHD: CONNECTED (WebSocket + REST)`);
+      console.log(`      FX: 7 pairs via /ws/forex (real-time)`);
+      console.log(`      Stocks: 7 symbols via /ws/us-quote (real-time)`);
+      console.log(`      Crypto: BTC via /ws/crypto (real-time)`);
+      console.log(`      Gold/Silver: via /ws/forex as XAUUSD/XAGUSD`);
+      console.log(`      Oil/Gas/Copper: REST polling every 15s`);
+    } else {
+      console.log(`   ⚠️  EODHD: NOT CONFIGURED (set EODHD_API_KEY for live FX/commodity data)`);
+    }
+    console.log(`   📈 Stocks: ${eodhdConfigured ? 'EODHD (primary)' : 'Yahoo Finance'} / Alpaca (if configured)`);
+    console.log(`   💰 Crypto: Binance (primary) / ${eodhdConfigured ? 'EODHD (fallback)' : 'no fallback'}`);
+    console.log(`   💱 FX: ${eodhdConfigured ? 'EODHD (live)' : 'Simulator (simulated)'}`);
+    console.log(`   🏭 Commodities: ${eodhdConfigured ? 'EODHD (live/polled)' : 'Simulator (simulated)'}`);
   }
 });
 

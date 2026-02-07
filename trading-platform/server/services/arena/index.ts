@@ -10,4 +10,5 @@ export * from './advancedGenetics';
 export * from './populationDiversity';
 export * from './botPersonality';
 export * from './evolutionAnalytics';
+export * from './marketTiming';
 export * from './types';

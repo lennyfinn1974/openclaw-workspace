@@ -13,7 +13,7 @@ interface SymbolConfig {
   volatility: number;
   avgVolume: number;
   sector: string;
-  assetType: 'stock' | 'crypto';
+  assetType: 'stock' | 'crypto' | 'forex' | 'commodity';
 }
 
 // Supported symbols with fallback simulation parameters
@@ -43,6 +43,21 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'SOL', basePrice: 145, volatility: 0.055, avgVolume: 2500000000, sector: 'Crypto', assetType: 'crypto' },
   { symbol: 'BNB', basePrice: 580, volatility: 0.030, avgVolume: 1500000000, sector: 'Crypto', assetType: 'crypto' },
   { symbol: 'XRP', basePrice: 0.55, volatility: 0.045, avgVolume: 1200000000, sector: 'Crypto', assetType: 'crypto' },
+  // FX (EODHD WS / Simulator fallback)
+  { symbol: 'GBP/JPY', basePrice: 193.50, volatility: 0.012, avgVolume: 15000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/TRY', basePrice: 32.80, volatility: 0.015, avgVolume: 5000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/ZAR', basePrice: 18.65, volatility: 0.014, avgVolume: 8000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'EUR/USD', basePrice: 1.0875, volatility: 0.006, avgVolume: 500000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'GBP/USD', basePrice: 1.2725, volatility: 0.007, avgVolume: 300000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/JPY', basePrice: 154.25, volatility: 0.007, avgVolume: 400000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'AUD/USD', basePrice: 0.6580, volatility: 0.008, avgVolume: 150000000, sector: 'FX', assetType: 'forex' },
+  // Commodities (EODHD REST/WS / Simulator fallback)
+  { symbol: 'GC=F', basePrice: 2350.00, volatility: 0.012, avgVolume: 200000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'SI=F', basePrice: 28.50, volatility: 0.022, avgVolume: 60000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'CL=F', basePrice: 78.50, volatility: 0.025, avgVolume: 800000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'NG=F', basePrice: 2.85, volatility: 0.045, avgVolume: 400000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'HG=F', basePrice: 4.25, volatility: 0.020, avgVolume: 50000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'LTHM', basePrice: 5.80, volatility: 0.055, avgVolume: 3000000, sector: 'Commodity', assetType: 'commodity' },
 ];
 
 interface PriceState {
@@ -66,6 +81,7 @@ interface DataSourceStatus {
   yahoo: boolean;
   binance: boolean;
   alpaca: boolean;
+  eodhd: boolean;
   lastCheck: number;
 }
 
@@ -81,6 +97,7 @@ export class MarketDataSimulator extends EventEmitter {
     yahoo: false,
     binance: false,
     alpaca: false,
+    eodhd: false,
     lastCheck: 0,
   };
 
@@ -213,6 +230,9 @@ export class MarketDataSimulator extends EventEmitter {
   }
 
   async start(): Promise<void> {
+    // Initialize EODHD if API key is available (must happen after dotenv loads)
+    await this.dataProvider.initEodhd();
+
     // Check health of data sources
     await this.checkDataSources();
 
@@ -245,6 +265,7 @@ export class MarketDataSimulator extends EventEmitter {
         yahoo: health.get('yahoo') || false,
         binance: health.get('binance') || false,
         alpaca: health.get('alpaca') || false,
+        eodhd: health.get('eodhd') || false,
         lastCheck: Date.now(),
       };
 
@@ -431,7 +452,21 @@ export class MarketDataSimulator extends EventEmitter {
       open: state.open,
       previousClose: state.previousClose,
       timestamp: new Date(),
+      source: state.isLive ? this.getLiveDataSource(symbol) : 'simulated', // 🚨 ARENA: Track data source for validation
     };
+  }
+
+  // Determine the actual live data source for a symbol
+  private getLiveDataSource(symbol: string): 'yahoo' | 'binance' | 'alpaca' | 'eodhd' {
+    // Check symbol type and determine likely source
+    if (['BTC', 'ETH', 'SOL', 'BNB', 'XRP'].includes(symbol)) {
+      return 'binance';
+    }
+    if (['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F'].includes(symbol)) {
+      return 'eodhd';
+    }
+    // Default to yahoo for stocks
+    return 'yahoo';
   }
 
   async getOrderBook(symbol: string, levels: number = 10): Promise<OrderBook | null> {
@@ -523,6 +558,14 @@ export class MarketDataSimulator extends EventEmitter {
     return this.prices.get(symbol)?.price || 0;
   }
 
+  // Synchronous access to stored OHLCV candles (no async/network call)
+  getStoredCandles(symbol: string, timeframe: string): OHLCV[] | null {
+    const symbolData = this.ohlcvData.get(symbol);
+    if (!symbolData) return null;
+    const candles = symbolData.get(timeframe as Timeframe);
+    return candles && candles.length > 0 ? candles : null;
+  }
+
   getSymbols(): string[] {
     return SYMBOLS.map(s => s.symbol);
   }
@@ -575,6 +618,11 @@ export class MarketDataSimulator extends EventEmitter {
     return state?.isLive || false;
   }
 
+  // Get provider-level stats (EODHD WS connections, etc.)
+  getProviderStats(): Record<string, unknown> {
+    return this.dataProvider.getStats();
+  }
+
   // Get price for any arena symbol (stocks, FX, commodities, crypto)
   getArenaPrice(symbol: string): number {
     // Check standard symbols first
@@ -617,6 +665,7 @@ export class MarketDataSimulator extends EventEmitter {
         open: fxPrice,
         previousClose: fxPrice,
         timestamp: new Date(),
+        source: 'simulated', // 🚨 ARENA: Mark as simulated for validation
       };
     }
 
@@ -639,6 +688,7 @@ export class MarketDataSimulator extends EventEmitter {
         open: comPrice,
         previousClose: comPrice,
         timestamp: new Date(),
+        source: 'simulated', // 🚨 ARENA: Mark as simulated for validation
       };
     }
 
@@ -646,6 +696,8 @@ export class MarketDataSimulator extends EventEmitter {
   }
 
   // Update arena simulators (called from simulation interval)
+  // When EODHD is providing live data, these simulators still run as fallback
+  // but their prices are overridden by handleLiveQuote when EODHD quotes arrive
   updateArenaSimulators(): void {
     forexSimulator.updatePrices();
     commoditySimulator.updatePrices();

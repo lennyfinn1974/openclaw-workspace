@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useArenaStore } from '@/stores/arenaStore';
 import { useArenaWebSocket } from '@/hooks/useArenaWebSocket';
 import { getArenaStatus, getBots, getLeaderboard, getMasterBot } from '@/services/arenaApi';
@@ -18,29 +18,37 @@ import { BotDetailView } from './BotDetailView';
 import { GroupDetailPanel } from './GroupDetailPanel';
 
 import type { BotGroupName } from '@/types/arena';
+import { Loader2 } from 'lucide-react';
 
 export function ArenaDashboard() {
-  const {
-    view, setBots, setStatus, setLeaderboard, setMasterBot,
-    setLoading, setTournament, setError, error,
-  } = useArenaStore();
+  const view = useArenaStore(s => s.view);
+  const bots = useArenaStore(s => s.bots);
+  const error = useArenaStore(s => s.error);
+  const isLoading = useArenaStore(s => s.isLoading);
+
+  const loadedRef = useRef(false);
 
   // Connect arena WebSocket
   useArenaWebSocket();
 
-  // Load initial data
+  // Load initial data (once)
   useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+
+    const { setLoading, setStatus, setBots, setLeaderboard, setTournament, setMasterBot, setError } = useArenaStore.getState();
+
     const loadData = async () => {
       setLoading(true);
       try {
-        const [status, bots, leaderboard, masterBot] = await Promise.all([
+        const [status, botsData, leaderboard, masterBot] = await Promise.all([
           getArenaStatus(),
           getBots(),
           getLeaderboard().catch(() => []),
           getMasterBot().catch(() => null),
         ]);
         setStatus(status);
-        setBots(bots);
+        setBots(botsData);
         setLeaderboard(leaderboard);
         if (status.tournament) setTournament(status.tournament);
         setMasterBot(masterBot);
@@ -61,9 +69,9 @@ export function ArenaDashboard() {
             getLeaderboard(),
             getArenaStatus(),
           ]);
-          setLeaderboard(leaderboard);
-          setStatus(status);
-          if (status.tournament) setTournament(status.tournament);
+          useArenaStore.getState().setLeaderboard(leaderboard);
+          useArenaStore.getState().setStatus(status);
+          if (status.tournament) useArenaStore.getState().setTournament(status.tournament);
         } catch {}
       }
     }, 10000);
@@ -71,15 +79,15 @@ export function ArenaDashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Error toast
+  // Error toast auto-dismiss
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(null), 5000);
+      const timer = setTimeout(() => useArenaStore.getState().setError(null), 5000);
       return () => clearTimeout(timer);
     }
   }, [error]);
 
-  // Render based on view
+  // Bot detail view
   if (view === 'bot-detail') {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white p-4">
@@ -88,10 +96,23 @@ export function ArenaDashboard() {
     );
   }
 
+  // Group detail view
   if (view === 'group-detail') {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white p-4">
         <GroupDetailPanel />
+      </div>
+    );
+  }
+
+  // Loading state
+  if (isLoading && bots.length === 0) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+          <span className="text-sm text-gray-500">Loading Arena...</span>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useArenaStore, selectBotsByGroup, selectLeaderboardByGroup } from '@/stores/arenaStore';
+import { useArenaStore } from '@/stores/arenaStore';
 import type { Bot, BotGroupName, LeaderboardEntry, ArenaBotTradeEvent } from '@/types/arena';
 import { TrendingUp, TrendingDown, Minus, Zap } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
@@ -115,8 +115,8 @@ function BotCell({ bot, entry, recentTrade, groupConfig }: BotCellProps) {
 }
 
 function GroupColumn({ groupName }: { groupName: BotGroupName }) {
-  const bots = useArenaStore(selectBotsByGroup(groupName));
-  const entries = useArenaStore(selectLeaderboardByGroup(groupName));
+  const bots = useArenaStore(state => state.bots.filter(b => b.groupName === groupName));
+  const entries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === groupName));
   const { activityFeed } = useArenaStore();
   const config = GROUP_CONFIG[groupName];
 

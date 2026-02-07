@@ -113,7 +113,7 @@ export function EvolutionTimeline() {
               <Tooltip
                 contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: 8, fontSize: 11 }}
                 labelStyle={{ color: '#fff' }}
-                formatter={(value: number, name: string) => [`${(value * 100).toFixed(1)}`, name]}
+                formatter={(value) => [`${(Number(value) * 100).toFixed(1)}`]}
               />
               <Area
                 type="monotone"
@@ -162,7 +162,7 @@ export function EvolutionTimeline() {
               <Tooltip
                 contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: 8, fontSize: 11 }}
                 labelStyle={{ color: '#fff' }}
-                formatter={(value: number, name: string) => [`${(value * 100).toFixed(1)}`, name]}
+                formatter={(value) => [`${(Number(value) * 100).toFixed(1)}`]}
               />
               <Line type="monotone" dataKey="alphaAvg" stroke="#3b82f6" strokeWidth={2} name="Alpha (FX)" dot={{ r: 3 }} />
               <Line type="monotone" dataKey="betaAvg" stroke="#22c55e" strokeWidth={2} name="Beta (Stocks)" dot={{ r: 3 }} />

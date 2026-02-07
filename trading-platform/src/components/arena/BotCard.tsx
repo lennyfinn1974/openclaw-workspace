@@ -11,10 +11,16 @@ interface BotCardProps {
 
 export function BotCard({ bot, entry }: BotCardProps) {
   const setSelectedBotId = useArenaStore(s => s.setSelectedBotId);
+
   const pnl = entry?.totalPnLPercent || 0;
   const rank = entry?.rank;
+  const fitness = entry?.fitness ?? 0;
 
-  const rankColor = rank === 1 ? 'text-amber-400' : rank === 2 ? 'text-gray-300' : rank === 3 ? 'text-amber-700' : 'text-gray-500';
+  const rankColor = rank === 1 ? 'text-amber-400'
+    : rank === 2 ? 'text-gray-300'
+    : rank === 3 ? 'text-amber-700'
+    : 'text-gray-500';
+
   const pnlColor = pnl > 0 ? 'text-green-400' : pnl < 0 ? 'text-red-400' : 'text-gray-400';
 
   return (
@@ -31,11 +37,20 @@ export function BotCard({ bot, entry }: BotCardProps) {
         <div className="text-xs font-medium text-white truncate">{bot.name}</div>
         <div className="text-[10px] text-gray-500">{bot.symbol}</div>
       </div>
-      <div className={`text-xs font-mono font-medium ${pnlColor} flex items-center gap-0.5`}>
-        {pnl > 0 ? <TrendingUp className="w-3 h-3" /> :
-         pnl < 0 ? <TrendingDown className="w-3 h-3" /> :
-         <Minus className="w-3 h-3" />}
-        {pnl >= 0 ? '+' : ''}{pnl.toFixed(1)}%
+
+      <div className="text-right">
+        <div className={`text-xs font-mono font-medium ${pnlColor} flex items-center justify-end gap-0.5`}>
+          {pnl > 0 ? <TrendingUp className="w-3 h-3" /> :
+           pnl < 0 ? <TrendingDown className="w-3 h-3" /> :
+           <Minus className="w-3 h-3" />}
+          {pnl >= 0 ? '+' : ''}{pnl.toFixed(1)}%
+        </div>
+        <div className="w-12 h-1 bg-gray-700 rounded-full mt-0.5 overflow-hidden">
+          <div
+            className="h-full bg-purple-500/70 rounded-full"
+            style={{ width: `${fitness * 100}%` }}
+          />
+        </div>
       </div>
     </button>
   );

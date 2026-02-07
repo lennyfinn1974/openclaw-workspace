@@ -1,6 +1,6 @@
 'use client';
 
-import { useArenaStore, selectBotsByGroup, selectLeaderboardByGroup } from '@/stores/arenaStore';
+import { useArenaStore } from '@/stores/arenaStore';
 import type { BotGroupName } from '@/types/arena';
 import { Crown, Dna, Swords, ChevronRight, Zap } from 'lucide-react';
 
@@ -11,8 +11,8 @@ const GROUP_COLORS: Record<BotGroupName, { text: string; bg: string; border: str
 };
 
 function GroupStage({ groupName }: { groupName: BotGroupName }) {
-  const bots = useArenaStore(selectBotsByGroup(groupName));
-  const entries = useArenaStore(selectLeaderboardByGroup(groupName));
+  const bots = useArenaStore(state => state.bots.filter(b => b.groupName === groupName));
+  const entries = useArenaStore(state => state.leaderboard.filter(e => e.groupName === groupName));
   const colors = GROUP_COLORS[groupName];
 
   // Top 3 from this group (elites that will survive evolution)

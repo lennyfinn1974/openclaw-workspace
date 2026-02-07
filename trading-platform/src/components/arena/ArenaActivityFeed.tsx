@@ -5,7 +5,7 @@ import type { ArenaBotTradeEvent } from '@/types/arena';
 import { Activity, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 export function ArenaActivityFeed() {
-  const { activityFeed } = useArenaStore();
+  const activityFeed = useArenaStore(s => s.activityFeed);
 
   return (
     <div className="bg-[#0f0f0f] rounded-xl border border-gray-800 overflow-hidden">

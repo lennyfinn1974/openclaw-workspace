@@ -1,7 +1,7 @@
 // Shared utilities for market data brokers
 // Rate limiting, validation, and fetch helpers
 
-import type { RateLimitConfig } from './types';
+import type { RateLimitConfig, EODHDEndpoint } from './types';
 
 // Rate limiter with token bucket algorithm
 export class RateLimiter {
@@ -163,6 +163,94 @@ export function isCommoditySymbol(symbol: string): boolean {
   return COMMODITY_SYMBOLS.has(symbol.toUpperCase());
 }
 
+// EODHD symbol mapping: platform symbol → { wsSymbol, wsEndpoint, restSymbol }
+interface EODHDSymbolInfo {
+  wsSymbol: string | null;     // null = no WS coverage, use REST polling
+  wsEndpoint: EODHDEndpoint | null;
+  restSymbol: string;
+}
+
+const EODHD_SYMBOL_MAP: Record<string, EODHDSymbolInfo> = {
+  // Alpha (FX)
+  'GBP/JPY':  { wsSymbol: 'GBPJPY',  wsEndpoint: 'forex',    restSymbol: 'GBPJPY.FOREX' },
+  'USD/TRY':  { wsSymbol: 'USDTRY',  wsEndpoint: 'forex',    restSymbol: 'USDTRY.FOREX' },
+  'USD/ZAR':  { wsSymbol: 'USDZAR',  wsEndpoint: 'forex',    restSymbol: 'USDZAR.FOREX' },
+  'EUR/USD':  { wsSymbol: 'EURUSD',  wsEndpoint: 'forex',    restSymbol: 'EURUSD.FOREX' },
+  'GBP/USD':  { wsSymbol: 'GBPUSD',  wsEndpoint: 'forex',    restSymbol: 'GBPUSD.FOREX' },
+  'USD/JPY':  { wsSymbol: 'USDJPY',  wsEndpoint: 'forex',    restSymbol: 'USDJPY.FOREX' },
+  'AUD/USD':  { wsSymbol: 'AUDUSD',  wsEndpoint: 'forex',    restSymbol: 'AUDUSD.FOREX' },
+  // Beta (Stocks)
+  'NVDA':     { wsSymbol: 'NVDA',    wsEndpoint: 'us-quote', restSymbol: 'NVDA.US' },
+  'TSLA':     { wsSymbol: 'TSLA',    wsEndpoint: 'us-quote', restSymbol: 'TSLA.US' },
+  'AMD':      { wsSymbol: 'AMD',     wsEndpoint: 'us-quote', restSymbol: 'AMD.US' },
+  'COIN':     { wsSymbol: 'COIN',    wsEndpoint: 'us-quote', restSymbol: 'COIN.US' },
+  'ROKU':     { wsSymbol: 'ROKU',    wsEndpoint: 'us-quote', restSymbol: 'ROKU.US' },
+  'PLTR':     { wsSymbol: 'PLTR',    wsEndpoint: 'us-quote', restSymbol: 'PLTR.US' },
+  'MSTR':     { wsSymbol: 'MSTR',    wsEndpoint: 'us-quote', restSymbol: 'MSTR.US' },
+  // Gamma (Commodities) - Gold/Silver via forex WS as spot
+  'GC=F':     { wsSymbol: 'XAUUSD',  wsEndpoint: 'forex',    restSymbol: 'XAUUSD.FOREX' },
+  'SI=F':     { wsSymbol: 'XAGUSD',  wsEndpoint: 'forex',    restSymbol: 'XAGUSD.FOREX' },
+  // Commodity futures - REST only (no WS coverage)
+  'CL=F':     { wsSymbol: null,       wsEndpoint: null,       restSymbol: 'CL.COMM' },
+  'NG=F':     { wsSymbol: null,       wsEndpoint: null,       restSymbol: 'NG.COMM' },
+  'HG=F':     { wsSymbol: null,       wsEndpoint: null,       restSymbol: 'HG.COMM' },
+  // LTHM as stock on US exchange
+  'LTHM':     { wsSymbol: 'LTHM',    wsEndpoint: 'us-quote', restSymbol: 'LTHM.US' },
+  // Crypto
+  'BTC':      { wsSymbol: 'BTC-USD',  wsEndpoint: 'crypto',   restSymbol: 'BTC-USD.CC' },
+};
+
+// Reverse lookup: EODHD WS symbol → platform symbol
+const EODHD_WS_REVERSE_MAP: Record<string, string> = {};
+for (const [platformSymbol, info] of Object.entries(EODHD_SYMBOL_MAP)) {
+  if (info.wsSymbol) {
+    EODHD_WS_REVERSE_MAP[info.wsSymbol] = platformSymbol;
+  }
+}
+
+export function hasEodhdMapping(symbol: string): boolean {
+  return symbol in EODHD_SYMBOL_MAP;
+}
+
+export function toEodhdWsSymbol(symbol: string): string | null {
+  return EODHD_SYMBOL_MAP[symbol]?.wsSymbol ?? null;
+}
+
+export function fromEodhdWsSymbol(wsSymbol: string): string | null {
+  return EODHD_WS_REVERSE_MAP[wsSymbol] ?? null;
+}
+
+export function getEodhdRestSymbol(symbol: string): string | null {
+  return EODHD_SYMBOL_MAP[symbol]?.restSymbol ?? null;
+}
+
+export function getEodhdEndpoint(symbol: string): EODHDEndpoint | null {
+  return EODHD_SYMBOL_MAP[symbol]?.wsEndpoint ?? null;
+}
+
+export function isEodhdRestOnly(symbol: string): boolean {
+  const info = EODHD_SYMBOL_MAP[symbol];
+  return !!info && info.wsSymbol === null;
+}
+
+// Get all symbols grouped by WS endpoint (for subscription)
+export function getEodhdWsSubscriptions(): Record<EODHDEndpoint, string[]> {
+  const subs: Record<EODHDEndpoint, string[]> = { forex: [], 'us-quote': [], crypto: [] };
+  for (const info of Object.values(EODHD_SYMBOL_MAP)) {
+    if (info.wsSymbol && info.wsEndpoint) {
+      subs[info.wsEndpoint].push(info.wsSymbol);
+    }
+  }
+  return subs;
+}
+
+// Get all symbols that need REST polling (no WS coverage)
+export function getEodhdRestPollSymbols(): string[] {
+  return Object.entries(EODHD_SYMBOL_MAP)
+    .filter(([_, info]) => info.wsSymbol === null)
+    .map(([symbol]) => symbol);
+}
+
 // Detect if a symbol is crypto
 export function isCryptoSymbol(symbol: string): boolean {
   const upper = symbol.toUpperCase();
@@ -214,6 +302,21 @@ export function getBinanceInterval(timeframe: string): string {
     '1w': '1w',
   };
   return map[timeframe] || '1d';
+}
+
+// EODHD intraday interval mapping
+export function getEodhdInterval(timeframe: string): string {
+  const map: Record<string, string> = {
+    '1m': '1m',
+    '5m': '5m',
+    '15m': '15m',
+    '30m': '30m',
+    '1h': '1h',
+    '4h': '4h',
+    '1d': '1d',
+    '1w': '1w',
+  };
+  return map[timeframe] || '5m';
 }
 
 // Calculate spread from bid/ask
