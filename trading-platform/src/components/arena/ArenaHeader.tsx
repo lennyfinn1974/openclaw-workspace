@@ -1,12 +1,13 @@
 'use client';
 
 import { useArenaStore } from '@/stores/arenaStore';
-import { Swords, Dna, Trophy } from 'lucide-react';
+import { Swords, Dna, Trophy, Clock } from 'lucide-react';
 
 export function ArenaHeader() {
   const status = useArenaStore(s => s.status);
   const tournament = useArenaStore(s => s.tournament);
   const generation = status?.generation || 0;
+  const localTime = (status as unknown as Record<string, unknown>)?.localTime as string | undefined;
 
   return (
     <div className="flex items-center justify-between">
@@ -14,11 +15,18 @@ export function ArenaHeader() {
         <Swords className="w-7 h-7 text-amber-500" />
         <div>
           <h1 className="text-2xl font-bold text-white">Wargames Arena</h1>
-          <p className="text-xs text-gray-500">21-Bot Tournament System</p>
+          <p className="text-xs text-gray-500">21-Bot Tournament System — Real Market Data Only</p>
         </div>
       </div>
 
       <div className="flex items-center gap-4">
+        {localTime && (
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 rounded-lg">
+            <Clock className="w-4 h-4 text-gray-400" />
+            <span className="text-sm text-gray-300">{localTime}</span>
+          </div>
+        )}
+
         <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 rounded-lg">
           <Dna className="w-4 h-4 text-purple-400" />
           <span className="text-sm text-gray-300">Gen <span className="text-white font-bold">{generation}</span></span>

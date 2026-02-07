@@ -168,3 +168,18 @@ export function getAllSessionsStatus(): Record<BotGroupName, SessionInfo> {
     Gamma: getCommoditySession(),
   };
 }
+
+// Get current time in Gulf Standard Time (UTC+4) for display
+export function getGSTTime(): { hour: number; minute: number; dayOfWeek: number; formatted: string } {
+  const now = new Date();
+  const gstOffset = 4;
+  const utcHour = now.getUTCHours();
+  const utcDay = now.getUTCDay();
+  let gstHour = (utcHour + gstOffset) % 24;
+  let gstDay = utcDay;
+  if (utcHour + gstOffset >= 24) gstDay = (utcDay + 1) % 7;
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const minute = now.getUTCMinutes();
+  const formatted = `${dayNames[gstDay]} ${String(gstHour).padStart(2, '0')}:${String(minute).padStart(2, '0')} GST`;
+  return { hour: gstHour, minute, dayOfWeek: gstDay, formatted };
+}

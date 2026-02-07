@@ -117,7 +117,7 @@ export class BotEngine extends EventEmitter {
 
   private evaluateBot(bot: Bot): void {
     try {
-      // Check market session — skip if market is closed for this symbol
+      // Check market session — only trade during real market hours
       const session = getSymbolSession(bot.symbol, bot.groupName);
       if (!session.canTrade) return;
 

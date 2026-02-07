@@ -22,7 +22,7 @@ import { evolveGroupAdvanced, DEFAULT_ADVANCED_CONFIG } from './advancedGenetics
 import { applyFitnessSharing, speciateBots, calculatePopulationDiversity } from './populationDiversity';
 import { buildPersonality, getPersonalityDistribution, getPersonalitySummaries, getPersonalityTitle, breedingCompatibility } from './botPersonality';
 import { HallOfFame, buildGenerationAnalytics, saveGenerationAnalytics, getGenerationAnalyticsHistory, getEvolutionSummary } from './evolutionAnalytics';
-import { getAllSessionsStatus, getSymbolSession } from './marketTiming';
+import { getAllSessionsStatus, getSymbolSession, getGSTTime } from './marketTiming';
 import type { MarketDataSimulator } from '../marketDataSimulator';
 
 export class TournamentManager extends EventEmitter {
@@ -531,6 +531,7 @@ export class TournamentManager extends EventEmitter {
     topBot: LeaderboardEntry | null;
     groups: { name: BotGroupName; assetClass: string; botCount: number; avgPnL: number }[];
     marketSessions: Record<string, unknown>;
+    localTime: string;
     dataFeed: { botId: string; botName: string; symbol: string; group: BotGroupName; isLive: boolean; canTrade: boolean; sessionName: string; price: number }[];
   } {
     const leaderboard = this.currentTournament ? this.calculateLeaderboard() : [];
@@ -583,6 +584,7 @@ export class TournamentManager extends EventEmitter {
       topBot: leaderboard[0] || null,
       groups,
       marketSessions: sessions,
+      localTime: getGSTTime().formatted,
       dataFeed,
     };
   }
