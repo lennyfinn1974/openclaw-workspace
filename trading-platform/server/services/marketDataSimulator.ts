@@ -4,6 +4,8 @@
 import { EventEmitter } from 'events';
 import type { Quote, OrderBook, OHLCV, Timeframe, MarketSession } from '../../src/types/trading';
 import { marketDataProvider, MarketDataProvider, type MarketQuote, type CandleData, type OrderBookData } from './brokers';
+import { forexSimulator } from './brokers/forexSimulator';
+import { commoditySimulator } from './brokers/commoditySimulator';
 
 interface SymbolConfig {
   symbol: string;
@@ -32,6 +34,9 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'COIN', basePrice: 245.60, volatility: 0.055, avgVolume: 12000000, sector: 'Finance', assetType: 'stock' },
   { symbol: 'PLTR', basePrice: 24.85, volatility: 0.042, avgVolume: 35000000, sector: 'Technology', assetType: 'stock' },
   { symbol: 'SMCI', basePrice: 785.20, volatility: 0.065, avgVolume: 8000000, sector: 'Technology', assetType: 'stock' },
+  // Arena Beta stocks (not already in list)
+  { symbol: 'ROKU', basePrice: 62.50, volatility: 0.050, avgVolume: 6000000, sector: 'Technology', assetType: 'stock' },
+  { symbol: 'MSTR', basePrice: 1750.00, volatility: 0.065, avgVolume: 4000000, sector: 'Technology', assetType: 'stock' },
   // Crypto (Binance)
   { symbol: 'BTC', basePrice: 68000, volatility: 0.035, avgVolume: 25000000000, sector: 'Crypto', assetType: 'crypto' },
   { symbol: 'ETH', basePrice: 3500, volatility: 0.040, avgVolume: 15000000000, sector: 'Crypto', assetType: 'crypto' },
@@ -221,6 +226,7 @@ export class MarketDataSimulator extends EventEmitter {
     if (!this.simulationInterval) {
       this.simulationInterval = setInterval(() => {
         this.updatePrices();
+        this.updateArenaSimulators();
       }, 100);
     }
 
@@ -567,5 +573,81 @@ export class MarketDataSimulator extends EventEmitter {
   isLive(symbol: string): boolean {
     const state = this.prices.get(symbol);
     return state?.isLive || false;
+  }
+
+  // Get price for any arena symbol (stocks, FX, commodities, crypto)
+  getArenaPrice(symbol: string): number {
+    // Check standard symbols first
+    const stdPrice = this.getCurrentPrice(symbol);
+    if (stdPrice > 0) return stdPrice;
+
+    // Check FX simulator
+    const fxPrice = forexSimulator.getCurrentPrice(symbol);
+    if (fxPrice > 0) return fxPrice;
+
+    // Check commodity simulator
+    const commodityPrice = commoditySimulator.getCurrentPrice(symbol);
+    if (commodityPrice > 0) return commodityPrice;
+
+    return 0;
+  }
+
+  // Get quote for any arena symbol
+  getArenaQuote(symbol: string): Quote | null {
+    // Standard symbols
+    const stdQuote = this.getQuote(symbol);
+    if (stdQuote) return stdQuote;
+
+    // FX - construct Quote from MarketQuote
+    const fxPrice = forexSimulator.getCurrentPrice(symbol);
+    if (fxPrice > 0) {
+      return {
+        symbol,
+        bid: fxPrice * 0.9999,
+        bidSize: 100000,
+        ask: fxPrice * 1.0001,
+        askSize: 100000,
+        last: fxPrice,
+        lastSize: 10000,
+        volume: 1000000,
+        change: 0,
+        changePercent: 0,
+        high: fxPrice * 1.005,
+        low: fxPrice * 0.995,
+        open: fxPrice,
+        previousClose: fxPrice,
+        timestamp: new Date(),
+      };
+    }
+
+    // Commodity
+    const comPrice = commoditySimulator.getCurrentPrice(symbol);
+    if (comPrice > 0) {
+      return {
+        symbol,
+        bid: comPrice * 0.9998,
+        bidSize: 100,
+        ask: comPrice * 1.0002,
+        askSize: 100,
+        last: comPrice,
+        lastSize: 10,
+        volume: 50000,
+        change: 0,
+        changePercent: 0,
+        high: comPrice * 1.01,
+        low: comPrice * 0.99,
+        open: comPrice,
+        previousClose: comPrice,
+        timestamp: new Date(),
+      };
+    }
+
+    return null;
+  }
+
+  // Update arena simulators (called from simulation interval)
+  updateArenaSimulators(): void {
+    forexSimulator.updatePrices();
+    commoditySimulator.updatePrices();
   }
 }

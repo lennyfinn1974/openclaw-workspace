@@ -14,7 +14,9 @@ import type {
 import { yahooFinance, YahooFinanceAdapter } from './yahooFinance';
 import { binance, BinanceAdapter } from './binance';
 import { alpaca, AlpacaAdapter } from './alpaca';
-import { isCryptoSymbol, logMarketData, sleep } from './utils';
+import { isCryptoSymbol, isFxSymbol, isCommoditySymbol, logMarketData, sleep } from './utils';
+import { forexSimulator, ForexSimulator } from './forexSimulator';
+import { commoditySimulator, CommoditySimulator } from './commoditySimulator';
 
 export interface MarketDataConfig {
   enableLiveData: boolean;
@@ -77,6 +79,8 @@ export class MarketDataProvider extends EventEmitter {
   // Determine asset type from symbol
   private getAssetType(symbol: string): AssetType {
     if (isCryptoSymbol(symbol)) return 'crypto';
+    if (isFxSymbol(symbol)) return 'forex';
+    if (isCommoditySymbol(symbol)) return 'commodity';
     return 'stock';
   }
 
@@ -86,6 +90,14 @@ export class MarketDataProvider extends EventEmitter {
 
     if (assetType === 'crypto') {
       return this.binanceAdapter;
+    }
+
+    if (assetType === 'forex') {
+      return forexSimulator;
+    }
+
+    if (assetType === 'commodity') {
+      return commoditySimulator;
     }
 
     // For stocks, check Alpaca first if configured, otherwise use Yahoo

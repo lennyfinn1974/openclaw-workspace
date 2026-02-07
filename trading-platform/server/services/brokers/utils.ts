@@ -147,6 +147,22 @@ export const CRYPTO_SYMBOLS: Record<string, { binance: string; coingecko: string
   'PEPE': { binance: 'PEPEUSDT', coingecko: 'pepe' },
 };
 
+// FX symbols used in the arena
+const FX_SYMBOLS = new Set(['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD']);
+
+// Commodity symbols used in the arena
+const COMMODITY_SYMBOLS = new Set(['CL=F', 'NG=F', 'SI=F', 'HG=F', 'GC=F', 'LTHM']);
+
+// Detect if a symbol is forex
+export function isFxSymbol(symbol: string): boolean {
+  return FX_SYMBOLS.has(symbol.toUpperCase());
+}
+
+// Detect if a symbol is a commodity
+export function isCommoditySymbol(symbol: string): boolean {
+  return COMMODITY_SYMBOLS.has(symbol.toUpperCase());
+}
+
 // Detect if a symbol is crypto
 export function isCryptoSymbol(symbol: string): boolean {
   const upper = symbol.toUpperCase();

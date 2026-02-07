@@ -42,7 +42,7 @@ export interface OrderBookData {
   timestamp: Date;
 }
 
-export type AssetType = 'stock' | 'crypto' | 'forex';
+export type AssetType = 'stock' | 'crypto' | 'forex' | 'commodity';
 export type DataSource = 'yahoo' | 'binance' | 'alpaca' | 'simulated';
 
 export interface SymbolMapping {

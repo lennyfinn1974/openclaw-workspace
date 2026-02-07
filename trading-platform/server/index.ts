@@ -7,6 +7,10 @@ import { initializeDatabase } from './db/schema';
 import { TradingEngine } from './services/tradingEngine';
 import { MarketDataSimulator } from './services/marketDataSimulator';
 import { TechnicalAnalysis } from './services/technicalAnalysis';
+import { TournamentManager } from './services/arena';
+import { getLatestMasterBot, getMasterBotHistory } from './services/arena/masterBotSynthesis';
+import type { BotGroupName } from './services/arena/types';
+import { BOT_GROUPS } from './services/arena/types';
 
 const PORT = process.env.PORT || 8101;
 
@@ -385,6 +389,443 @@ app.post('/api/watchlists', (req, res) => {
   }
 });
 
+// ===================== ARENA INITIALIZATION =====================
+
+const arena = new TournamentManager(db, marketData);
+
+// Recover any interrupted tournament from previous session
+if (arena.recoverTournament()) {
+  console.log('[Arena] Recovered tournament from previous session (paused - use /api/arena/tournament/resume to continue)');
+}
+
+// Forward arena events to WebSocket (scoped to 'arena' room subscribers only)
+arena.on('bot:trade', (event) => {
+  io.to('arena').emit('arena:bot:trade', event);
+});
+
+arena.on('leaderboard', (event) => {
+  io.to('arena').emit('arena:leaderboard', event);
+});
+
+arena.on('tournament', (event) => {
+  io.to('arena').emit('arena:tournament', event);
+});
+
+arena.on('evolution', (event) => {
+  io.to('arena').emit('arena:evolution', event);
+});
+
+// ===================== ARENA REST API ROUTES =====================
+
+// -- Status --
+app.get('/api/arena/status', (_req, res) => {
+  try {
+    res.json(arena.getStatus());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/symbols', (_req, res) => {
+  res.json(BOT_GROUPS);
+});
+
+// -- Tournaments --
+app.get('/api/arena/tournaments', (req, res) => {
+  try {
+    const limit = Number(req.query.limit) || 10;
+    res.json(arena.getTournamentHistory(limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/tournament/current', (_req, res) => {
+  try {
+    const tournament = arena.getCurrentTournament();
+    if (!tournament) return res.json(null);
+    res.json(tournament);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/tournament/create', (req, res) => {
+  try {
+    const { totalRounds, roundDurationMs } = req.body || {};
+    const tournament = arena.createTournament({ totalRounds, roundDurationMs });
+    res.json(tournament);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/tournament/start', async (_req, res) => {
+  try {
+    await arena.startTournament();
+    res.json({ success: true, tournament: arena.getCurrentTournament() });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/tournament/pause', (_req, res) => {
+  try {
+    arena.pauseTournament();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/tournament/resume', (_req, res) => {
+  try {
+    arena.resumeTournament();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/tournament/stop', (_req, res) => {
+  try {
+    arena.stopTournament();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Bots --
+app.get('/api/arena/bots', (_req, res) => {
+  try {
+    res.json(arena.getBots());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/group/:groupName', (req, res) => {
+  try {
+    const groupName = req.params.groupName as BotGroupName;
+    res.json(arena.getBotsByGroup(groupName));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// Bot comparison (must be before :botId to avoid matching "compare" as a botId)
+app.get('/api/arena/bots/compare', (req, res) => {
+  try {
+    const ids = (req.query.ids as string || '').split(',').filter(Boolean);
+    if (ids.length < 2) return res.status(400).json({ error: 'Provide at least 2 bot IDs via ?ids=id1,id2' });
+    res.json(arena.compareBots(ids));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId', (req, res) => {
+  try {
+    const bot = arena.getBot(req.params.botId);
+    if (!bot) return res.status(404).json({ error: 'Bot not found' });
+    res.json(bot);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/portfolio', (req, res) => {
+  try {
+    const tournament = arena.getCurrentTournament();
+    if (!tournament) return res.json(null);
+    const te = arena.getBotEngine().getTradingEngine();
+    res.json(te.getPortfolio(req.params.botId, tournament.id));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/positions', (req, res) => {
+  try {
+    const tournament = arena.getCurrentTournament();
+    if (!tournament) return res.json([]);
+    const te = arena.getBotEngine().getTradingEngine();
+    res.json(te.getPositions(req.params.botId, tournament.id));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/trades', (req, res) => {
+  try {
+    const tournament = arena.getCurrentTournament();
+    if (!tournament) return res.json([]);
+    const te = arena.getBotEngine().getTradingEngine();
+    const limit = Number(req.query.limit) || 50;
+    res.json(te.getTrades(req.params.botId, tournament.id, limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/dna-history', (req, res) => {
+  try {
+    res.json(arena.getDNAHistory(req.params.botId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Leaderboard --
+app.get('/api/arena/leaderboard', (_req, res) => {
+  try {
+    res.json(arena.calculateLeaderboard());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/leaderboard/group/:groupName', (req, res) => {
+  try {
+    const all = arena.calculateLeaderboard();
+    res.json(all.filter(e => e.groupName === req.params.groupName));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/leaderboard/history/:tournamentId', (req, res) => {
+  try {
+    res.json(arena.getLeaderboardHistory(req.params.tournamentId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Evolution --
+app.post('/api/arena/evolve', (_req, res) => {
+  try {
+    const results = arena.triggerEvolution();
+    res.json({ success: true, generation: arena.getGeneration(), results });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Master Bot --
+app.get('/api/arena/master-bot', (_req, res) => {
+  try {
+    res.json(getLatestMasterBot(db));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.post('/api/arena/master-bot/synthesize', (_req, res) => {
+  try {
+    const result = arena.synthesizeMasterBot();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/master-bot/history', (req, res) => {
+  try {
+    const limit = Number(req.query.limit) || 10;
+    res.json(getMasterBotHistory(db, limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- All arena trades (activity feed) --
+app.get('/api/arena/trades', (req, res) => {
+  try {
+    const tournament = arena.getCurrentTournament();
+    if (!tournament) return res.json([]);
+    const te = arena.getBotEngine().getTradingEngine();
+    const limit = Number(req.query.limit) || 100;
+    res.json(te.getAllTrades(tournament.id, limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Equity Curves --
+app.get('/api/arena/bots/:botId/equity-curve', (req, res) => {
+  try {
+    const tournamentId = req.query.tournamentId as string | undefined;
+    res.json(arena.getEquityCurve(req.params.botId, tournamentId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/equity-curves', (req, res) => {
+  try {
+    const tournamentId = req.query.tournamentId as string | undefined;
+    res.json(arena.getAllEquityCurves(tournamentId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Generation Stats --
+app.get('/api/arena/generations/stats', (_req, res) => {
+  try {
+    res.json(arena.getGenerationStats());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Bot Performance History --
+app.get('/api/arena/bots/:botId/performance', (req, res) => {
+  try {
+    res.json(arena.getBotPerformanceHistory(req.params.botId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// ===================== ADVANCED GENETICS API =====================
+
+// -- Evolution Config --
+app.get('/api/arena/evolution/config', (_req, res) => {
+  try {
+    res.json(arena.getEvolutionConfig());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.put('/api/arena/evolution/config', (req, res) => {
+  try {
+    const config = arena.setEvolutionConfig(req.body);
+    res.json(config);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Advanced Evolution --
+app.post('/api/arena/evolve/advanced', (_req, res) => {
+  try {
+    const result = arena.triggerAdvancedEvolution();
+    res.json({
+      success: true,
+      generation: arena.getGeneration(),
+      ...result,
+    });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Bot Personalities --
+app.get('/api/arena/personalities', (_req, res) => {
+  try {
+    res.json(arena.getAllPersonalities());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/personalities/distribution', (_req, res) => {
+  try {
+    res.json(arena.getPersonalityDistribution());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/personality', (req, res) => {
+  try {
+    const personality = arena.getBotPersonality(req.params.botId);
+    if (!personality) return res.status(404).json({ error: 'Bot not found' });
+    res.json(personality);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/bots/:botId/personality-history', (req, res) => {
+  try {
+    res.json(arena.getPersonalityHistory(req.params.botId));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/breeding-compatibility', (req, res) => {
+  try {
+    const { bot1, bot2 } = req.query;
+    if (!bot1 || !bot2) return res.status(400).json({ error: 'Provide bot1 and bot2 query params' });
+    const compatibility = arena.getBreedingCompatibility(bot1 as string, bot2 as string);
+    res.json({ bot1, bot2, compatibility });
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Hall of Fame --
+app.get('/api/arena/hall-of-fame', (req, res) => {
+  try {
+    const limit = Number(req.query.limit) || 50;
+    res.json(arena.getHallOfFame(limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/hall-of-fame/group/:groupName', (req, res) => {
+  try {
+    res.json(arena.getHallOfFameByGroup(req.params.groupName as BotGroupName));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/hall-of-fame/best', (_req, res) => {
+  try {
+    res.json(arena.getBestEverBot());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Generation Analytics --
+app.get('/api/arena/analytics/generations', (req, res) => {
+  try {
+    const groupName = req.query.group as BotGroupName | undefined;
+    const limit = Number(req.query.limit) || 20;
+    res.json(arena.getGenerationAnalytics(groupName, limit));
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+app.get('/api/arena/analytics/summary', (_req, res) => {
+  try {
+    res.json(arena.getEvolutionSummary());
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// -- Advanced Master Bot Synthesis --
+app.post('/api/arena/master-bot/synthesize-advanced', (req, res) => {
+  try {
+    const method = (req.body?.method || 'weighted_average') as string;
+    const result = arena.synthesizeAdvancedMasterBot(method as any);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+});
+
 // ===================== WEBSOCKET HANDLERS =====================
 
 io.on('connection', (socket) => {
@@ -431,6 +872,17 @@ io.on('connection', (socket) => {
     }
   });
 
+  // Arena WebSocket events
+  socket.on('arena:subscribe', () => {
+    socket.join('arena');
+    // Send current status
+    socket.emit('arena:status', arena.getStatus());
+  });
+
+  socket.on('arena:unsubscribe', () => {
+    socket.leave('arena');
+  });
+
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
   });
@@ -451,3 +903,23 @@ httpServer.listen(PORT, () => {
     console.log(`   💰 Crypto: Binance (free)`);
   }
 });
+
+// Graceful shutdown - pause tournament before exit
+const gracefulShutdown = (signal: string) => {
+  console.log(`\n[Server] ${signal} received, shutting down gracefully...`);
+  const tournament = arena.getCurrentTournament();
+  if (tournament && tournament.status === 'running') {
+    arena.pauseTournament();
+    console.log('[Server] Tournament paused for recovery on next startup');
+  }
+  marketData.stop();
+  httpServer.close(() => {
+    console.log('[Server] HTTP server closed');
+    process.exit(0);
+  });
+  // Force exit after 5s if graceful close hangs
+  setTimeout(() => process.exit(1), 5000);
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
