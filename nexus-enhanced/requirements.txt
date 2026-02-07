@@ -1,0 +1,84 @@
+# Nexus Enhanced - Python Backend Dependencies
+
+# Core Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+python-multipart>=0.0.6
+
+# OpenClaw Integration
+httpx>=0.25.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Database & Storage  
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+aiosqlite>=0.19.0
+
+# Authentication & Security
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-dotenv>=1.0.0
+
+# AI & Models
+openai>=1.0.0
+anthropic>=0.7.0
+google-generativeai>=0.3.0
+
+# Skills Integration
+subprocess-run>=1.0.0  # For CLI tools
+pathlib2>=2.3.7
+configparser>=6.0.0
+yaml>=6.0.1
+
+# Development & Utilities
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+jinja2>=3.1.0
+rich>=13.7.0  # For beautiful CLI output
+typer>=0.9.0  # For CLI commands
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+httpx>=0.25.0  # For API testing
+
+# Optional Skills Dependencies
+# Notes & Productivity
+beautifulsoup4>=4.12.0  # For web scraping
+markdown>=3.5.0
+
+# Media & Audio  
+pillow>=10.1.0  # For image processing
+mutagen>=1.47.0  # For audio metadata
+
+# Web & Browser
+selenium>=4.15.0  # For browser automation
+playwright>=1.40.0  # Alternative browser automation
+
+# Development Tools
+pygit2>=1.13.0  # For git integration
+psutil>=5.9.0  # For system monitoring
+
+# Communication
+slack-sdk>=3.26.0
+discord.py>=2.3.0
+
+# Google Workspace  
+google-auth>=2.25.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.2.0
+google-api-python-client>=2.110.0
+
+# Apple Integration (macOS only)
+# osascript support via subprocess
+# applescript>=1.0.0  # If available
+
+# System Integration
+schedule>=1.2.0  # For task scheduling
+watchdog>=3.0.0  # For file monitoring
+
+# Performance & Monitoring
+prometheus-client>=0.19.0
+structlog>=23.2.0

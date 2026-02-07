@@ -1,0 +1,16 @@
+# Active Platform Terminals - Sat Feb  7 16:34:01 +04 2026
+Terminal Windows: 862, 126, 66, 817, 259
+lennyfinn        42866   4.5  1.0 470094208 259296   ??  S     4:30PM   0:15.93 /opt/homebrew/Cellar/node/25.5.0/bin/node --require /Users/lennyfinn/.openclaw/workspace/trading-platform/node_modules/tsx/dist/preflight.cjs --import file:///Users/lennyfinn/.openclaw/workspace/trading-platform/node_modules/tsx/dist/loader.mjs server/index.ts
+lennyfinn        42824   0.2  0.2 436127648  57104   ??  S     4:30PM   0:00.66 node /Users/lennyfinn/.openclaw/workspace/trading-platform/node_modules/.bin/concurrently npm run server npm run frontend
+lennyfinn        42684   0.0  0.2 436138352  48624   ??  S     4:30PM   0:00.13 node /Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/node_modules/.bin/concurrently npm run server npm run dev
+lennyfinn        42610   0.0  0.1 411844256  17536   ??  S     4:30PM   0:00.13 /Users/lennyfinn/.openclaw/workspace/nexus-enhanced/frontend/node_modules/@esbuild/darwin-arm64/bin/esbuild --service=0.27.3 --ping
+lennyfinn        42608   0.0  0.4 444620912  99488   ??  S     4:30PM   0:00.84 node /Users/lennyfinn/.openclaw/workspace/nexus-enhanced/frontend/node_modules/.bin/vite
+lennyfinn        42870   0.0  0.4 436566464  95168   ??  S     4:30PM   0:00.58 node /Users/lennyfinn/.openclaw/workspace/trading-platform/.next/dev/build/postcss.js 52966
+lennyfinn        42863   0.0  0.3 436158752  63024   ??  S     4:30PM   0:00.10 node /Users/lennyfinn/.openclaw/workspace/trading-platform/node_modules/.bin/tsx server/index.ts
+lennyfinn        42856   0.0  0.3 444562304  64848   ??  S     4:30PM   0:00.19 node /Users/lennyfinn/.openclaw/workspace/trading-platform/node_modules/.bin/next dev -p 3000
+lennyfinn        42763   0.0  0.1 411329008  16864   ??  S     4:30PM   0:00.14 /Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/node_modules/@esbuild/darwin-arm64/bin/esbuild --service=0.21.5 --ping
+lennyfinn        42760   0.0  0.5 445764320 116064   ??  S     4:30PM   0:01.28 node /Users/lennyfinn/.openclaw/workspace/hybrid-kanban-platform/node_modules/.bin/vite
+# Platform Data Snapshot
+- Nexus: PostgreSQL connections active
+- All platforms responsive (HTTP 200)
+- Development servers running concurrently

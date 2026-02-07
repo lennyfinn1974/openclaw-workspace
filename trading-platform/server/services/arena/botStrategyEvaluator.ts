@@ -193,7 +193,7 @@ export class BotStrategyEvaluator {
     }
 
     // ============ DECISION ============
-    const threshold = 0.3 + dna.timing.entryPatience * 0.5; // higher patience = need stronger signals
+    const threshold = 0.15 + dna.timing.entryPatience * 0.25; // range 0.15-0.40
 
     // Check max open positions
     const maxPositions = Math.round(dna.positionSizing.maxOpenPositions);
@@ -226,9 +226,9 @@ export class BotStrategyEvaluator {
       const maxPositionValue = portfolioValue * dna.positionSizing.maxPositionPercent;
       const positionValue = Math.min(riskAmount / 0.02, maxPositionValue, cash * 0.95); // risk/2% stop or max position
       quantity = Math.max(0, Math.floor(positionValue / currentPrice));
-      if (quantity === 0 && currentPrice < cash * 0.9) {
-        // For expensive assets, allow fractional
-        quantity = Number((positionValue / currentPrice).toFixed(4));
+      if (quantity === 0 && positionValue > 0) {
+        // For expensive assets (BTC, etc.), allow fractional quantities
+        quantity = Number((positionValue / currentPrice).toFixed(6));
       }
     } else if (action === 'sell') {
       quantity = currentPosition;
