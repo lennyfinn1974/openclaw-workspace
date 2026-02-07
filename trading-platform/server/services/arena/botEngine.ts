@@ -148,11 +148,6 @@ export class BotEngine extends EventEmitter {
         portfolioValue: portfolio.totalValue,
       });
 
-      // Debug: log Crypto King evaluations
-      if (bot.symbol === 'BTC') {
-        console.log(`[CK] price=$${price.toFixed(0)} candles=${candles.length} signal=${signal.action} str=${signal.strength.toFixed(3)} qty=${signal.quantity} reason="${signal.reason}"`);
-      }
-
       if (signal.action === 'hold' || signal.quantity <= 0) return;
 
       // Execute trade
