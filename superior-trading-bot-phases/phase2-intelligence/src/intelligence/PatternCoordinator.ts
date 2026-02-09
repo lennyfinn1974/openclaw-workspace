@@ -28,14 +28,15 @@ export class PatternCoordinator extends EventEmitter {
 
   async runClustering(): Promise<void> {
     const botIds = this.collector.getBotIds();
+    console.log(`[Patterns] Clustering check: ${botIds.length} bots`);
     if (botIds.length < 3) return;
 
     try {
-      // Step 1: Extract features
+      // Step 1: Extract features — require only 1 trade per bot
       const botTrades: Record<string, any[]> = {};
       for (const botId of botIds) {
         const trades = this.collector.getBotTrades(botId);
-        if (trades.length >= 3) {
+        if (trades.length >= 1) {
           botTrades[botId] = trades.map(t => ({
             direction: t.direction,
             quantity: t.quantity,
@@ -50,7 +51,9 @@ export class PatternCoordinator extends EventEmitter {
         }
       }
 
-      if (Object.keys(botTrades).length < 3) return;
+      const botCount = Object.keys(botTrades).length;
+      console.log(`[Patterns] ${botCount} bots have trades for clustering`);
+      if (botCount < 3) return;
 
       const featureResult = await this.router.send('patterns:extract_features', { botTrades });
       const features = featureResult.features;
@@ -95,8 +98,10 @@ export class PatternCoordinator extends EventEmitter {
       };
 
       this.lastRunTimestamp = Date.now();
+      console.log(`[Patterns] Clustering complete: ${archetypes.length} archetypes, ${embeddings.length} embeddings, silhouette=${this.latestClustering.silhouetteScore.toFixed(3)}`);
       this.emit('clustered', this.latestClustering);
-    } catch (err) {
+    } catch (err: any) {
+      console.error(`[Patterns] Clustering error: ${err.message || err}`);
       this.emit('error', err);
     }
   }

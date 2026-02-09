@@ -22,16 +22,16 @@ export class ShapleyCoordinator extends EventEmitter {
 
   start(): void {
     this.collector.on('trade', (trade: ArenaTrade) => {
-      if (trade.outcome) {
-        this.pendingTrades.push(trade);
-        if (this.pendingTrades.length >= this.batchSize) {
-          this.processBatch();
-        }
+      // Process all trades — outcome may be absent for live trades
+      this.pendingTrades.push(trade);
+      if (this.pendingTrades.length >= this.batchSize) {
+        this.processBatch();
       }
     });
 
     this.batchTimer = setInterval(() => {
       if (this.pendingTrades.length > 0) {
+        console.log(`[Shapley] Timer batch: ${this.pendingTrades.length} pending trades`);
         this.processBatch();
       }
     }, this.batchIntervalMs);

@@ -45,19 +45,14 @@ export class IntelligenceOrchestrator extends EventEmitter {
     await this.bridge.start();
     console.log('[Orchestrator] Python ML Engine connected');
 
-    // 2. Wire up trade processing pipeline BEFORE connecting (so bootstrap trades are captured)
+    // 2. Wire up ALL trade listeners BEFORE connecting (so bootstrap trades are captured)
     this.collector.on('trade', (trade: ArenaTrade) => {
       this.totalTradesProcessed++;
       this.fingerprints.processTrade(trade);
       this.emit('trade', trade);
     });
 
-    // 3. Connect to Arena
-    console.log('[Orchestrator] Connecting to Arena...');
-    await this.collector.start();
-    console.log(`[Orchestrator] Arena connected, ${this.collector.getTradeCount()} initial trades`);
-
-    // 4. Start intelligence systems
+    // 3. Start intelligence systems (registers their collector listeners) BEFORE arena connect
     this.shapley.start();
     this.patterns.start();
     this.competitive.start();
@@ -71,11 +66,16 @@ export class IntelligenceOrchestrator extends EventEmitter {
 
     // Error forwarding
     for (const component of [this.shapley, this.patterns, this.competitive]) {
-      component.on('error', (err) => {
-        console.error(`[Intelligence Error] ${err.message}`);
+      component.on('error', (err: any) => {
+        console.error(`[Intelligence Error] ${err.message || err}`);
         this.emit('error', err);
       });
     }
+
+    // 4. NOW connect to Arena — bootstrap trades will hit all registered listeners
+    console.log('[Orchestrator] Connecting to Arena...');
+    await this.collector.start();
+    console.log(`[Orchestrator] Arena connected, ${this.collector.getTradeCount()} initial trades`);
 
     console.log('[Orchestrator] All intelligence systems started');
   }

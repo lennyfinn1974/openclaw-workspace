@@ -27,12 +27,19 @@ async function main() {
   };
 
   process.on('SIGINT', shutdown);
-  process.on('SIGTERM', shutdown);
+  process.on('SIGTERM', () => { console.log('[SIGNAL] SIGTERM received'); shutdown(); });
+  process.on('SIGHUP', () => { console.log('[SIGNAL] SIGHUP received — ignoring'); });
   process.on('uncaughtException', (err) => {
-    console.error('[UNCAUGHT]', err.message);
+    console.error('[UNCAUGHT]', err.message, err.stack);
   });
   process.on('unhandledRejection', (err: any) => {
-    console.error('[UNHANDLED]', err?.message || err);
+    console.error('[UNHANDLED]', err?.message || err, err?.stack || '');
+  });
+  process.on('beforeExit', (code) => {
+    console.log(`[beforeExit] code=${code} — event loop drained`);
+  });
+  process.on('exit', (code) => {
+    console.log(`[exit] code=${code}`);
   });
 
   try {

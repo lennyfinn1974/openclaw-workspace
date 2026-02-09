@@ -100,7 +100,14 @@ export class ArenaSocketClient extends EventEmitter {
       regime: (data.regime || data.market_regime || 'RANGING') as MarketRegime,
       confidence: data.confidence,
       indicators: data.indicators || data.preTradeIndicators,
-      outcome: data.outcome
+      outcome: data.outcome || (data.pnl !== undefined ? {
+        pnl: data.pnl,
+        pnlPercentage: data.pnl && data.total ? (data.pnl / data.total) * 100 : 0,
+        holdingPeriodMinutes: 0,
+        maxAdverseExcursion: 0,
+        maxFavorableExcursion: 0,
+        isWinner: (data.pnl || 0) > 0
+      } : undefined)
     };
   }
 

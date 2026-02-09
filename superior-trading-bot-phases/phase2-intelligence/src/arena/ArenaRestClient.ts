@@ -74,10 +74,15 @@ export class ArenaRestClient extends EventEmitter {
 
   async fetchRecentTrades(limit = 50): Promise<ArenaTrade[]> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/trades?limit=${limit}`);
-      if (!resp.ok) return [];
-      const data = await resp.json();
-      return this.normalizeTrades(data);
+      // Use /api/arena/trades which includes botId and pnl
+      const resp = await fetch(`${this.baseUrl}/api/arena/trades?limit=${limit}`);
+      if (!resp.ok) {
+        // Fallback to /api/trades (may lack botId)
+        const resp2 = await fetch(`${this.baseUrl}/api/trades?limit=${limit}`);
+        if (!resp2.ok) return [];
+        return this.normalizeTrades(await resp2.json());
+      }
+      return this.normalizeTrades(await resp.json());
     } catch {
       return [];
     }
@@ -124,7 +129,14 @@ export class ArenaRestClient extends EventEmitter {
       regime: (t.regime || t.market_regime || 'RANGING') as MarketRegime,
       confidence: t.confidence,
       indicators: t.indicators || t.preTradeIndicators || undefined,
-      outcome: t.outcome || undefined
+      outcome: t.outcome || (t.pnl !== undefined ? {
+        pnl: t.pnl,
+        pnlPercentage: t.pnl && t.total ? (t.pnl / t.total) * 100 : 0,
+        holdingPeriodMinutes: 0,
+        maxAdverseExcursion: 0,
+        maxFavorableExcursion: 0,
+        isWinner: (t.pnl || 0) > 0
+      } : undefined)
     }));
   }
 

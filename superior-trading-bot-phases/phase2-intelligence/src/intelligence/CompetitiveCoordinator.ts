@@ -65,7 +65,7 @@ export class CompetitiveCoordinator extends EventEmitter {
 
   async trainBot(botId: string): Promise<void> {
     const trades = this.collector.getBotTrades(botId);
-    if (trades.length < 20) return;
+    if (trades.length < 5) return; // Lowered from 20 — 5 trades minimum for initial training
 
     try {
       // Build training features: 20D behavioral + indicator features
@@ -103,14 +103,22 @@ export class CompetitiveCoordinator extends EventEmitter {
 
   async trainAllBots(): Promise<void> {
     const botIds = this.collector.getBotIds();
+    console.log(`[Competitive] Training ${botIds.length} bots...`);
+    let trained = 0;
     for (const botId of botIds) {
-      await this.trainBot(botId);
+      const trades = this.collector.getBotTrades(botId);
+      if (trades.length >= 5) {
+        await this.trainBot(botId);
+        trained++;
+      }
     }
+    console.log(`[Competitive] Trained ${trained}/${botIds.length} bots (need 5+ trades each)`);
   }
 
   async runPredictions(): Promise<void> {
     const botIds = this.collector.getBotIds();
     if (botIds.length === 0) return;
+    console.log(`[Competitive] Running predictions for ${botIds.length} bots`);
 
     try {
       const predictionsInput: Record<string, number[]> = {};
@@ -129,6 +137,9 @@ export class CompetitiveCoordinator extends EventEmitter {
       });
 
       const predictions = result.predictions || {};
+      const predCount = Object.keys(predictions).length;
+      const predicted = Object.values(predictions).filter((p: any) => p.predicted).length;
+      console.log(`[Competitive] Predictions: ${predicted}/${predCount} bots had models`);
       for (const [botId, pred] of Object.entries(predictions) as [string, any][]) {
         if (pred.predicted) {
           this.predictions.set(botId, {
@@ -154,7 +165,10 @@ export class CompetitiveCoordinator extends EventEmitter {
 
   async detectCrowding(): Promise<void> {
     const recentTrades = this.collector.getRecentTrades(100);
-    if (recentTrades.length < 5) return;
+    if (recentTrades.length < 5) {
+      console.log(`[Competitive] Crowding skip: only ${recentTrades.length} recent trades (need 5)`);
+      return;
+    }
 
     try {
       const result = await this.router.send('competitive:crowding', {

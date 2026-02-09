@@ -16,7 +16,7 @@ class FeatureExtractor:
         features = {}
 
         for bot_id, trades in bot_trades.items():
-            if len(trades) < 3:
+            if len(trades) < 1:
                 continue
             vec = self._extract_bot(trades)
             features[bot_id] = vec

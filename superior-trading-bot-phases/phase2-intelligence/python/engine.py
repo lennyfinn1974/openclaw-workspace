@@ -67,7 +67,7 @@ def handle_request(req: dict) -> dict:
             n_neighbors = payload.get('nNeighbors', 5)
             min_dist = payload.get('minDist', 0.1)
             min_cluster_size = payload.get('minClusterSize', 3)
-            reduced = reducer.reduce(features, n_neighbors=n_neighbors, min_dist=min_dist)
+            reduced = reducer.reduce({'features': features}, n_neighbors=n_neighbors, min_dist=min_dist)
             result = clusterer.cluster(reduced, min_cluster_size=min_cluster_size)
 
         elif req_type == 'competitive:train':

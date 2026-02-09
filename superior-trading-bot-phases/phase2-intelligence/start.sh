@@ -34,9 +34,5 @@ npx tsc 2>/dev/null || {
 echo "[4/4] Starting Intelligence System..."
 echo ""
 
-# Use tsx for dev (handles TS directly), fallback to compiled JS
-if command -v npx &> /dev/null; then
-  PYTHON_PATH="$DIR/venv/bin/python" npx tsx src/index.ts
-else
-  PYTHON_PATH="$DIR/venv/bin/python" node dist/index.js
-fi
+# Use compiled JS (tsx causes silent process death on macOS)
+PYTHON_PATH="$DIR/venv/bin/python" node dist/index.js
