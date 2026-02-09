@@ -166,6 +166,7 @@ export class BotEngine extends EventEmitter {
 
       const position = this.tradingEngine.getPosition(bot.id, this.tournamentId, bot.symbol);
       const currentPosition = position?.quantity || 0;
+      const avgEntryPrice = position?.avgCost || 0;
 
       // Evaluate strategy
       const signal = this.evaluator.evaluate({
@@ -175,6 +176,7 @@ export class BotEngine extends EventEmitter {
         currentPrice: price,
         cash: portfolio.cash,
         currentPosition,
+        avgEntryPrice,
         portfolioValue: portfolio.totalValue,
       });
 

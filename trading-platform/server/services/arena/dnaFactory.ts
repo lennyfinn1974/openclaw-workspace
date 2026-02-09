@@ -14,7 +14,7 @@ const ENTRY_SIGNAL_RANGES: Record<keyof EntrySignalWeights, GeneRange> = {
   ictFvgFill: [0, 1],
   breakOfStructure: [0, 1],
   changeOfCharacter: [0, 1],
-  liquiditySweep: [0, 1],
+  liquiditySweep: [0, 0],  // Not implemented in signal evaluator
   volumeSpike: [0, 1],
   meanReversion: [0, 1],
   momentumBreakout: [0, 1],

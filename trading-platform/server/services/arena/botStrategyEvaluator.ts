@@ -23,9 +23,10 @@ export class BotStrategyEvaluator {
     currentPrice: number;
     cash: number;
     currentPosition: number; // current quantity held
+    avgEntryPrice?: number;  // actual avg cost from position
     portfolioValue: number;
   }): SignalResult {
-    const { dna, symbol, candles, currentPrice, cash, currentPosition, portfolioValue } = params;
+    const { dna, symbol, candles, currentPrice, cash, currentPosition, avgEntryPrice, portfolioValue } = params;
 
     if (candles.length < 30) {
       return { action: 'hold', strength: 0, reason: 'Insufficient data', entryPrice: 0, quantity: 0 };
@@ -193,29 +194,34 @@ export class BotStrategyEvaluator {
     }
 
     // ============ DECISION ============
-    const threshold = 0.3 + dna.timing.entryPatience * 0.4; // range 0.3-0.7 (requires multiple confirming signals)
-
-    // Check max open positions
-    const maxPositions = Math.round(dna.positionSizing.maxOpenPositions);
+    const threshold = 0.3 + dna.timing.entryPatience * 0.4; // range 0.3-0.7
     const hasPosition = currentPosition > 0;
+
+    const netBuy = buyScore - sellScore;   // positive = bullish consensus
+    const netSell = sellScore - buyScore;  // positive = bearish consensus
 
     let action: 'buy' | 'sell' | 'hold' = 'hold';
     let strength = 0;
 
-    if (buyScore > sellScore && buyScore > threshold && !hasPosition) {
+    if (netBuy > threshold && !hasPosition) {
+      // Entry: genuine directional consensus required (contradictions cancel)
       action = 'buy';
-      strength = Math.min(buyScore, 1);
-    } else if (sellScore > buyScore && sellScore > threshold && hasPosition) {
-      action = 'sell';
-      strength = Math.min(sellScore, 1);
+      strength = Math.min(netBuy / (threshold + 0.5), 1);
     } else if (hasPosition) {
-      // Check exit conditions
-      const position = currentPosition;
-      const exitResult = this.checkExitConditions(dna, candles, currentPrice);
-      if (exitResult) {
+      // Signal-based exit: sell if net bearish signal exceeds entry threshold
+      const signalExitThreshold = threshold * 0.75;
+      if (netSell > signalExitThreshold) {
         action = 'sell';
-        strength = exitResult.strength;
-        reasons.push(exitResult.reason);
+        strength = Math.min(netSell / (threshold + 0.5), 1);
+        reasons.unshift('Signal-based exit');
+      } else {
+        // ATR-based exit: stop loss, take profit, trailing stop
+        const exitResult = this.checkExitConditions(dna, candles, currentPrice, avgEntryPrice);
+        if (exitResult) {
+          action = 'sell';
+          strength = exitResult.strength;
+          reasons.unshift(exitResult.reason);
+        }
       }
     }
 
@@ -251,15 +257,15 @@ export class BotStrategyEvaluator {
     };
   }
 
-  private checkExitConditions(dna: StrategyDNA, candles: OHLCV[], currentPrice: number): { strength: number; reason: string } | null {
+  private checkExitConditions(dna: StrategyDNA, candles: OHLCV[], currentPrice: number, avgEntryPrice?: number): { strength: number; reason: string } | null {
     const closes = candles.map(c => c.close);
     const highs = candles.map(c => c.high);
 
     const atr = this.calculateATR(candles);
     if (atr <= 0) return null;
 
-    // Approximate entry as lowest close in last 5 candles (conservative for longs)
-    const entryApprox = Math.min(...closes.slice(-5));
+    // Use actual entry price if available, otherwise approximate
+    const entryApprox = avgEntryPrice && avgEntryPrice > 0 ? avgEntryPrice : closes[closes.length - 2];
 
     // Stop loss: exit if price dropped below entry by stopLossAtr * ATR
     const stopDist = dna.exitStrategy.stopLossAtr * atr;
