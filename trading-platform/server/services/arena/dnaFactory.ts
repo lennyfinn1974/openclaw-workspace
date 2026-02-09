@@ -22,8 +22,8 @@ const ENTRY_SIGNAL_RANGES: Record<keyof EntrySignalWeights, GeneRange> = {
 
 const INDICATOR_RANGES: Record<keyof IndicatorParams, GeneRange> = {
   rsiPeriod: [5, 30],
-  rsiOversoldThreshold: [15, 40],
-  rsiOverboughtThreshold: [60, 85],
+  rsiOversoldThreshold: [20, 35],
+  rsiOverboughtThreshold: [65, 80],
   macdFast: [5, 20],
   macdSlow: [15, 40],
   macdSignal: [5, 15],
@@ -66,7 +66,7 @@ const REGIME_FILTER_RANGES: Record<keyof RegimeFilterParams, GeneRange> = {
 
 const TIMING_RANGES: Record<keyof TimingParams, GeneRange> = {
   preferredTimeframe: [0, 3],
-  decisionIntervalMs: [5000, 60000],
+  decisionIntervalMs: [10000, 120000],
   entryPatience: [0, 1],
 };
 

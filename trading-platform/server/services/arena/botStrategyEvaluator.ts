@@ -193,7 +193,7 @@ export class BotStrategyEvaluator {
     }
 
     // ============ DECISION ============
-    const threshold = 0.05 + dna.timing.entryPatience * 0.10; // range 0.05-0.15 (aggressive for testing)
+    const threshold = 0.3 + dna.timing.entryPatience * 0.4; // range 0.3-0.7 (requires multiple confirming signals)
 
     // Check max open positions
     const maxPositions = Math.round(dna.positionSizing.maxOpenPositions);
@@ -224,7 +224,9 @@ export class BotStrategyEvaluator {
     if (action === 'buy') {
       const riskAmount = portfolioValue * dna.positionSizing.riskPerTrade;
       const maxPositionValue = portfolioValue * dna.positionSizing.maxPositionPercent;
-      const positionValue = Math.min(riskAmount / 0.02, maxPositionValue, cash * 0.95); // risk/2% stop or max position
+      const atrForSizing = this.calculateATR(candles);
+      const stopPercent = Math.max(0.005, (dna.exitStrategy.stopLossAtr * atrForSizing) / currentPrice);
+      const positionValue = Math.min(riskAmount / stopPercent, maxPositionValue, cash * 0.95);
       quantity = Math.max(0, Math.floor(positionValue / currentPrice));
       if (quantity === 0 && positionValue > 0) {
         // For expensive assets (BTC, etc.), allow fractional quantities
@@ -252,42 +254,51 @@ export class BotStrategyEvaluator {
   private checkExitConditions(dna: StrategyDNA, candles: OHLCV[], currentPrice: number): { strength: number; reason: string } | null {
     const closes = candles.map(c => c.close);
     const highs = candles.map(c => c.high);
-    const lows = candles.map(c => c.low);
 
-    // ATR calculation (14-period)
-    let atrSum = 0;
-    for (let i = 1; i < Math.min(15, candles.length); i++) {
-      const tr = Math.max(
-        highs[i] - lows[i],
-        Math.abs(highs[i] - closes[i - 1]),
-        Math.abs(lows[i] - closes[i - 1])
-      );
-      atrSum += tr;
-    }
-    const atr = atrSum / 14;
+    const atr = this.calculateATR(candles);
+    if (atr <= 0) return null;
 
-    // Time stop (bars since entry - simplified, check recent trend)
-    const recentTrend = (closes[closes.length - 1] - closes[closes.length - Math.min(10, closes.length)]) / closes[closes.length - Math.min(10, closes.length)];
-    if (Math.abs(recentTrend) < 0.01) { // loosened for testing (was 0.001 + timeStopBars check)
-      return { strength: 0.4, reason: 'Time stop - low movement' };
+    // Approximate entry as lowest close in last 5 candles (conservative for longs)
+    const entryApprox = Math.min(...closes.slice(-5));
+
+    // Stop loss: exit if price dropped below entry by stopLossAtr * ATR
+    const stopDist = dna.exitStrategy.stopLossAtr * atr;
+    if (currentPrice < entryApprox - stopDist) {
+      return { strength: 0.9, reason: `Stop loss (${(stopDist / entryApprox * 100).toFixed(1)}% ATR)` };
     }
 
-    // Trailing stop concept
+    // Take profit: exit if price rose above entry by takeProfitAtr * ATR
+    const tpDist = dna.exitStrategy.takeProfitAtr * atr;
+    if (currentPrice > entryApprox + tpDist) {
+      return { strength: 0.8, reason: `Take profit (${(tpDist / entryApprox * 100).toFixed(1)}% ATR)` };
+    }
+
+    // Trailing stop: exit if price dropped from recent high by trailingStopAtr * ATR
     if (dna.exitStrategy.trailingStopEnabled > 0.5) {
       const recentHigh = Math.max(...highs.slice(-10));
-      const dropFromHigh = (recentHigh - currentPrice) / recentHigh;
-      if (dropFromHigh > dna.exitStrategy.trailingStopAtr * atr / currentPrice) {
+      const dropFromHigh = recentHigh - currentPrice;
+      if (dropFromHigh > dna.exitStrategy.trailingStopAtr * atr) {
         return { strength: 0.8, reason: 'Trailing stop hit' };
       }
     }
 
-    // Forced profit-taking / stop-loss (testing: any 1% move triggers exit)
-    const entryApprox = closes[Math.max(0, closes.length - 20)];
-    const pctMove = Math.abs(currentPrice - entryApprox) / entryApprox;
-    if (pctMove > 0.01) {
-      return { strength: 0.6, reason: `Price moved ${(pctMove * 100).toFixed(1)}% from recent` };
-    }
-
     return null;
+  }
+
+  private calculateATR(candles: OHLCV[]): number {
+    const highs = candles.map(c => c.high);
+    const lows = candles.map(c => c.low);
+    const closes = candles.map(c => c.close);
+    const periods = Math.min(15, candles.length);
+    if (periods < 2) return 0;
+    let atrSum = 0;
+    for (let i = 1; i < periods; i++) {
+      atrSum += Math.max(
+        highs[i] - lows[i],
+        Math.abs(highs[i] - closes[i - 1]),
+        Math.abs(lows[i] - closes[i - 1])
+      );
+    }
+    return atrSum / Math.max(periods - 1, 1);
   }
 }
