@@ -9,3 +9,5 @@ venv/
 .env
 node_modules/
 dist/
+COMPLETE_SUCCESS_BACKUP_20260204-154840/
+backup-20260204-151025/
