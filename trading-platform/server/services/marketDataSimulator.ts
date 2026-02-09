@@ -624,75 +624,17 @@ export class MarketDataSimulator extends EventEmitter {
   }
 
   // Get price for any arena symbol (stocks, FX, commodities, crypto)
+  // Only returns real data — no simulator fallback
   getArenaPrice(symbol: string): number {
-    // Check standard symbols first
     const stdPrice = this.getCurrentPrice(symbol);
-    if (stdPrice > 0) return stdPrice;
-
-    // Check FX simulator
-    const fxPrice = forexSimulator.getCurrentPrice(symbol);
-    if (fxPrice > 0) return fxPrice;
-
-    // Check commodity simulator
-    const commodityPrice = commoditySimulator.getCurrentPrice(symbol);
-    if (commodityPrice > 0) return commodityPrice;
-
-    return 0;
+    return stdPrice > 0 ? stdPrice : 0;
   }
 
   // Get quote for any arena symbol
+  // Only returns real data — no simulator fallback
   getArenaQuote(symbol: string): Quote | null {
-    // Standard symbols
     const stdQuote = this.getQuote(symbol);
-    if (stdQuote) return stdQuote;
-
-    // FX - construct Quote from MarketQuote
-    const fxPrice = forexSimulator.getCurrentPrice(symbol);
-    if (fxPrice > 0) {
-      return {
-        symbol,
-        bid: fxPrice * 0.9999,
-        bidSize: 100000,
-        ask: fxPrice * 1.0001,
-        askSize: 100000,
-        last: fxPrice,
-        lastSize: 10000,
-        volume: 1000000,
-        change: 0,
-        changePercent: 0,
-        high: fxPrice * 1.005,
-        low: fxPrice * 0.995,
-        open: fxPrice,
-        previousClose: fxPrice,
-        timestamp: new Date(),
-        source: 'simulated', // 🚨 ARENA: Mark as simulated for validation
-      };
-    }
-
-    // Commodity
-    const comPrice = commoditySimulator.getCurrentPrice(symbol);
-    if (comPrice > 0) {
-      return {
-        symbol,
-        bid: comPrice * 0.9998,
-        bidSize: 100,
-        ask: comPrice * 1.0002,
-        askSize: 100,
-        last: comPrice,
-        lastSize: 10,
-        volume: 50000,
-        change: 0,
-        changePercent: 0,
-        high: comPrice * 1.01,
-        low: comPrice * 0.99,
-        open: comPrice,
-        previousClose: comPrice,
-        timestamp: new Date(),
-        source: 'simulated', // 🚨 ARENA: Mark as simulated for validation
-      };
-    }
-
-    return null;
+    return stdQuote || null;
   }
 
   // Update arena simulators (called from simulation interval)

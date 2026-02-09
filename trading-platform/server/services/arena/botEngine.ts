@@ -51,7 +51,7 @@ export class BotEngine extends EventEmitter {
     // Start staggered evaluation for each bot
     let delay = 0;
     for (const bot of this.bots) {
-      const interval = Math.max(5000, Math.round(bot.dna.timing.decisionIntervalMs));
+      const interval = Math.max(3000, Math.min(8000, Math.round(bot.dna.timing.decisionIntervalMs))); // capped for testing
 
       // Stagger start to avoid all bots evaluating simultaneously
       setTimeout(() => {
@@ -94,7 +94,7 @@ export class BotEngine extends EventEmitter {
       this.isRunning = true;
       let delay = 0;
       for (const bot of this.bots) {
-        const interval = Math.max(5000, Math.round(bot.dna.timing.decisionIntervalMs));
+        const interval = Math.max(3000, Math.min(8000, Math.round(bot.dna.timing.decisionIntervalMs))); // capped for testing
         setTimeout(() => {
           if (!this.isRunning) return;
           const timer = setInterval(() => {
@@ -102,8 +102,10 @@ export class BotEngine extends EventEmitter {
             this.evaluateBot(bot);
           }, interval);
           this.intervals.set(bot.id, timer);
+          // Evaluate immediately on resume (like start does)
+          this.evaluateBot(bot);
         }, delay);
-        delay += 200;
+        delay += 100; // tighter stagger for faster trade generation
       }
     }
   }
@@ -111,24 +113,52 @@ export class BotEngine extends EventEmitter {
   // Force close all positions for all bots (round end)
   forceCloseAll(): void {
     for (const bot of this.bots) {
-      this.tradingEngine.forceCloseAll(bot.id, this.tournamentId);
+      const trades = this.tradingEngine.forceCloseAll(bot.id, this.tournamentId);
+      // Emit trade events so Socket.IO clients receive force-close sells with P&L
+      for (const trade of trades) {
+        const event: ArenaBotTradeEvent = {
+          botId: bot.id,
+          botName: bot.name,
+          groupName: bot.groupName,
+          symbol: trade.symbol,
+          side: trade.side,
+          quantity: trade.quantity,
+          price: trade.price,
+          reason: trade.reason,
+          pnl: trade.pnl,
+          timestamp: trade.timestamp,
+        };
+        this.emit('trade', event);
+      }
     }
   }
 
+  private evalCount = 0;
   private evaluateBot(bot: Bot): void {
+    this.evalCount++;
+    if (this.evalCount % 100 === 0) console.log(`[BotDebug] eval #${this.evalCount}: ${bot.name}`);
     try {
       // Check market session — only trade during real market hours
       const session = getSymbolSession(bot.symbol, bot.groupName);
-      if (!session.canTrade) return;
+      if (!session.canTrade) {
+        if (this.evalCount <= 30) console.log(`[BotDebug] ${bot.name}: blocked by session canTrade=false`);
+        return;
+      }
 
       // Update price in trading engine
       const price = this.marketData.getArenaPrice(bot.symbol);
-      if (price <= 0) return;
+      if (price <= 0) {
+        if (this.evalCount <= 30) console.log(`[BotDebug] ${bot.name}: price=${price} (invalid)`);
+        return;
+      }
       this.tradingEngine.updatePrice(bot.symbol, price);
 
       // Get candles for analysis
       const candles = this.getCandles(bot.symbol);
-      if (candles.length < 30) return;
+      if (candles.length < 10) {
+        if (this.evalCount <= 30) console.log(`[BotDebug] ${bot.name}: only ${candles.length} candles`);
+        return;
+      }
 
       // Get current portfolio and position
       const portfolio = this.tradingEngine.getPortfolio(bot.id, this.tournamentId);
@@ -183,66 +213,9 @@ export class BotEngine extends EventEmitter {
 
   private getCandles(symbol: string): OHLCV[] {
     try {
-      // First try real candles from the simulator's OHLCV cache
-      // (populated by live EODHD ticks or simulation updates)
       const realCandles = this.marketData.getStoredCandles(symbol, '5m');
-      if (realCandles && realCandles.length >= 30) {
-        return realCandles;
-      }
-
-      // Fall back to synthetic candles from current price
-      const quote = this.marketData.getArenaQuote(symbol);
-      if (!quote) return [];
-      return this.generateSyntheticCandles(symbol, quote.last);
-    } catch {
-      return [];
-    }
-  }
-
-  // Synthetic candle cache
-  private syntheticCandles: Map<string, { candles: OHLCV[]; lastUpdate: number }> = new Map();
-
-  private generateSyntheticCandles(symbol: string, currentPrice: number): OHLCV[] {
-    const cached = this.syntheticCandles.get(symbol);
-    const now = Math.floor(Date.now() / 1000);
-
-    if (cached && now - cached.lastUpdate < 5) {
-      // Update the last candle with current price
-      const lastCandle = cached.candles[cached.candles.length - 1];
-      lastCandle.close = currentPrice;
-      lastCandle.high = Math.max(lastCandle.high, currentPrice);
-      lastCandle.low = Math.min(lastCandle.low, currentPrice);
-      return cached.candles;
-    }
-
-    // Generate 100 candles of 5-min data
-    const candles: OHLCV[] = [];
-    let price = currentPrice * (0.97 + Math.random() * 0.06);
-
-    for (let i = 99; i >= 0; i--) {
-      const time = now - i * 300;
-      const vol = 0.002;
-      const change = (Math.random() - 0.5 + (currentPrice - price) / currentPrice * 0.1) * vol * price;
-      const open = price;
-      const close = price + change;
-      const wick = Math.abs(change) * 0.5 * Math.random();
-
-      candles.push({
-        time,
-        open: Number(open.toFixed(6)),
-        high: Number((Math.max(open, close) + wick).toFixed(6)),
-        low: Number((Math.min(open, close) - wick).toFixed(6)),
-        close: Number(close.toFixed(6)),
-        volume: Math.floor(10000 + Math.random() * 50000),
-      });
-
-      price = close;
-    }
-
-    // Last candle uses actual current price
-    candles[candles.length - 1].close = currentPrice;
-
-    this.syntheticCandles.set(symbol, { candles, lastUpdate: now });
-    return candles;
+      if (realCandles && realCandles.length >= 30) return realCandles;
+      return []; // no fake data — bot skips this round
+    } catch { return []; }
   }
 }
