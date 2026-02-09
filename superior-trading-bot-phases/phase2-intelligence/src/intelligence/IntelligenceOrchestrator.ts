@@ -45,17 +45,17 @@ export class IntelligenceOrchestrator extends EventEmitter {
     await this.bridge.start();
     console.log('[Orchestrator] Python ML Engine connected');
 
-    // 2. Connect to Arena
-    console.log('[Orchestrator] Connecting to Arena...');
-    await this.collector.start();
-    console.log(`[Orchestrator] Arena connected, ${this.collector.getTradeCount()} initial trades`);
-
-    // 3. Wire up trade processing pipeline
+    // 2. Wire up trade processing pipeline BEFORE connecting (so bootstrap trades are captured)
     this.collector.on('trade', (trade: ArenaTrade) => {
       this.totalTradesProcessed++;
       this.fingerprints.processTrade(trade);
       this.emit('trade', trade);
     });
+
+    // 3. Connect to Arena
+    console.log('[Orchestrator] Connecting to Arena...');
+    await this.collector.start();
+    console.log(`[Orchestrator] Arena connected, ${this.collector.getTradeCount()} initial trades`);
 
     // 4. Start intelligence systems
     this.shapley.start();

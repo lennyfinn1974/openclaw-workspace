@@ -28,6 +28,12 @@ async function main() {
 
   process.on('SIGINT', shutdown);
   process.on('SIGTERM', shutdown);
+  process.on('uncaughtException', (err) => {
+    console.error('[UNCAUGHT]', err.message);
+  });
+  process.on('unhandledRejection', (err: any) => {
+    console.error('[UNHANDLED]', err?.message || err);
+  });
 
   try {
     await orchestrator.start();
