@@ -11,6 +11,8 @@ import { TradingEngine } from './services/tradingEngine';
 import { MarketDataSimulator } from './services/marketDataSimulator';
 import { TechnicalAnalysis } from './services/technicalAnalysis';
 import { TournamentManager } from './services/arena';
+import { ContinuousArena } from './services/arena/continuousArena';
+import { createContinuousArenaRoutes } from './routes/continuousArena';
 import { getLatestMasterBot, getMasterBotHistory } from './services/arena/masterBotSynthesis';
 import type { BotGroupName } from './services/arena/types';
 import { BOT_GROUPS } from './services/arena/types';
@@ -22,7 +24,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new SocketServer(httpServer, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:8101'],
+    origin: ['http://localhost:3000', 'http://localhost:8101', 'http://localhost:9001'],
     methods: ['GET', 'POST'],
   },
 });
@@ -416,10 +418,24 @@ app.post('/api/watchlists', (req, res) => {
 
 const arena = new TournamentManager(db, marketData);
 
+// Initialize Continuous Arena for auto-evolution
+const continuousArena = new ContinuousArena(arena, {
+  minRoundDurationMs: 5 * 60 * 1000,        // 5 minutes min
+  maxRoundDurationMs: 30 * 60 * 1000,       // 30 minutes max
+  evolutionTriggerThreshold: 0.5,           // 0.5% improvement needed to avoid evolution
+  evolutionCooldownMs: 2 * 60 * 60 * 1000,  // 2 hours between evolutions
+  profitThresholdPercent: 1.0,              // 1% profit = success
+  maxDrawdownThreshold: -5.0,               // -5% max drawdown triggers evolution
+});
+
 // Recover any interrupted tournament from previous session
 if (arena.recoverTournament()) {
   console.log('[Arena] Recovered tournament from previous session (paused - use /api/arena/tournament/resume to continue)');
 }
+
+// Start continuous arena monitoring
+continuousArena.start();
+console.log('[ContinuousArena] Auto-evolution system initialized and monitoring market sessions');
 
 // Forward arena events to WebSocket (scoped to 'arena' room subscribers only)
 arena.on('bot:trade', (event) => {
@@ -436,6 +452,43 @@ arena.on('tournament', (event) => {
 
 arena.on('evolution', (event) => {
   io.to('arena').emit('arena:evolution', event);
+});
+
+// Forward continuous arena events to WebSocket
+continuousArena.on('continuous:started', () => {
+  io.to('arena').emit('continuous:started');
+});
+
+continuousArena.on('continuous:stopped', () => {
+  io.to('arena').emit('continuous:stopped');
+});
+
+continuousArena.on('continuous:market_open', (event) => {
+  io.to('arena').emit('continuous:market_open', event);
+});
+
+continuousArena.on('continuous:market_close', (event) => {
+  io.to('arena').emit('continuous:market_close', event);
+});
+
+continuousArena.on('continuous:tournament_started', (event) => {
+  io.to('arena').emit('continuous:tournament_started', event);
+});
+
+continuousArena.on('continuous:tournament_paused', (event) => {
+  io.to('arena').emit('continuous:tournament_paused', event);
+});
+
+continuousArena.on('continuous:evolution_triggered', (event) => {
+  io.to('arena').emit('continuous:evolution_triggered', event);
+});
+
+continuousArena.on('continuous:trade', (event) => {
+  io.to('arena').emit('continuous:trade', event);
+});
+
+continuousArena.on('continuous:tournament', (event) => {
+  io.to('arena').emit('continuous:tournament', event);
 });
 
 // ===================== ARENA REST API ROUTES =====================
@@ -849,6 +902,11 @@ app.post('/api/arena/master-bot/synthesize-advanced', (req, res) => {
   }
 });
 
+// ===================== CONTINUOUS ARENA API ROUTES =====================
+
+// Mount continuous arena routes
+app.use('/api/continuous-arena', createContinuousArenaRoutes(continuousArena));
+
 // ===================== WEBSOCKET HANDLERS =====================
 
 io.on('connection', (socket) => {
@@ -940,9 +998,14 @@ httpServer.listen(PORT, () => {
   }
 });
 
-// Graceful shutdown - pause tournament before exit
+// Graceful shutdown - pause tournament and stop continuous arena before exit
 const gracefulShutdown = (signal: string) => {
   console.log(`\n[Server] ${signal} received, shutting down gracefully...`);
+  
+  // Stop continuous arena monitoring
+  continuousArena.stop();
+  console.log('[Server] Continuous arena monitoring stopped');
+  
   const tournament = arena.getCurrentTournament();
   if (tournament && tournament.status === 'running') {
     arena.pauseTournament();

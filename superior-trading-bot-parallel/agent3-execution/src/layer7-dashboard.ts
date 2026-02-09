@@ -15,6 +15,7 @@ import { Server as SocketIOServer } from 'socket.io';
 import { EventEmitter } from 'events';
 import { CapitalAllocator } from './layer5-capital-allocator';
 import { RiskGovernor } from './layer6-risk-governor';
+import { ArenaConnector } from './arena-connector';
 import {
   DashboardState, LayerStatus, ObservationEvent, PatternSummary,
   BotSummary, MarketRegime, StrategyArm, AllocationDecision
@@ -28,6 +29,8 @@ export class Dashboard extends EventEmitter {
   private allocator: CapitalAllocator;
   private riskGovernor: RiskGovernor;
 
+  private arena: ArenaConnector;
+  private arenaConnected = false;
   private connectedClients = 0;
   private eventStream: ObservationEvent[] = [];
   private patterns: PatternSummary[] = [];
@@ -39,6 +42,7 @@ export class Dashboard extends EventEmitter {
 
   constructor(config: {
     port?: number;
+    arenaUrl?: string;
     allocator: CapitalAllocator;
     riskGovernor: RiskGovernor;
   }) {
@@ -46,6 +50,7 @@ export class Dashboard extends EventEmitter {
     this.port = config.port || 9001;
     this.allocator = config.allocator;
     this.riskGovernor = config.riskGovernor;
+    this.arena = new ArenaConnector(config.arenaUrl || 'http://localhost:8101');
 
     this.app = express();
     this.server = createServer(this.app);
@@ -56,6 +61,7 @@ export class Dashboard extends EventEmitter {
     this.setupRoutes();
     this.setupSocketHandlers();
     this.setupLayerListeners();
+    this.setupArenaListeners();
     this.initializeDemoData();
   }
 
@@ -66,6 +72,11 @@ export class Dashboard extends EventEmitter {
       this.server.listen(this.port, () => {
         this.isRunning = true;
         console.log(`\n  Dashboard live at http://localhost:${this.port}\n`);
+
+        // Connect to live arena
+        this.arena.connect();
+
+        // Start simulation fallback (runs alongside live data for L5/L6 demo)
         this.startSimulation();
         resolve();
       });
@@ -75,6 +86,7 @@ export class Dashboard extends EventEmitter {
 
   async stop(): Promise<void> {
     if (this.simulationTimer) clearInterval(this.simulationTimer);
+    this.arena.disconnect();
     return new Promise((resolve) => {
       this.server.close(() => {
         this.isRunning = false;
@@ -163,6 +175,66 @@ export class Dashboard extends EventEmitter {
     });
   }
 
+  // ===================== ARENA LISTENERS =====================
+
+  private setupArenaListeners(): void {
+    this.arena.on('connected', () => {
+      this.arenaConnected = true;
+      this.addEvent({
+        id: `arena-connected-${Date.now()}`,
+        timestamp: Date.now(),
+        source: 'self',
+        eventType: 'position_update',
+        payload: { type: 'arena_connected', url: 'localhost:8101' },
+      });
+      this.io.emit('arena_connected', true);
+    });
+
+    this.arena.on('disconnected', (reason: string) => {
+      this.arenaConnected = false;
+      this.io.emit('arena_connected', false);
+    });
+
+    // Forward all arena events to the dashboard event stream
+    this.arena.on('event', (event: ObservationEvent) => {
+      this.addEvent(event);
+    });
+
+    // Update bots from arena leaderboard/status
+    this.arena.on('bot', (bot: BotSummary) => {
+      this.bots.set(bot.botId, bot);
+      this.io.emit('bot_update', bot);
+    });
+
+    // Forward arena status to dashboard clients
+    this.arena.on('arena:status', (status: any) => {
+      this.io.emit('arena_status', status);
+
+      // Populate bots from arena data feed
+      if (status.dataFeed) {
+        for (const feed of status.dataFeed) {
+          if (!this.bots.has(feed.botName)) {
+            this.bots.set(feed.botName, {
+              botId: feed.botName,
+              fitness: 0.5,
+              rank: 0,
+              trades: 0,
+              winRate: 0.5,
+              pnl: 0,
+              strategy: feed.group,
+              regime: this.currentRegime,
+            });
+          }
+        }
+      }
+    });
+
+    // Update regime from market data
+    this.arena.on('quote', (_quote: any) => {
+      // Regime detection happens in the arena connector
+    });
+  }
+
   // ===================== STATE =====================
 
   private getState(): any {
@@ -181,6 +253,8 @@ export class Dashboard extends EventEmitter {
       uptime: Date.now() - this.startTime,
       startTime: this.startTime,
       regime: this.currentRegime,
+      arenaConnected: this.arenaConnected,
+      arenaStatus: this.arena.getArenaStatus(),
     };
   }
 
@@ -194,7 +268,7 @@ export class Dashboard extends EventEmitter {
 
   private getLayerStatuses(): LayerStatus[] {
     return [
-      { id: 1, name: 'Observation Engine', status: 'online', health: 95, eventsProcessed: this.eventStream.length, lastEvent: this.eventStream.length > 0 ? this.eventStream[this.eventStream.length - 1].timestamp : null, details: { ringBuffer: '10K events', enrichment: 'active' } },
+      { id: 1, name: 'Observation Engine', status: this.arenaConnected ? 'online' : 'degraded', health: this.arenaConnected ? 98 : 50, eventsProcessed: this.eventStream.length, lastEvent: this.eventStream.length > 0 ? this.eventStream[this.eventStream.length - 1].timestamp : null, details: { arena: this.arenaConnected ? 'LIVE ws://localhost:8101' : 'disconnected', trades: this.arena.getTradeCount(), bots: this.bots.size } },
       { id: 2, name: 'Pattern Extraction', status: 'online', health: 82, eventsProcessed: this.patterns.length, lastEvent: this.patterns.length > 0 ? this.patterns[this.patterns.length - 1].lastSeen : null, details: { patterns: this.patterns.length, shapley: 'active' } },
       { id: 3, name: 'Strategy Synthesis', status: 'degraded', health: 45, eventsProcessed: 0, lastEvent: null, details: { gp: 'stub', nmf: 'stub' } },
       { id: 4, name: 'Competitive Intelligence', status: 'degraded', health: 30, eventsProcessed: 0, lastEvent: null, details: { markov: 'stub', crowding: 'stub' } },
@@ -489,6 +563,7 @@ body{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;background:#0a0
     </div>
     <div class="header-right">
       <span class="phase-badge">PHASE 1: OBSERVE ONLY</span>
+      <span id="arena-badge" style="padding:4px 10px;border-radius:12px;font-size:0.75em;font-weight:700;background:#f8514933;color:#f85149;border:1px solid #f85149">ARENA: ---</span>
       <span class="regime-badge regime-QUIET" id="regime-badge">QUIET</span>
       <span class="uptime" id="uptime">Uptime: --</span>
     </div>
@@ -586,6 +661,7 @@ socket.on('init', (state) => {
   updateKelly(state.allocation.arms);
   updateCorrelation(state.allocation.correlationMatrix);
   updateUptime(state.uptime);
+  if (state.arenaConnected !== undefined) updateArenaStatus(state.arenaConnected);
 });
 
 socket.on('state_update', (state) => {
@@ -609,6 +685,12 @@ socket.on('veto', (veto) => addEvent({ id: veto.id, timestamp: veto.timestamp, s
 socket.on('pattern', (pattern) => addPattern(pattern));
 socket.on('regime_change', (regime) => updateRegime(regime));
 socket.on('bot_update', (bot) => updateSingleBot(bot));
+socket.on('arena_connected', (connected) => updateArenaStatus(connected));
+socket.on('arena_status', (status) => {
+  if (status && status.dataFeed) {
+    document.getElementById('arena-badge').title = status.totalBots + ' bots, gen ' + status.generation;
+  }
+});
 
 // ===================== LAYER STATUS =====================
 function updateLayers(layers) {
@@ -853,6 +935,22 @@ function updateRegime(regime) {
   const badge = document.getElementById('regime-badge');
   badge.textContent = regime;
   badge.className = 'regime-badge regime-' + regime;
+}
+
+// ===================== ARENA STATUS =====================
+function updateArenaStatus(connected) {
+  const badge = document.getElementById('arena-badge');
+  if (connected) {
+    badge.textContent = 'ARENA: LIVE';
+    badge.style.background = '#3fb95033';
+    badge.style.color = '#3fb950';
+    badge.style.borderColor = '#3fb950';
+  } else {
+    badge.textContent = 'ARENA: OFFLINE';
+    badge.style.background = '#f8514933';
+    badge.style.color = '#f85149';
+    badge.style.borderColor = '#f85149';
+  }
 }
 
 // ===================== UPTIME =====================
