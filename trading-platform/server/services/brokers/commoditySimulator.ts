@@ -14,11 +14,11 @@ interface CommodityConfig {
 }
 
 const COMMODITIES: Record<string, CommodityConfig> = {
-  'CL=F':  { symbol: 'CL=F', displayName: 'Crude Oil', basePrice: 78.50, dailyVolatility: 0.025, avgDailyVolume: 800000, spreadBps: 3, contractMultiplier: 1000, tradingHours: 'us_futures' },
-  'NG=F':  { symbol: 'NG=F', displayName: 'Natural Gas', basePrice: 2.85, dailyVolatility: 0.045, avgDailyVolume: 400000, spreadBps: 10, contractMultiplier: 10000, tradingHours: 'us_futures' },
-  'SI=F':  { symbol: 'SI=F', displayName: 'Silver', basePrice: 28.50, dailyVolatility: 0.022, avgDailyVolume: 60000, spreadBps: 5, contractMultiplier: 5000, tradingHours: 'us_futures' },
-  'HG=F':  { symbol: 'HG=F', displayName: 'Copper', basePrice: 4.25, dailyVolatility: 0.020, avgDailyVolume: 50000, spreadBps: 5, contractMultiplier: 25000, tradingHours: 'us_futures' },
-  'GC=F':  { symbol: 'GC=F', displayName: 'Gold', basePrice: 2350.00, dailyVolatility: 0.012, avgDailyVolume: 200000, spreadBps: 2, contractMultiplier: 100, tradingHours: 'nearly_24h' },
+  'CL=F':  { symbol: 'CL=F', displayName: 'Crude Oil', basePrice: 64.00, dailyVolatility: 0.025, avgDailyVolume: 800000, spreadBps: 3, contractMultiplier: 1000, tradingHours: 'us_futures' },
+  'NG=F':  { symbol: 'NG=F', displayName: 'Natural Gas', basePrice: 3.17, dailyVolatility: 0.045, avgDailyVolume: 400000, spreadBps: 10, contractMultiplier: 10000, tradingHours: 'us_futures' },
+  'SI=F':  { symbol: 'SI=F', displayName: 'Silver', basePrice: 80.00, dailyVolatility: 0.022, avgDailyVolume: 60000, spreadBps: 5, contractMultiplier: 5000, tradingHours: 'us_futures' },
+  'HG=F':  { symbol: 'HG=F', displayName: 'Copper', basePrice: 1.35, dailyVolatility: 0.020, avgDailyVolume: 50000, spreadBps: 5, contractMultiplier: 25000, tradingHours: 'us_futures' },
+  'GC=F':  { symbol: 'GC=F', displayName: 'Gold', basePrice: 4970.00, dailyVolatility: 0.012, avgDailyVolume: 200000, spreadBps: 2, contractMultiplier: 100, tradingHours: 'nearly_24h' },
   'LTHM':  { symbol: 'LTHM', displayName: 'Lithium Americas', basePrice: 5.80, dailyVolatility: 0.055, avgDailyVolume: 3000000, spreadBps: 20, contractMultiplier: 1, tradingHours: 'us_futures' },
   // BTC is handled by Binance adapter, but we keep a config for fallback
   'BTC':   { symbol: 'BTC', displayName: 'Bitcoin', basePrice: 68000, dailyVolatility: 0.035, avgDailyVolume: 25000000000, spreadBps: 5, contractMultiplier: 1, tradingHours: 'crypto' },

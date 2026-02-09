@@ -44,19 +44,19 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'BNB', basePrice: 580, volatility: 0.030, avgVolume: 1500000000, sector: 'Crypto', assetType: 'crypto' },
   { symbol: 'XRP', basePrice: 0.55, volatility: 0.045, avgVolume: 1200000000, sector: 'Crypto', assetType: 'crypto' },
   // FX (EODHD WS / Simulator fallback)
-  { symbol: 'GBP/JPY', basePrice: 193.50, volatility: 0.012, avgVolume: 15000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'USD/TRY', basePrice: 32.80, volatility: 0.015, avgVolume: 5000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'USD/ZAR', basePrice: 18.65, volatility: 0.014, avgVolume: 8000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'EUR/USD', basePrice: 1.0875, volatility: 0.006, avgVolume: 500000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'GBP/USD', basePrice: 1.2725, volatility: 0.007, avgVolume: 300000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'USD/JPY', basePrice: 154.25, volatility: 0.007, avgVolume: 400000000, sector: 'FX', assetType: 'forex' },
-  { symbol: 'AUD/USD', basePrice: 0.6580, volatility: 0.008, avgVolume: 150000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'GBP/JPY', basePrice: 212.40, volatility: 0.012, avgVolume: 15000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/TRY', basePrice: 43.59, volatility: 0.015, avgVolume: 5000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/ZAR', basePrice: 15.95, volatility: 0.014, avgVolume: 8000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'EUR/USD', basePrice: 1.1929, volatility: 0.006, avgVolume: 500000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'GBP/USD', basePrice: 1.3649, volatility: 0.007, avgVolume: 300000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'USD/JPY', basePrice: 155.64, volatility: 0.007, avgVolume: 400000000, sector: 'FX', assetType: 'forex' },
+  { symbol: 'AUD/USD', basePrice: 0.7073, volatility: 0.008, avgVolume: 150000000, sector: 'FX', assetType: 'forex' },
   // Commodities (EODHD REST/WS / Simulator fallback)
-  { symbol: 'GC=F', basePrice: 2350.00, volatility: 0.012, avgVolume: 200000, sector: 'Commodity', assetType: 'commodity' },
-  { symbol: 'SI=F', basePrice: 28.50, volatility: 0.022, avgVolume: 60000, sector: 'Commodity', assetType: 'commodity' },
-  { symbol: 'CL=F', basePrice: 78.50, volatility: 0.025, avgVolume: 800000, sector: 'Commodity', assetType: 'commodity' },
-  { symbol: 'NG=F', basePrice: 2.85, volatility: 0.045, avgVolume: 400000, sector: 'Commodity', assetType: 'commodity' },
-  { symbol: 'HG=F', basePrice: 4.25, volatility: 0.020, avgVolume: 50000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'GC=F', basePrice: 4970.00, volatility: 0.012, avgVolume: 200000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'SI=F', basePrice: 80.00, volatility: 0.022, avgVolume: 60000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'CL=F', basePrice: 64.00, volatility: 0.025, avgVolume: 800000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'NG=F', basePrice: 3.17, volatility: 0.045, avgVolume: 400000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'HG=F', basePrice: 1.35, volatility: 0.020, avgVolume: 50000, sector: 'Commodity', assetType: 'commodity' },
   { symbol: 'LTHM', basePrice: 5.80, volatility: 0.055, avgVolume: 3000000, sector: 'Commodity', assetType: 'commodity' },
 ];
 
@@ -331,7 +331,13 @@ export class MarketDataSimulator extends EventEmitter {
         state.isLive = false;
       }
 
-      // Simulate price movement
+      // If we ever received a live quote, freeze at last known price (don't simulate drift)
+      if (state.lastLiveUpdate > 0) {
+        this.emit('quote', this.getQuote(config.symbol));
+        continue;
+      }
+
+      // Simulate price movement (only for symbols that never had live data)
       const tickVolatility = config.volatility / Math.sqrt(252 * 390 * 60 * 10);
       const noise = (Math.random() - 0.5) * 2;
       const trendBias = state.trend * 0.1;

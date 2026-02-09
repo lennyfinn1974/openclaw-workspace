@@ -11,13 +11,13 @@ interface FxPairConfig {
 }
 
 const FX_PAIRS: Record<string, FxPairConfig> = {
-  'GBP/JPY': { symbol: 'GBP/JPY', basePrice: 193.50, pipSize: 0.01, avgSpreadPips: 3.0, dailyVolatility: 0.012, avgDailyVolume: 15000000 },
-  'USD/TRY': { symbol: 'USD/TRY', basePrice: 32.80, pipSize: 0.0001, avgSpreadPips: 80.0, dailyVolatility: 0.015, avgDailyVolume: 5000000 },
-  'USD/ZAR': { symbol: 'USD/ZAR', basePrice: 18.65, pipSize: 0.0001, avgSpreadPips: 50.0, dailyVolatility: 0.014, avgDailyVolume: 8000000 },
-  'EUR/USD': { symbol: 'EUR/USD', basePrice: 1.0875, pipSize: 0.0001, avgSpreadPips: 1.0, dailyVolatility: 0.006, avgDailyVolume: 500000000 },
-  'GBP/USD': { symbol: 'GBP/USD', basePrice: 1.2725, pipSize: 0.0001, avgSpreadPips: 1.5, dailyVolatility: 0.007, avgDailyVolume: 300000000 },
-  'USD/JPY': { symbol: 'USD/JPY', basePrice: 154.25, pipSize: 0.01, avgSpreadPips: 1.0, dailyVolatility: 0.007, avgDailyVolume: 400000000 },
-  'AUD/USD': { symbol: 'AUD/USD', basePrice: 0.6580, pipSize: 0.0001, avgSpreadPips: 1.5, dailyVolatility: 0.008, avgDailyVolume: 150000000 },
+  'GBP/JPY': { symbol: 'GBP/JPY', basePrice: 212.40, pipSize: 0.01, avgSpreadPips: 3.0, dailyVolatility: 0.012, avgDailyVolume: 15000000 },
+  'USD/TRY': { symbol: 'USD/TRY', basePrice: 43.59, pipSize: 0.0001, avgSpreadPips: 80.0, dailyVolatility: 0.015, avgDailyVolume: 5000000 },
+  'USD/ZAR': { symbol: 'USD/ZAR', basePrice: 15.95, pipSize: 0.0001, avgSpreadPips: 50.0, dailyVolatility: 0.014, avgDailyVolume: 8000000 },
+  'EUR/USD': { symbol: 'EUR/USD', basePrice: 1.1929, pipSize: 0.0001, avgSpreadPips: 1.0, dailyVolatility: 0.006, avgDailyVolume: 500000000 },
+  'GBP/USD': { symbol: 'GBP/USD', basePrice: 1.3649, pipSize: 0.0001, avgSpreadPips: 1.5, dailyVolatility: 0.007, avgDailyVolume: 300000000 },
+  'USD/JPY': { symbol: 'USD/JPY', basePrice: 155.64, pipSize: 0.01, avgSpreadPips: 1.0, dailyVolatility: 0.007, avgDailyVolume: 400000000 },
+  'AUD/USD': { symbol: 'AUD/USD', basePrice: 0.7073, pipSize: 0.0001, avgSpreadPips: 1.5, dailyVolatility: 0.008, avgDailyVolume: 150000000 },
 };
 
 interface FxPriceState {
