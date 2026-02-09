@@ -13,7 +13,7 @@
 
 import { CapitalAllocator } from './layer5-capital-allocator';
 import { RiskGovernor } from './layer6-risk-governor';
-import { Dashboard } from './layer7-dashboard';
+import { Dashboard } from './layer7-dashboard-fixed';
 
 const BANNER = `
   ╔══════════════════════════════════════════════════════════════╗

@@ -399,7 +399,7 @@ export class ExecutionEngine extends EventEmitter {
   getRecentTrades(limit: number = 50): FillReport[] { return this.trades.slice(-limit); }
   getTotalPnL(): number { return this.totalPnL; }
   getKillSwitchState(): KillSwitchState { return { ...this.killSwitch }; }
-  getEquity(): number { return this.initialCapital + this.totalPnL; }
+  getEquity(): number { return this.initialCapital + this.totalPnL + this.getUnrealizedPnL(); }
   getOpenPositionCount(): number { return this.positions.size; }
 
   getUnrealizedPnL(): number {

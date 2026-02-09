@@ -127,7 +127,7 @@ export class PerformanceMonitor extends EventEmitter {
 
   getSnapshot(): PerformanceSnapshot {
     const equity = this.engine.getEquity();
-    const totalPnL = this.engine.getTotalPnL();
+    const totalPnL = this.engine.getTotalPnL() + this.engine.getUnrealizedPnL();
     const riskState = this.riskGovernor.getRiskState();
     const totalTrades = this.wins + this.losses;
 
