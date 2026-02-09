@@ -1,0 +1,31 @@
+{
+  "name": "phase3-synthesis",
+  "version": "1.0.0",
+  "description": "Phase 3: Strategy Synthesis & Paper Trading — GP evolution, NMF factor analysis, adversarial generation, paper trading with slippage simulation",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.17.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "ml-matrix": "^6.11.0",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
+    "uuid": "^13.0.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.8.10",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.8",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.2"
+  }
+}

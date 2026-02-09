@@ -1,0 +1,59 @@
+{
+  "mutationRate": 0.15,
+  "selectionPressure": 4,
+  "noveltyWeight": 0.3046741593432949,
+  "explorationRate": 0.2,
+  "retirementThreshold": -0.5,
+  "populationSize": 24,
+  "lastTuned": 1770632225894,
+  "tuningHistory": [
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.3,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 20
+      },
+      "fitness": 0.34451522758949416,
+      "timestamp": 1770630073042
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.3,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 20
+      },
+      "fitness": 0.2930790584081483,
+      "timestamp": 1770630673047
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.3,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 20
+      },
+      "fitness": 0.30205638877677415,
+      "timestamp": 1770631273050
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.3,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 24
+      },
+      "fitness": 0.28554691713459357,
+      "timestamp": 1770632225894
+    }
+  ]
+}

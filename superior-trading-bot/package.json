@@ -1,0 +1,40 @@
+{
+  "name": "superior-trading-bot",
+  "version": "1.0.0",
+  "description": "7-Layer Meta-Cognitive Trading System - Research laboratory that happens to trade",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "start:observation": "ts-node src/observation/index.ts",
+    "start:full": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@types/ws": "^8.5.8",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3",
+    "technicalindicators": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2",
+    "uuid": "^13.0.0",
+    "ws": "^8.14.2",
+    "@tensorflow/tfjs": "^4.17.0",
+    "ml-matrix": "^6.11.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.8.10",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  },
+  "keywords": [
+    "trading",
+    "meta-cognitive",
+    "ai",
+    "strategy-synthesis"
+  ],
+  "author": "Enhanced Sovereign Command Architecture"
+}

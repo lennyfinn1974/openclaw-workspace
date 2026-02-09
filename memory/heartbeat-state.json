@@ -1,0 +1,24 @@
+{
+  "emergencyHandoff": {
+    "timestamp": "2026-02-07T19:42:00+04:00",
+    "reason": "Context compaction threshold reached in main session",
+    "handoffAgent": "subagent:9b7acbae-dab8-4bd5-9232-bf394c7afe06"
+  },
+  "lastChecks": {
+    "gateway": 1707319320,
+    "platforms": 1707319320,
+    "masterbot": null
+  },
+  "platformStatus": {
+    "gateway": "✅ RPC probe: ok",
+    "sovereignCore": "✅ PID 1597",
+    "nexusAgent": "❌ Exit code 1", 
+    "hybridKanban": "❌ Exit code -9",
+    "tradingPlatform": "❌ Exit code -9"
+  },
+  "activeMonitoring": true,
+  "nextAction": "platform_recovery",
+  "criticalAlerts": [
+    "Multiple platforms down - hybrid-kanban, trading-platform, nexus-agent"
+  ]
+}

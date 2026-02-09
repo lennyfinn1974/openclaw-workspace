@@ -1,0 +1,18 @@
+{
+  "cutover_time": "2026-02-05T13:05:00+04:00",
+  "target_model": "qwen2.5:7b",
+  "fallback_model": "sonnet",
+  "monitoring_enabled": true,
+  "auto_fallback_triggers": {
+    "tool_failures": 3,
+    "response_quality": 2,
+    "timeout_errors": 2,
+    "connection_loss": 1
+  },
+  "status": "ready_for_cutover",
+  "test_results": {
+    "local_model_available": true,
+    "local_model_responsive": true,
+    "monitoring_scripts_ready": true
+  }
+}

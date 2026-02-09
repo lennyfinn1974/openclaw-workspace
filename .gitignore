@@ -7,3 +7,5 @@ venv/
 *.tar.gz
 *.log
 .env
+node_modules/
+dist/

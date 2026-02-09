@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Connection Test</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Trading Platform WebSocket Test</h1>
+    <div id="status">Connecting...</div>
+    <div id="log"></div>
+
+    <script>
+        const socket = io('http://localhost:8101', {
+            transports: ['websocket', 'polling']
+        });
+
+        const status = document.getElementById('status');
+        const log = document.getElementById('log');
+
+        function addLog(message) {
+            const p = document.createElement('p');
+            p.textContent = new Date().toISOString() + ': ' + message;
+            log.appendChild(p);
+        }
+
+        socket.on('connect', () => {
+            status.textContent = '✅ CONNECTED';
+            status.style.color = 'green';
+            addLog('Connected to WebSocket server');
+        });
+
+        socket.on('disconnect', () => {
+            status.textContent = '❌ DISCONNECTED';
+            status.style.color = 'red';
+            addLog('Disconnected from WebSocket server');
+        });
+
+        socket.on('portfolio', (data) => {
+            addLog('Portfolio data received: ' + JSON.stringify(data).substr(0, 100));
+        });
+
+        socket.on('quote', (data) => {
+            addLog('Quote received: ' + data.symbol + ' = $' + data.last);
+        });
+
+        // Test connection after 2 seconds
+        setTimeout(() => {
+            if (!socket.connected) {
+                addLog('❌ Connection failed after 2 seconds');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

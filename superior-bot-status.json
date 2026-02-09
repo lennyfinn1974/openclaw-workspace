@@ -1,0 +1,11 @@
+{
+    "lastUpdate": "2026-02-09T11:31:06+04:00",
+    "phases": {
+        "phase2": {"id": 2583, "name": "Intelligence", "status": "active", "progress": 0, "lastActivity": "2026-02-09T11:31:06+04:00"},
+        "phase3": {"id": 2584, "name": "Synthesis", "status": "active", "progress": 0, "lastActivity": "2026-02-09T11:31:06+04:00"},
+        "phase4": {"id": 2585, "name": "Live Trading", "status": "active", "progress": 0, "lastActivity": "2026-02-09T11:31:06+04:00"},
+        "phase5": {"id": 2586, "name": "Evolution", "status": "active", "progress": 0, "lastActivity": "2026-02-09T11:31:06+04:00"}
+    },
+    "completedPhases": 0,
+    "totalPhases": 4
+}

@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-02-09 10:01:00 GMT+4",
+  "status": "ACTIVE_MONITORING",
+  "agents": {
+    "agent_1": {
+      "presumed_id": "2033",
+      "layers": "1-2 Observation+Patterns", 
+      "pid": 55540,
+      "terminal": "ttys001",
+      "start_time": "09:56:46",
+      "cpu_time": "0:15.49",
+      "status": "ACTIVE"
+    },
+    "agent_2": {
+      "presumed_id": "2034", 
+      "layers": "3-4 Synthesis+Intelligence",
+      "pid": 55634,
+      "terminal": "ttys003", 
+      "start_time": "09:56:49",
+      "cpu_time": "0:13.21", 
+      "status": "ACTIVE"
+    },
+    "agent_3": {
+      "presumed_id": "2036",
+      "layers": "5-7 Allocator+Risk+Dashboard", 
+      "pid": 55737,
+      "terminal": "ttys004",
+      "start_time": "09:56:53",
+      "cpu_time": "0:13.90",
+      "status": "ACTIVE"
+    }
+  },
+  "trading_platform": {
+    "server_pid": 78197,
+    "frontend_pid": 78196,
+    "status": "OPERATIONAL"
+  },
+  "monitoring": {
+    "script_pid": 56899,
+    "interval": "2_minutes",
+    "next_check": "10:03:00"
+  }
+}

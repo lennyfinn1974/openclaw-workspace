@@ -1,0 +1,3002 @@
+[
+  {
+    "avgHoldingPeriod": 0.001623395061728395,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.001488515325670498,
+    "tradeFrequency": 1,
+    "directionBias": -0.06666666666666665,
+    "regimePreference": [
+      0.5969926363224118,
+      0,
+      0.61403596098054,
+      0.38596403901945997,
+      0.5715553476665021,
+      0.6191656076728318
+    ],
+    "entryPatternCluster": 0.4919667792040512,
+    "volatilityAffinity": 0.61403596098054
+  },
+  {
+    "avgHoldingPeriod": 0.0006184876543209877,
+    "tradeFrequency": 1,
+    "directionBias": 0.19999999999999996,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0015154118773946358,
+    "tradeFrequency": 1,
+    "directionBias": 0.06666666666666665,
+    "regimePreference": [
+      0.6756786847438547,
+      0,
+      0.8088336969079463,
+      0.19116630309205374,
+      0.8199343423259586,
+      0.5768309297340041
+    ],
+    "entryPatternCluster": 0.44889717546648744,
+    "volatilityAffinity": 0.8088336969079463
+  },
+  {
+    "avgHoldingPeriod": 0.0017412222222222221,
+    "tradeFrequency": 0.9954693382681385,
+    "directionBias": 0.07692307692307687,
+    "regimePreference": [
+      0,
+      0.25964848158048426,
+      0.3308667507391789,
+      0.6691332492608211,
+      0.5094979443202333,
+      0.13266026562579647
+    ],
+    "entryPatternCluster": 0.48299621490942224,
+    "volatilityAffinity": 0.3308667507391789
+  },
+  {
+    "avgHoldingPeriod": 0.001985374396135266,
+    "tradeFrequency": 0.8759710199587565,
+    "directionBias": 0,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0030294814814814815,
+    "tradeFrequency": 0.5868257616509365,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0023480701754385962,
+    "tradeFrequency": 0.7471607890017932,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.00260766339869281,
+    "tradeFrequency": 0.6767383716922846,
+    "directionBias": 0.11111111111111116,
+    "regimePreference": [
+      0.14559552939866194,
+      0,
+      0.5030597749933575,
+      0.4969402250066425,
+      0.32269826576165006,
+      0.6202499031133445
+    ],
+    "entryPatternCluster": 0.49131114907914786,
+    "volatilityAffinity": 0.5030597749933575
+  },
+  {
+    "avgHoldingPeriod": 0.0009991083749702593,
+    "tradeFrequency": 1,
+    "directionBias": -0.008547008547008517,
+    "regimePreference": [
+      0.7423547124889975,
+      0,
+      0.49848890277897606,
+      0.5015110972210239,
+      0.4628759718627965,
+      0.7352808487568511
+    ],
+    "entryPatternCluster": 0.7795241148012124,
+    "volatilityAffinity": 0.49848890277897606
+  },
+  {
+    "avgHoldingPeriod": 0.0013255079365079364,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7314990428123351,
+      0,
+      0.5328678728493665,
+      0.46713212715063346,
+      0.23171774881141505,
+      0.6276483563829096
+    ],
+    "entryPatternCluster": 0.708305042803469,
+    "volatilityAffinity": 0.5328678728493665
+  },
+  {
+    "avgHoldingPeriod": 0.001963707729468599,
+    "tradeFrequency": 0.8856360896706541,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8177465158395848,
+      0,
+      0.6353839528561265,
+      0.3646160471438735,
+      0.7342076286401991,
+      0.4638496161149133
+    ],
+    "entryPatternCluster": 0.8160467684004449,
+    "volatilityAffinity": 0.6353839528561265
+  },
+  {
+    "avgHoldingPeriod": 0.0004566666666666667,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0012052207977207977,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6756786847438547,
+      0,
+      0.8088336969079463,
+      0.19116630309205374,
+      0.8199343423259586,
+      0.5768309297340041
+    ],
+    "entryPatternCluster": 0.44889717546648744,
+    "volatilityAffinity": 0.8088336969079463
+  },
+  {
+    "avgHoldingPeriod": 0.001426969696969697,
+    "tradeFrequency": 1,
+    "directionBias": 0.05882352941176472,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0012712387387387386,
+    "tradeFrequency": 1,
+    "directionBias": 0.05263157894736836,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.0011889529914529916,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5969926363224118,
+      0,
+      0.61403596098054,
+      0.38596403901945997,
+      0.5715553476665021,
+      0.6191656076728318
+    ],
+    "entryPatternCluster": 0.4919667792040512,
+    "volatilityAffinity": 0.61403596098054
+  },
+  {
+    "avgHoldingPeriod": 0.0016229789272030652,
+    "tradeFrequency": 1,
+    "directionBias": -0.06666666666666665,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.0010669197530864198,
+    "tradeFrequency": 1,
+    "directionBias": 0.04347826086956519,
+    "regimePreference": [
+      0.271313105297854,
+      0,
+      0.5964946785245645,
+      0.4035053214754355,
+      0.20230351471561892,
+      0.398904225882419
+    ],
+    "entryPatternCluster": 0.6,
+    "volatilityAffinity": 0.5964946785245645
+  },
+  {
+    "avgHoldingPeriod": 0.0010663024691358026,
+    "tradeFrequency": 1,
+    "directionBias": 0.04347826086956519,
+    "regimePreference": [
+      0.7314990428123351,
+      0,
+      0.5328678728493665,
+      0.46713212715063346,
+      0.23171774881141505,
+      0.6276483563829096
+    ],
+    "entryPatternCluster": 0.708305042803469,
+    "volatilityAffinity": 0.5328678728493665
+  },
+  {
+    "avgHoldingPeriod": 0.0010363615560640732,
+    "tradeFrequency": 1,
+    "directionBias": 0.004566210045662045,
+    "regimePreference": [
+      0.8483549966269408,
+      0,
+      0.6056652001318765,
+      0.3943347998681235,
+      0.4715538673461779,
+      0.5455853702865854
+    ],
+    "entryPatternCluster": 0.8807775158795157,
+    "volatilityAffinity": 0.6056652001318765
+  },
+  {
+    "avgHoldingPeriod": 0.0017407921810699588,
+    "tradeFrequency": 0.9928784610383854,
+    "directionBias": 0,
+    "regimePreference": [
+      0.14559552939866194,
+      0,
+      0.5030597749933575,
+      0.4969402250066425,
+      0.32269826576165006,
+      0.6202499031133445
+    ],
+    "entryPatternCluster": 0.49131114907914786,
+    "volatilityAffinity": 0.5030597749933575
+  },
+  {
+    "avgHoldingPeriod": 0.002512681992337165,
+    "tradeFrequency": 0.686174349277992,
+    "directionBias": 0.06666666666666665,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0015133049886621314,
+    "tradeFrequency": 1,
+    "directionBias": 0.040000000000000036,
+    "regimePreference": [
+      0.6756786847438547,
+      0,
+      0.8088336969079463,
+      0.19116630309205374,
+      0.8199343423259586,
+      0.5768309297340041
+    ],
+    "entryPatternCluster": 0.44889717546648744,
+    "volatilityAffinity": 0.8088336969079463
+  },
+  {
+    "avgHoldingPeriod": 0.0012237634408602152,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0017761498708010338,
+    "tradeFrequency": 0.9601815616043761,
+    "directionBias": 0,
+    "regimePreference": [
+      0,
+      0.25964848158048426,
+      0.3308667507391789,
+      0.6691332492608211,
+      0.5094979443202333,
+      0.13266026562579647
+    ],
+    "entryPatternCluster": 0.48299621490942224,
+    "volatilityAffinity": 0.3308667507391789
+  },
+  {
+    "avgHoldingPeriod": 0.0033206280193236715,
+    "tradeFrequency": 0.5237353972387505,
+    "directionBias": 0,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.00145062893081761,
+    "tradeFrequency": 1,
+    "directionBias": 0.03703703703703698,
+    "regimePreference": [
+      0.5969926363224118,
+      0,
+      0.61403596098054,
+      0.38596403901945997,
+      0.5715553476665021,
+      0.6191656076728318
+    ],
+    "entryPatternCluster": 0.4919667792040512,
+    "volatilityAffinity": 0.61403596098054
+  },
+  {
+    "avgHoldingPeriod": 0.0014357474747474749,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.002221904761904762,
+    "tradeFrequency": 0.7715387912558936,
+    "directionBias": 0,
+    "regimePreference": [
+      0.271313105297854,
+      0,
+      0.5964946785245645,
+      0.4035053214754355,
+      0.20230351471561892,
+      0.398904225882419
+    ],
+    "entryPatternCluster": 0.6,
+    "volatilityAffinity": 0.5964946785245645
+  },
+  {
+    "avgHoldingPeriod": 0.0020219586894586897,
+    "tradeFrequency": 0.8454187112296262,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7314990428123351,
+      0,
+      0.5328678728493665,
+      0.46713212715063346,
+      0.23171774881141505,
+      0.6276483563829096
+    ],
+    "entryPatternCluster": 0.708305042803469,
+    "volatilityAffinity": 0.5328678728493665
+  },
+  {
+    "avgHoldingPeriod": 0.0028284979423868315,
+    "tradeFrequency": 0.6110646346342705,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8177465158395848,
+      0,
+      0.6353839528561265,
+      0.3646160471438735,
+      0.7342076286401991,
+      0.4638496161149133
+    ],
+    "entryPatternCluster": 0.8160467684004449,
+    "volatilityAffinity": 0.6353839528561265
+  },
+  {
+    "avgHoldingPeriod": 0.001740611111111111,
+    "tradeFrequency": 0.9787962933409935,
+    "directionBias": 0.04347826086956519,
+    "regimePreference": [
+      0.14559552939866194,
+      0,
+      0.5030597749933575,
+      0.4969402250066425,
+      0.32269826576165006,
+      0.6202499031133445
+    ],
+    "entryPatternCluster": 0.49131114907914786,
+    "volatilityAffinity": 0.5030597749933575
+  },
+  {
+    "avgHoldingPeriod": 0.0009764267423736362,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6653854057739799,
+      0,
+      0.6000213147792519,
+      0.3999786852207481,
+      0.7720264739971627,
+      0.5191161076153321
+    ],
+    "entryPatternCluster": 0.7972014965686596,
+    "volatilityAffinity": 0.6000213147792519
+  },
+  {
+    "avgHoldingPeriod": 0.0018430297157622738,
+    "tradeFrequency": 0.9253385021433503,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6184805735820658,
+      0,
+      0.4442412780724825,
+      0.5557587219275175,
+      0.5541648924915212,
+      0.7787020232363033
+    ],
+    "entryPatternCluster": 0.7485875333539791,
+    "volatilityAffinity": 0.4442412780724825
+  },
+  {
+    "avgHoldingPeriod": 0.0016706462585034014,
+    "tradeFrequency": 1,
+    "directionBias": 0.040000000000000036,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.002065391737891738,
+    "tradeFrequency": 0.8276404316144852,
+    "directionBias": 0,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0013926789077212806,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6756786847438547,
+      0,
+      0.8088336969079463,
+      0.19116630309205374,
+      0.8199343423259586,
+      0.5768309297340041
+    ],
+    "entryPatternCluster": 0.44889717546648744,
+    "volatilityAffinity": 0.8088336969079463
+  },
+  {
+    "avgHoldingPeriod": 0.001556215932914046,
+    "tradeFrequency": 1,
+    "directionBias": 0.03703703703703698,
+    "regimePreference": [
+      0,
+      0.25964848158048426,
+      0.3308667507391789,
+      0.6691332492608211,
+      0.5094979443202333,
+      0.13266026562579647
+    ],
+    "entryPatternCluster": 0.48299621490942224,
+    "volatilityAffinity": 0.3308667507391789
+  },
+  {
+    "avgHoldingPeriod": 0.002495993265993266,
+    "tradeFrequency": 0.6879712940605145,
+    "directionBias": 0.05882352941176472,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0015390151515151515,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5689304389530037,
+      0,
+      0.6891532120625472,
+      0.3108467879374528,
+      0.43153249596942306,
+      0.5411334441737954
+    ],
+    "entryPatternCluster": 0.8813580075545767,
+    "volatilityAffinity": 0.6891532120625472
+  },
+  {
+    "avgHoldingPeriod": 0.0024168809523809525,
+    "tradeFrequency": 0.709296712606764,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0023410634920634924,
+    "tradeFrequency": 0.7322679286988005,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5969926363224118,
+      0,
+      0.61403596098054,
+      0.38596403901945997,
+      0.5715553476665021,
+      0.6191656076728318
+    ],
+    "entryPatternCluster": 0.4919667792040512,
+    "volatilityAffinity": 0.61403596098054
+  },
+  {
+    "avgHoldingPeriod": 0.0005333187134502924,
+    "tradeFrequency": 1,
+    "directionBias": -0.19999999999999996,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0010223892600841375,
+    "tradeFrequency": 1,
+    "directionBias": 0.004444444444444473,
+    "regimePreference": [
+      0.990533857367671,
+      0,
+      0.6224269482678355,
+      0.3775730517321645,
+      0.20873363196614675,
+      0.5772395759981311
+    ],
+    "entryPatternCluster": 0.9751015326767855,
+    "volatilityAffinity": 0.6224269482678355
+  },
+  {
+    "avgHoldingPeriod": 0.0010345453671664743,
+    "tradeFrequency": 1,
+    "directionBias": -0.006896551724137945,
+    "regimePreference": [
+      0.6426674190874035,
+      0,
+      0.3245366745893813,
+      0.6754633254106187,
+      0.753613325406844,
+      0.4228092828259065
+    ],
+    "entryPatternCluster": 0.8476295677891321,
+    "volatilityAffinity": 0.3245366745893813
+  },
+  {
+    "avgHoldingPeriod": 0.001041557148546396,
+    "tradeFrequency": 1,
+    "directionBias": -0.014285714285714235,
+    "regimePreference": [
+      0.6458901879180656,
+      0,
+      0.5555891323369455,
+      0.4444108676630545,
+      0.30887087147806885,
+      0.7828380036259965
+    ],
+    "entryPatternCluster": 0.9097514422226252,
+    "volatilityAffinity": 0.5555891323369455
+  },
+  {
+    "avgHoldingPeriod": 0.0006943893342240036,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6755466884888429,
+      0,
+      0.4876131910319473,
+      0.5123868089680528,
+      0.3266417235973349,
+      0.4612885064809145
+    ],
+    "entryPatternCluster": 0.9263189904956755,
+    "volatilityAffinity": 0.4876131910319473
+  },
+  {
+    "avgHoldingPeriod": 0.0013091581196581197,
+    "tradeFrequency": 1,
+    "directionBias": 0.030303030303030276,
+    "regimePreference": [
+      0.271313105297854,
+      0,
+      0.5964946785245645,
+      0.4035053214754355,
+      0.20230351471561892,
+      0.398904225882419
+    ],
+    "entryPatternCluster": 0.6,
+    "volatilityAffinity": 0.5964946785245645
+  },
+  {
+    "avgHoldingPeriod": 0.0018322695035460992,
+    "tradeFrequency": 0.9289723243661699,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6048229982197847,
+      0,
+      0.5081370563120043,
+      0.49186294368799566,
+      0.5945948950137635,
+      0.7838334235395834
+    ],
+    "entryPatternCluster": 0.6471919910447103,
+    "volatilityAffinity": 0.5081370563120043
+  },
+  {
+    "avgHoldingPeriod": 0.0006981574259630372,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6174578611926705,
+      0,
+      0.3534672426430505,
+      0.6465327573569495,
+      0.41600613780492995,
+      0.6826623405310475
+    ],
+    "entryPatternCluster": 0.8055168970775868,
+    "volatilityAffinity": 0.3534672426430505
+  },
+  {
+    "avgHoldingPeriod": 0.0019294186046511627,
+    "tradeFrequency": 0.883906868358143,
+    "directionBias": 0,
+    "regimePreference": [
+      0.722086423941465,
+      0,
+      0.45559329664368853,
+      0.5444067033563115,
+      0.6775766579188192,
+      0.33772137942735136
+    ],
+    "entryPatternCluster": 0.8532651935798606,
+    "volatilityAffinity": 0.45559329664368853
+  },
+  {
+    "avgHoldingPeriod": 0.002030019379844961,
+    "tradeFrequency": 0.8401034854748017,
+    "directionBias": 0,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.0017747108843537414,
+    "tradeFrequency": 0.9582858183281745,
+    "directionBias": -0.040000000000000036,
+    "regimePreference": [
+      0.14559552939866194,
+      0,
+      0.5030597749933575,
+      0.4969402250066425,
+      0.32269826576165006,
+      0.6202499031133445
+    ],
+    "entryPatternCluster": 0.49131114907914786,
+    "volatilityAffinity": 0.5030597749933575
+  },
+  {
+    "avgHoldingPeriod": 0.0010559838350055742,
+    "tradeFrequency": 1,
+    "directionBias": -0.013333333333333308,
+    "regimePreference": [
+      0.927872806990258,
+      0,
+      0.6972654913501929,
+      0.3027345086498071,
+      0.7906946357009672,
+      0.560664613755315
+    ],
+    "entryPatternCluster": 0.9062274994147098,
+    "volatilityAffinity": 0.6972654913501929
+  },
+  {
+    "avgHoldingPeriod": 0.0011039031339031339,
+    "tradeFrequency": 1,
+    "directionBias": -0.020408163265306145,
+    "regimePreference": [
+      0.8921627234333769,
+      0,
+      0.42952570173547183,
+      0.5704742982645281,
+      0.28022213381659594,
+      0.6415532033533817
+    ],
+    "entryPatternCluster": 0.8567435218099497,
+    "volatilityAffinity": 0.42952570173547183
+  },
+  {
+    "avgHoldingPeriod": 0.000861748069822088,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8945470564467013,
+      0,
+      0.4628178455690875,
+      0.5371821544309126,
+      0.7852777216509623,
+      0.4144476931325169
+    ],
+    "entryPatternCluster": 0.7566641283714585,
+    "volatilityAffinity": 0.4628178455690875
+  },
+  {
+    "avgHoldingPeriod": 0.00046476053639846746,
+    "tradeFrequency": 1,
+    "directionBias": -0.19999999999999996,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0014360974499089253,
+    "tradeFrequency": 1,
+    "directionBias": -0.09677419354838712,
+    "regimePreference": [
+      0.8707828115432498,
+      0,
+      0.591898767377925,
+      0.408101232622075,
+      0.41694745392227117,
+      0.5530629876580695
+    ],
+    "entryPatternCluster": 0.8864663135424724,
+    "volatilityAffinity": 0.591898767377925
+  },
+  {
+    "avgHoldingPeriod": 0.0017780388888888887,
+    "tradeFrequency": 0.9561095714066996,
+    "directionBias": 0.019607843137254832,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0017431753812636164,
+    "tradeFrequency": 0.9748568179048702,
+    "directionBias": 0,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0016362070707070706,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0,
+      0.25964848158048426,
+      0.3308667507391789,
+      0.6691332492608211,
+      0.5094979443202333,
+      0.13266026562579647
+    ],
+    "entryPatternCluster": 0.48299621490942224,
+    "volatilityAffinity": 0.3308667507391789
+  },
+  {
+    "avgHoldingPeriod": 0.0015496599616858237,
+    "tradeFrequency": 1,
+    "directionBias": -0.05084745762711862,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0015233945386064031,
+    "tradeFrequency": 1,
+    "directionBias": -0.06666666666666665,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0008882119795145846,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7795185849581943,
+      0,
+      0.5936848649032369,
+      0.4063151350967631,
+      0.5289929694659357,
+      0.30419540460134625
+    ],
+    "entryPatternCluster": 0.9139234503217146,
+    "volatilityAffinity": 0.5936848649032369
+  },
+  {
+    "avgHoldingPeriod": 0.0013964871794871795,
+    "tradeFrequency": 1,
+    "directionBias": 0.030303030303030276,
+    "regimePreference": [
+      0.5689304389530037,
+      0,
+      0.6891532120625472,
+      0.3108467879374528,
+      0.43153249596942306,
+      0.5411334441737954
+    ],
+    "entryPatternCluster": 0.8813580075545767,
+    "volatilityAffinity": 0.6891532120625472
+  },
+  {
+    "avgHoldingPeriod": 0.0011361918990703851,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7681711862312461,
+      0,
+      0.677969858999851,
+      0.32203014100014904,
+      0.5950650191257618,
+      0.5291940553568235
+    ],
+    "entryPatternCluster": 0.9579127285862128,
+    "volatilityAffinity": 0.677969858999851
+  },
+  {
+    "avgHoldingPeriod": 0.0016879088050314466,
+    "tradeFrequency": 1,
+    "directionBias": 0.03703703703703698,
+    "regimePreference": [
+      0.17650129376413815,
+      0,
+      0.031018816309785757,
+      0.9689811836902142,
+      0.1707018291710124,
+      0.005990049705832168
+    ],
+    "entryPatternCluster": 0.39077535716969847,
+    "volatilityAffinity": 0.031018816309785757
+  },
+  {
+    "avgHoldingPeriod": 0.0019569506172839504,
+    "tradeFrequency": 0.870591055623198,
+    "directionBias": 0.04347826086956519,
+    "regimePreference": [
+      0.5969926363224118,
+      0,
+      0.61403596098054,
+      0.38596403901945997,
+      0.5715553476665021,
+      0.6191656076728318
+    ],
+    "entryPatternCluster": 0.4919667792040512,
+    "volatilityAffinity": 0.61403596098054
+  },
+  {
+    "avgHoldingPeriod": 0.0009109407704297484,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8379595992437662,
+      0,
+      0.5217759937604141,
+      0.47822400623958594,
+      0.696452956579539,
+      0.3418594058870314
+    ],
+    "entryPatternCluster": 0.9566820615653134,
+    "volatilityAffinity": 0.5217759937604141
+  },
+  {
+    "avgHoldingPeriod": 0.0014825910746812385,
+    "tradeFrequency": 1,
+    "directionBias": -0.032258064516129004,
+    "regimePreference": [
+      0,
+      0.5627502238844135,
+      0.2803300806241651,
+      0.7196699193758349,
+      0.7228992922385884,
+      0.4729542172856577
+    ],
+    "entryPatternCluster": 0.46610563704519825,
+    "volatilityAffinity": 0.2803300806241651
+  },
+  {
+    "avgHoldingPeriod": 0.0006949042529503451,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7795185849581943,
+      0,
+      0.5936848649032369,
+      0.4063151350967631,
+      0.5289929694659357,
+      0.30419540460134625
+    ],
+    "entryPatternCluster": 0.9139234503217146,
+    "volatilityAffinity": 0.5936848649032369
+  },
+  {
+    "avgHoldingPeriod": 0.0016669444444444444,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6756786847438547,
+      0,
+      0.8088336969079463,
+      0.19116630309205374,
+      0.8199343423259586,
+      0.5768309297340041
+    ],
+    "entryPatternCluster": 0.44889717546648744,
+    "volatilityAffinity": 0.8088336969079463
+  },
+  {
+    "avgHoldingPeriod": 0.0013421054750402577,
+    "tradeFrequency": 1,
+    "directionBias": -0.1428571428571429,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0009186940547762192,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9398448769378058,
+      0,
+      0.6122151383382869,
+      0.3877848616617131,
+      0.7732579521156635,
+      0.5160321692622596
+    ],
+    "entryPatternCluster": 0.9918928433311245,
+    "volatilityAffinity": 0.6122151383382869
+  },
+  {
+    "avgHoldingPeriod": 0.0019862647754137117,
+    "tradeFrequency": 0.8569490234351754,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6048229982197847,
+      0,
+      0.5081370563120043,
+      0.49186294368799566,
+      0.5945948950137635,
+      0.7838334235395834
+    ],
+    "entryPatternCluster": 0.6471919910447103,
+    "volatilityAffinity": 0.5081370563120043
+  },
+  {
+    "avgHoldingPeriod": 0.0004767521367521368,
+    "tradeFrequency": 1,
+    "directionBias": -0.30000000000000004,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.0016232407407407409,
+    "tradeFrequency": 1,
+    "directionBias": -0.03448275862068961,
+    "regimePreference": [
+      0.271313105297854,
+      0,
+      0.5964946785245645,
+      0.4035053214754355,
+      0.20230351471561892,
+      0.398904225882419
+    ],
+    "entryPatternCluster": 0.6,
+    "volatilityAffinity": 0.5964946785245645
+  },
+  {
+    "avgHoldingPeriod": 0.0009949424890729238,
+    "tradeFrequency": 1,
+    "directionBias": -0.008264462809917328,
+    "regimePreference": [
+      0.641267224962267,
+      0,
+      0.5388396873488122,
+      0.46116031265118784,
+      0.5718518361755127,
+      0.4278644369487477
+    ],
+    "entryPatternCluster": 0.8512264622605425,
+    "volatilityAffinity": 0.5388396873488122
+  },
+  {
+    "avgHoldingPeriod": 0.0013558695652173913,
+    "tradeFrequency": 1,
+    "directionBias": 0.02857142857142847,
+    "regimePreference": [
+      0.722086423941465,
+      0,
+      0.45559329664368853,
+      0.5444067033563115,
+      0.6775766579188192,
+      0.33772137942735136
+    ],
+    "entryPatternCluster": 0.8532651935798606,
+    "volatilityAffinity": 0.45559329664368853
+  },
+  {
+    "avgHoldingPeriod": 0.0014191282051282052,
+    "tradeFrequency": 1,
+    "directionBias": 0.030303030303030276,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.0017620440251572326,
+    "tradeFrequency": 0.9637178091481806,
+    "directionBias": 0.03703703703703698,
+    "regimePreference": [
+      0.14559552939866194,
+      0,
+      0.5030597749933575,
+      0.4969402250066425,
+      0.32269826576165006,
+      0.6202499031133445
+    ],
+    "entryPatternCluster": 0.49131114907914786,
+    "volatilityAffinity": 0.5030597749933575
+  },
+  {
+    "avgHoldingPeriod": 0.0010302811407048695,
+    "tradeFrequency": 1,
+    "directionBias": 0.004830917874396157,
+    "regimePreference": [
+      0.9093936348469654,
+      0,
+      0.3692928539605279,
+      0.6307071460394721,
+      0.45882857384400055,
+      0.6803733887529273
+    ],
+    "entryPatternCluster": 0.9823816483710415,
+    "volatilityAffinity": 0.3692928539605279
+  },
+  {
+    "avgHoldingPeriod": 0.0011967055267702936,
+    "tradeFrequency": 1,
+    "directionBias": -0.27835051546391754,
+    "regimePreference": [
+      0.9309906638052545,
+      0,
+      0.3292936406947015,
+      0.6707063593052984,
+      0.7543511743326414,
+      0.44236520018220593
+    ],
+    "entryPatternCluster": 0.966810021960489,
+    "volatilityAffinity": 0.3292936406947015
+  },
+  {
+    "avgHoldingPeriod": 0.0015300409836065574,
+    "tradeFrequency": 1,
+    "directionBias": 0.032258064516129004,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0010013688488087287,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7700513267101372,
+      0,
+      0.34641163387675794,
+      0.653588366123242,
+      0.20871779092424486,
+      0.3580143341141021
+    ],
+    "entryPatternCluster": 0.8278615635485017,
+    "volatilityAffinity": 0.34641163387675794
+  },
+  {
+    "avgHoldingPeriod": 0.00105064612205203,
+    "tradeFrequency": 1,
+    "directionBias": 0.004366812227074135,
+    "regimePreference": [
+      0.7423547124889975,
+      0,
+      0.49848890277897606,
+      0.5015110972210239,
+      0.4628759718627965,
+      0.7352808487568511
+    ],
+    "entryPatternCluster": 0.7795241148012124,
+    "volatilityAffinity": 0.49848890277897606
+  },
+  {
+    "avgHoldingPeriod": 0.001227135955831608,
+    "tradeFrequency": 1,
+    "directionBias": 0.012345679012345734,
+    "regimePreference": [
+      0.6401833178603829,
+      0,
+      0.43552175124200376,
+      0.5644782487579962,
+      0.7453711211847596,
+      0.7588141638988519
+    ],
+    "entryPatternCluster": 0.8997266765980382,
+    "volatilityAffinity": 0.43552175124200376
+  },
+  {
+    "avgHoldingPeriod": 0.0010755965775902485,
+    "tradeFrequency": 1,
+    "directionBias": 0.008403361344537785,
+    "regimePreference": [
+      0.754988059964322,
+      0,
+      0.3900018342522351,
+      0.6099981657477649,
+      0.39737196566616045,
+      0.3228402256308821
+    ],
+    "entryPatternCluster": 0.9737581149830781,
+    "volatilityAffinity": 0.3900018342522351
+  },
+  {
+    "avgHoldingPeriod": 0.0010195753424657535,
+    "tradeFrequency": 1,
+    "directionBias": -0.005464480874316946,
+    "regimePreference": [
+      0.8726267406660861,
+      0,
+      0.5623587946599886,
+      0.4376412053400114,
+      0.5859488126102944,
+      0.6997712619438243
+    ],
+    "entryPatternCluster": 0.8838233778129616,
+    "volatilityAffinity": 0.5623587946599886
+  },
+  {
+    "avgHoldingPeriod": 0.001044600358422939,
+    "tradeFrequency": 1,
+    "directionBias": 0.0042918454935623185,
+    "regimePreference": [
+      0.5272745226786912,
+      0,
+      0.5713758716728561,
+      0.4286241283271439,
+      0.3927845095334058,
+      0.41603061960266446
+    ],
+    "entryPatternCluster": 0.8895514665786508,
+    "volatilityAffinity": 0.5713758716728561
+  },
+  {
+    "avgHoldingPeriod": 0.000872714340638216,
+    "tradeFrequency": 1,
+    "directionBias": 0.006896551724137945,
+    "regimePreference": [
+      0.889714189133454,
+      0,
+      0.6001702233468558,
+      0.39982977665314423,
+      0.25528569398584416,
+      0.3357572896790682
+    ],
+    "entryPatternCluster": 0.7681128769349231,
+    "volatilityAffinity": 0.6001702233468558
+  },
+  {
+    "avgHoldingPeriod": 0.001013048894217959,
+    "tradeFrequency": 1,
+    "directionBias": -0.004784688995215336,
+    "regimePreference": [
+      0.7287514395019763,
+      0,
+      0.3606680078796674,
+      0.6393319921203326,
+      0.6450655508800789,
+      0.513971076237663
+    ],
+    "entryPatternCluster": 0.9824608536939048,
+    "volatilityAffinity": 0.3606680078796674
+  },
+  {
+    "avgHoldingPeriod": 0.0011162901439645625,
+    "tradeFrequency": 1,
+    "directionBias": 0.0066225165562914245,
+    "regimePreference": [
+      0.6426674190874035,
+      0,
+      0.3245366745893813,
+      0.6754633254106187,
+      0.753613325406844,
+      0.4228092828259065
+    ],
+    "entryPatternCluster": 0.8476295677891321,
+    "volatilityAffinity": 0.3245366745893813
+  },
+  {
+    "avgHoldingPeriod": 0.0011731447811447811,
+    "tradeFrequency": 1,
+    "directionBias": 0.012048192771084265,
+    "regimePreference": [
+      0.776975287803544,
+      0,
+      0.5888105244346624,
+      0.4111894755653376,
+      0.5765504287254084,
+      0.6392784422703884
+    ],
+    "entryPatternCluster": 0.9910781845673832,
+    "volatilityAffinity": 0.5888105244346624
+  },
+  {
+    "avgHoldingPeriod": 0.0009010498775328435,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.744548339646401,
+      0,
+      0.6220642152960495,
+      0.3779357847039505,
+      0.49990493650266965,
+      0.7149453280492271
+    ],
+    "entryPatternCluster": 0.8147347017793396,
+    "volatilityAffinity": 0.6220642152960495
+  },
+  {
+    "avgHoldingPeriod": 0.0011125734861845973,
+    "tradeFrequency": 1,
+    "directionBias": 0.010526315789473717,
+    "regimePreference": [
+      0.93399288303798,
+      0,
+      0.5533387371334864,
+      0.44666126286651364,
+      0.38583968608061936,
+      0.7626962546165678
+    ],
+    "entryPatternCluster": 0.9491187891249218,
+    "volatilityAffinity": 0.5533387371334864
+  },
+  {
+    "avgHoldingPeriod": 0.0010162752136752137,
+    "tradeFrequency": 1,
+    "directionBias": 0.006134969325153339,
+    "regimePreference": [
+      0.7490441181997503,
+      0,
+      0.6306409009374072,
+      0.3693590990625928,
+      0.7844151504838179,
+      0.5060097017670278
+    ],
+    "entryPatternCluster": 0.7342788439489156,
+    "volatilityAffinity": 0.6306409009374072
+  },
+  {
+    "avgHoldingPeriod": 0.00047500617283950615,
+    "tradeFrequency": 1,
+    "directionBias": -0.30434782608695654,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.0010873247496423462,
+    "tradeFrequency": 1,
+    "directionBias": 0.008547008547008517,
+    "regimePreference": [
+      0.7681711862312461,
+      0,
+      0.677969858999851,
+      0.32203014100014904,
+      0.5950650191257618,
+      0.5291940553568235
+    ],
+    "entryPatternCluster": 0.9579127285862128,
+    "volatilityAffinity": 0.677969858999851
+  },
+  {
+    "avgHoldingPeriod": 0.0015623816029143897,
+    "tradeFrequency": 1,
+    "directionBias": -0.032258064516129004,
+    "regimePreference": [
+      0.271313105297854,
+      0,
+      0.5964946785245645,
+      0.4035053214754355,
+      0.20230351471561892,
+      0.398904225882419
+    ],
+    "entryPatternCluster": 0.6,
+    "volatilityAffinity": 0.5964946785245645
+  },
+  {
+    "avgHoldingPeriod": 0.0009119327543976843,
+    "tradeFrequency": 1,
+    "directionBias": -0.04800000000000004,
+    "regimePreference": [
+      0.8177718931258494,
+      0,
+      0.4453369314735931,
+      0.5546630685264069,
+      0.5124515741079441,
+      0.3575489860815708
+    ],
+    "entryPatternCluster": 0.9703398424303507,
+    "volatilityAffinity": 0.4453369314735931
+  },
+  {
+    "avgHoldingPeriod": 0.001006713316369805,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.996720689787729,
+      0,
+      0.596358153653521,
+      0.40364184634647904,
+      0.5828940356501375,
+      0.40852796803155883
+    ],
+    "entryPatternCluster": 0.7334205399746272,
+    "volatilityAffinity": 0.596358153653521
+  },
+  {
+    "avgHoldingPeriod": 0.001377133655394525,
+    "tradeFrequency": 1,
+    "directionBias": 0.02857142857142847,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.000878438543754175,
+    "tradeFrequency": 1,
+    "directionBias": -0.016000000000000014,
+    "regimePreference": [
+      0.5325892354318351,
+      0,
+      0.6773698668503455,
+      0.3226301331496545,
+      0.7225780976163909,
+      0.403270835167494
+    ],
+    "entryPatternCluster": 0.908495979008893,
+    "volatilityAffinity": 0.6773698668503455
+  },
+  {
+    "avgHoldingPeriod": 0.0008121877087508351,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.641267224962267,
+      0,
+      0.5388396873488122,
+      0.46116031265118784,
+      0.5718518361755127,
+      0.4278644369487477
+    ],
+    "entryPatternCluster": 0.8512264622605425,
+    "volatilityAffinity": 0.5388396873488122
+  },
+  {
+    "avgHoldingPeriod": 0.0009058032732130928,
+    "tradeFrequency": 1,
+    "directionBias": -0.08799999999999997,
+    "regimePreference": [
+      0.7700513267101372,
+      0,
+      0.34641163387675794,
+      0.653588366123242,
+      0.20871779092424486,
+      0.3580143341141021
+    ],
+    "entryPatternCluster": 0.8278615635485017,
+    "volatilityAffinity": 0.34641163387675794
+  },
+  {
+    "avgHoldingPeriod": 0.0013653840579710146,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.996720689787729,
+      0,
+      0.596358153653521,
+      0.40364184634647904,
+      0.5828940356501375,
+      0.40852796803155883
+    ],
+    "entryPatternCluster": 0.7334205399746272,
+    "volatilityAffinity": 0.596358153653521
+  },
+  {
+    "avgHoldingPeriod": 0.0011850086266390614,
+    "tradeFrequency": 1,
+    "directionBias": 0.012345679012345734,
+    "regimePreference": [
+      0.7986034053132538,
+      0,
+      0.5808895232645588,
+      0.4191104767354412,
+      0.7105379375115273,
+      0.7589990677936407
+    ],
+    "entryPatternCluster": 0.956388215171432,
+    "volatilityAffinity": 0.5808895232645588
+  },
+  {
+    "avgHoldingPeriod": 0.0012145042194092826,
+    "tradeFrequency": 1,
+    "directionBias": -0.15000000000000002,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0013062523314681586,
+    "tradeFrequency": 1,
+    "directionBias": -0.004784688995215336,
+    "regimePreference": [
+      0.6949971346517112,
+      0,
+      0.35968050067750923,
+      0.6403194993224908,
+      0.6661444843476048,
+      0.6241399091537003
+    ],
+    "entryPatternCluster": 0.9363152623212009,
+    "volatilityAffinity": 0.35968050067750923
+  },
+  {
+    "avgHoldingPeriod": 0.0009006919394344244,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8897348473622534,
+      0,
+      0.3227448727673936,
+      0.6772551272326064,
+      0.6695006599897426,
+      0.3033386813979639
+    ],
+    "entryPatternCluster": 0.989540377467906,
+    "volatilityAffinity": 0.3227448727673936
+  },
+  {
+    "avgHoldingPeriod": 0.0011791242937853107,
+    "tradeFrequency": 1,
+    "directionBias": 0.011235955056179803,
+    "regimePreference": [
+      0.8980161167889513,
+      0,
+      0.3946160667051368,
+      0.6053839332948632,
+      0.3513142187944792,
+      0.6614092927973219
+    ],
+    "entryPatternCluster": 0.8508444649725722,
+    "volatilityAffinity": 0.3946160667051368
+  },
+  {
+    "avgHoldingPeriod": 0.0012204365079365078,
+    "tradeFrequency": 1,
+    "directionBias": 0.012345679012345734,
+    "regimePreference": [
+      0.5360435140082622,
+      0,
+      0.4057948226580534,
+      0.5942051773419466,
+      0.4665799871729088,
+      0.39893906131124846
+    ],
+    "entryPatternCluster": 0.9595102531467548,
+    "volatilityAffinity": 0.4057948226580534
+  },
+  {
+    "avgHoldingPeriod": 0.0006980310621242485,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7479593912906835,
+      0,
+      0.6761315726774492,
+      0.32386842732255083,
+      0.6464854724798641,
+      0.7529895581866983
+    ],
+    "entryPatternCluster": 0.9704169148575901,
+    "volatilityAffinity": 0.6761315726774492
+  },
+  {
+    "avgHoldingPeriod": 0.0009912729862729863,
+    "tradeFrequency": 1,
+    "directionBias": 0.0046511627906977715,
+    "regimePreference": [
+      0.6492606232630134,
+      0,
+      0.476979545598602,
+      0.523020454401398,
+      0.7617474502613406,
+      0.7549610293701698
+    ],
+    "entryPatternCluster": 0.9804110480550613,
+    "volatilityAffinity": 0.476979545598602
+  },
+  {
+    "avgHoldingPeriod": 0.0013696439749608764,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5012262194939019,
+      0,
+      0.3232669311944316,
+      0.6767330688055684,
+      0.9614356033441481,
+      0.6085752542912803
+    ],
+    "entryPatternCluster": 0.4100198925957824,
+    "volatilityAffinity": 0.3232669311944316
+  },
+  {
+    "avgHoldingPeriod": 0.001281472491909385,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5060520583348642,
+      0,
+      0.538227423733507,
+      0.46177257626649304,
+      0.5841522765758997,
+      0.568519860441248
+    ],
+    "entryPatternCluster": 0.8564648108587225,
+    "volatilityAffinity": 0.538227423733507
+  },
+  {
+    "avgHoldingPeriod": 0.0008677527276775773,
+    "tradeFrequency": 1,
+    "directionBias": -0.040000000000000036,
+    "regimePreference": [
+      0.9702915374550141,
+      0,
+      0.5161931980079484,
+      0.4838068019920516,
+      0.2361523657538825,
+      0.38549449941025726
+    ],
+    "entryPatternCluster": 0.8952741685386074,
+    "volatilityAffinity": 0.5161931980079484
+  },
+  {
+    "avgHoldingPeriod": 0.001774974279835391,
+    "tradeFrequency": 0.9563692744634913,
+    "directionBias": 0.018181818181818077,
+    "regimePreference": [
+      0,
+      0.25964848158048426,
+      0.3308667507391789,
+      0.6691332492608211,
+      0.5094979443202333,
+      0.13266026562579647
+    ],
+    "entryPatternCluster": 0.48299621490942224,
+    "volatilityAffinity": 0.3308667507391789
+  },
+  {
+    "avgHoldingPeriod": 0.0013549565217391302,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5677352128888387,
+      0,
+      0.3690770896125911,
+      0.6309229103874089,
+      0.45961064768597254,
+      0.5025714603429514
+    ],
+    "entryPatternCluster": 0.8935893371899525,
+    "volatilityAffinity": 0.3690770896125911
+  },
+  {
+    "avgHoldingPeriod": 0.00088937875751503,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8897348473622534,
+      0,
+      0.3227448727673936,
+      0.6772551272326064,
+      0.6695006599897426,
+      0.3033386813979639
+    ],
+    "entryPatternCluster": 0.989540377467906,
+    "volatilityAffinity": 0.3227448727673936
+  },
+  {
+    "avgHoldingPeriod": 0.0010493617021276596,
+    "tradeFrequency": 1,
+    "directionBias": 0.014084507042253502,
+    "regimePreference": [
+      0.996720689787729,
+      0,
+      0.596358153653521,
+      0.40364184634647904,
+      0.5828940356501375,
+      0.40852796803155883
+    ],
+    "entryPatternCluster": 0.7334205399746272,
+    "volatilityAffinity": 0.596358153653521
+  },
+  {
+    "avgHoldingPeriod": 0.000998312683186784,
+    "tradeFrequency": 1,
+    "directionBias": 0.004784688995215225,
+    "regimePreference": [
+      0.5155180924786558,
+      0,
+      0.48841402644229803,
+      0.511585973557702,
+      0.34485600122276894,
+      0.5530460815946805
+    ],
+    "entryPatternCluster": 0.7669506736161463,
+    "volatilityAffinity": 0.48841402644229803
+  },
+  {
+    "avgHoldingPeriod": 0.00047366013071895426,
+    "tradeFrequency": 1,
+    "directionBias": -0.3076923076923077,
+    "regimePreference": [
+      0.038584059494805256,
+      0,
+      0.004958377593027752,
+      0.9950416224069722,
+      0.7814591292869226,
+      0.9047970990248727
+    ],
+    "entryPatternCluster": 0.48337002216140224,
+    "volatilityAffinity": 0.004958377593027752
+  },
+  {
+    "avgHoldingPeriod": 0.001209221411192214,
+    "tradeFrequency": 1,
+    "directionBias": -0.01449275362318836,
+    "regimePreference": [
+      0.5360435140082622,
+      0,
+      0.4057948226580534,
+      0.5942051773419466,
+      0.4665799871729088,
+      0.39893906131124846
+    ],
+    "entryPatternCluster": 0.9595102531467548,
+    "volatilityAffinity": 0.4057948226580534
+  },
+  {
+    "avgHoldingPeriod": 0.0009050684702738811,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8379595992437662,
+      0,
+      0.5217759937604141,
+      0.47822400623958594,
+      0.696452956579539,
+      0.3418594058870314
+    ],
+    "entryPatternCluster": 0.9566820615653134,
+    "volatilityAffinity": 0.5217759937604141
+  },
+  {
+    "avgHoldingPeriod": 0.001012132616487455,
+    "tradeFrequency": 1,
+    "directionBias": -0.00990099009900991,
+    "regimePreference": [
+      0.5155180924786558,
+      0,
+      0.48841402644229803,
+      0.511585973557702,
+      0.34485600122276894,
+      0.5530460815946805
+    ],
+    "entryPatternCluster": 0.7669506736161463,
+    "volatilityAffinity": 0.48841402644229803
+  },
+  {
+    "avgHoldingPeriod": 0.0006981975061233579,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9146985544779396,
+      0,
+      0.5577508587342717,
+      0.44224914126572834,
+      0.4603504350654656,
+      0.3675076789783993
+    ],
+    "entryPatternCluster": 0.9836148450344204,
+    "volatilityAffinity": 0.5577508587342717
+  },
+  {
+    "avgHoldingPeriod": 0.001377753863134658,
+    "tradeFrequency": 1,
+    "directionBias": -0.2894736842105263,
+    "regimePreference": [
+      0.7740647336280062,
+      0,
+      0.45231701669494795,
+      0.547682983305052,
+      0.6465353943273597,
+      0.7260972751863504
+    ],
+    "entryPatternCluster": 0.9366242889239778,
+    "volatilityAffinity": 0.45231701669494795
+  },
+  {
+    "avgHoldingPeriod": 0.0008291017316017316,
+    "tradeFrequency": 1,
+    "directionBias": 0.005181347150259086,
+    "regimePreference": [
+      0.6458901879180656,
+      0,
+      0.5555891323369455,
+      0.4444108676630545,
+      0.30887087147806885,
+      0.7828380036259965
+    ],
+    "entryPatternCluster": 0.9097514422226252,
+    "volatilityAffinity": 0.5555891323369455
+  },
+  {
+    "avgHoldingPeriod": 0.0008378118377232818,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9138502747176562,
+      0,
+      0.30541340590636734,
+      0.6945865940936327,
+      0.5581897335296597,
+      0.5100866940360242
+    ],
+    "entryPatternCluster": 0.777852965310493,
+    "volatilityAffinity": 0.30541340590636734
+  },
+  {
+    "avgHoldingPeriod": 0.0010122353760445683,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5902846571498033,
+      0,
+      0.4097688958006151,
+      0.5902311041993848,
+      0.33705883650506163,
+      0.7846656034031685
+    ],
+    "entryPatternCluster": 0.8941864039621479,
+    "volatilityAffinity": 0.4097688958006151
+  },
+  {
+    "avgHoldingPeriod": 0.000994046405228758,
+    "tradeFrequency": 1,
+    "directionBias": 0.0046948356807512415,
+    "regimePreference": [
+      0.6074275465178904,
+      0,
+      0.6736530247176549,
+      0.32634697528234513,
+      0.5224786756320897,
+      0.31250132192459984
+    ],
+    "entryPatternCluster": 0.7873614272803809,
+    "volatilityAffinity": 0.6736530247176549
+  },
+  {
+    "avgHoldingPeriod": 0.0009531941661099977,
+    "tradeFrequency": 1,
+    "directionBias": -0.008000000000000007,
+    "regimePreference": [
+      0.9772746944548043,
+      0,
+      0.6228672509714928,
+      0.37713274902850724,
+      0.5696353701111783,
+      0.6521198572977811
+    ],
+    "entryPatternCluster": 0.998898183808076,
+    "volatilityAffinity": 0.6228672509714928
+  },
+  {
+    "avgHoldingPeriod": 0.001243744687310261,
+    "tradeFrequency": 1,
+    "directionBias": -0.28260869565217395,
+    "regimePreference": [
+      0.9309906638052545,
+      0,
+      0.3292936406947015,
+      0.6707063593052984,
+      0.7543511743326414,
+      0.44236520018220593
+    ],
+    "entryPatternCluster": 0.966810021960489,
+    "volatilityAffinity": 0.3292936406947015
+  },
+  {
+    "avgHoldingPeriod": 0.00046463705188154084,
+    "tradeFrequency": 1,
+    "directionBias": -0.33599999999999997,
+    "regimePreference": [
+      0.8897348473622534,
+      0,
+      0.3227448727673936,
+      0.6772551272326064,
+      0.6695006599897426,
+      0.3033386813979639
+    ],
+    "entryPatternCluster": 0.989540377467906,
+    "volatilityAffinity": 0.3227448727673936
+  },
+  {
+    "avgHoldingPeriod": 0.0011444898672257164,
+    "tradeFrequency": 1,
+    "directionBias": -0.025000000000000022,
+    "regimePreference": [
+      0.5200991453659121,
+      0,
+      0.6732431625673249,
+      0.32675683743267514,
+      0.4880415879365408,
+      0.6547159127859222
+    ],
+    "entryPatternCluster": 0.9600700642799691,
+    "volatilityAffinity": 0.6732431625673249
+  },
+  {
+    "avgHoldingPeriod": 0.0010183540273798154,
+    "tradeFrequency": 1,
+    "directionBias": 0.005714285714285783,
+    "regimePreference": [
+      0.7575025449617125,
+      0,
+      0.3938152851865222,
+      0.6061847148134778,
+      0.26326857729459524,
+      0.6103526067158878
+    ],
+    "entryPatternCluster": 0.9788109263132234,
+    "volatilityAffinity": 0.3938152851865222
+  },
+  {
+    "avgHoldingPeriod": 0.0008793561052218296,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.5783803775094406,
+      0,
+      0.4792249531147471,
+      0.5207750468852529,
+      0.2800184598089761,
+      0.3569217385972321
+    ],
+    "entryPatternCluster": 0.9331625767482601,
+    "volatilityAffinity": 0.4792249531147471
+  },
+  {
+    "avgHoldingPeriod": 0.0010895286195286196,
+    "tradeFrequency": 1,
+    "directionBias": -0.017241379310344862,
+    "regimePreference": [
+      0.6560246199559893,
+      0,
+      0.3873532546070334,
+      0.6126467453929666,
+      0.6444918542126536,
+      0.5816023888152484
+    ],
+    "entryPatternCluster": 0.8270460220820621,
+    "volatilityAffinity": 0.3873532546070334
+  },
+  {
+    "avgHoldingPeriod": 0.001845440251572327,
+    "tradeFrequency": 0.920166993269149,
+    "directionBias": 0.03703703703703698,
+    "regimePreference": [
+      0.6470102951875611,
+      0,
+      0.32313123107478725,
+      0.6768687689252127,
+      0.5196166619495859,
+      0.5741766001452986
+    ],
+    "entryPatternCluster": 0.8817561252723533,
+    "volatilityAffinity": 0.32313123107478725
+  },
+  {
+    "avgHoldingPeriod": 0.001059353163361662,
+    "tradeFrequency": 1,
+    "directionBias": 0.005649717514124353,
+    "regimePreference": [
+      0.5902846571498033,
+      0,
+      0.4097688958006151,
+      0.5902311041993848,
+      0.33705883650506163,
+      0.7846656034031685
+    ],
+    "entryPatternCluster": 0.8941864039621479,
+    "volatilityAffinity": 0.4097688958006151
+  },
+  {
+    "avgHoldingPeriod": 0.0012677284793325748,
+    "tradeFrequency": 1,
+    "directionBias": -0.006802721088435382,
+    "regimePreference": [
+      0.9792417105208926,
+      0,
+      0.669164689734944,
+      0.33083531026505597,
+      0.3368504675486572,
+      0.717851985389064
+    ],
+    "entryPatternCluster": 0.826242906436522,
+    "volatilityAffinity": 0.669164689734944
+  },
+  {
+    "avgHoldingPeriod": 0.001065569606571552,
+    "tradeFrequency": 1,
+    "directionBias": -0.007751937984496138,
+    "regimePreference": [
+      0.9138502747176562,
+      0,
+      0.30541340590636734,
+      0.6945865940936327,
+      0.5581897335296597,
+      0.5100866940360242
+    ],
+    "entryPatternCluster": 0.777852965310493,
+    "volatilityAffinity": 0.30541340590636734
+  },
+  {
+    "avgHoldingPeriod": 0.0010929838709677418,
+    "tradeFrequency": 1,
+    "directionBias": 0.00917431192660545,
+    "regimePreference": [
+      0.560881781017617,
+      0,
+      0.502891693803613,
+      0.497108306196387,
+      0.7170317116907123,
+      0.6495162687500142
+    ],
+    "entryPatternCluster": 0.874398886063904,
+    "volatilityAffinity": 0.502891693803613
+  },
+  {
+    "avgHoldingPeriod": 0.0009052710977510576,
+    "tradeFrequency": 1,
+    "directionBias": -0.05600000000000005,
+    "regimePreference": [
+      0.8996375025561327,
+      0,
+      0.38714291361364317,
+      0.6128570863863568,
+      0.44144804367601437,
+      0.537495670408685
+    ],
+    "entryPatternCluster": 0.9365394867313748,
+    "volatilityAffinity": 0.38714291361364317
+  },
+  {
+    "avgHoldingPeriod": 0.0009563204913456171,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.864185611667852,
+      0,
+      0.42889296827028467,
+      0.5711070317297153,
+      0.7211777601723253,
+      0.5940375867029224
+    ],
+    "entryPatternCluster": 0.9161458089517358,
+    "volatilityAffinity": 0.42889296827028467
+  },
+  {
+    "avgHoldingPeriod": 0.0010016942644588433,
+    "tradeFrequency": 1,
+    "directionBias": -0.008620689655172376,
+    "regimePreference": [
+      0.5272745226786912,
+      0,
+      0.5713758716728561,
+      0.4286241283271439,
+      0.3927845095334058,
+      0.41603061960266446
+    ],
+    "entryPatternCluster": 0.8895514665786508,
+    "volatilityAffinity": 0.5713758716728561
+  },
+  {
+    "avgHoldingPeriod": 0.0012696552028218695,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6074275465178904,
+      0,
+      0.6736530247176549,
+      0.32634697528234513,
+      0.5224786756320897,
+      0.31250132192459984
+    ],
+    "entryPatternCluster": 0.7873614272803809,
+    "volatilityAffinity": 0.6736530247176549
+  },
+  {
+    "avgHoldingPeriod": 0.0012879954954954957,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6342957257528424,
+      0,
+      0.6195678117581394,
+      0.38043218824186065,
+      0.7257118826830407,
+      0.6300521085518449
+    ],
+    "entryPatternCluster": 0.913768040691017,
+    "volatilityAffinity": 0.6195678117581394
+  },
+  {
+    "avgHoldingPeriod": 0.0013929109589041096,
+    "tradeFrequency": 1,
+    "directionBias": 0.027027027027026973,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0016261612021857923,
+    "tradeFrequency": 1,
+    "directionBias": 0.032258064516129004,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0012952044444444445,
+    "tradeFrequency": 1,
+    "directionBias": 0.015873015873015817,
+    "regimePreference": [
+      0.864185611667852,
+      0,
+      0.42889296827028467,
+      0.5711070317297153,
+      0.7211777601723253,
+      0.5940375867029224
+    ],
+    "entryPatternCluster": 0.9161458089517358,
+    "volatilityAffinity": 0.42889296827028467
+  },
+  {
+    "avgHoldingPeriod": 0.0011444148336153413,
+    "tradeFrequency": 1,
+    "directionBias": 0.010101010101010166,
+    "regimePreference": [
+      0.8187800851136017,
+      0,
+      0.6351160216467725,
+      0.3648839783532275,
+      0.26439097878856443,
+      0.656224843819709
+    ],
+    "entryPatternCluster": 0.9069529574618626,
+    "volatilityAffinity": 0.6351160216467725
+  },
+  {
+    "avgHoldingPeriod": 0.00046460643509240704,
+    "tradeFrequency": 1,
+    "directionBias": -0.33599999999999997,
+    "regimePreference": [
+      0.5642567668625146,
+      0,
+      0.31179518567796216,
+      0.6882048143220378,
+      0.500039146235127,
+      0.6004947971375767
+    ],
+    "entryPatternCluster": 0.8174501237325115,
+    "volatilityAffinity": 0.31179518567796216
+  },
+  {
+    "avgHoldingPeriod": 0.0011288689727463313,
+    "tradeFrequency": 1,
+    "directionBias": 0.007518796992481258,
+    "regimePreference": [
+      0.8945470564467013,
+      0,
+      0.4628178455690875,
+      0.5371821544309126,
+      0.7852777216509623,
+      0.4144476931325169
+    ],
+    "entryPatternCluster": 0.7566641283714585,
+    "volatilityAffinity": 0.4628178455690875
+  },
+  {
+    "avgHoldingPeriod": 0.0016097735042735044,
+    "tradeFrequency": 1,
+    "directionBias": 0.030303030303030276,
+    "regimePreference": [
+      0.5715066944720153,
+      0,
+      0.5177200448811361,
+      0.4822799551188639,
+      0.512431749071442,
+      0.5954341530216967
+    ],
+    "entryPatternCluster": 0.9192697836979455,
+    "volatilityAffinity": 0.5177200448811361
+  },
+  {
+    "avgHoldingPeriod": 0.001007887562628942,
+    "tradeFrequency": 1,
+    "directionBias": 0.005291005291005346,
+    "regimePreference": [
+      0.984528768508246,
+      0,
+      0.5227350697757926,
+      0.47726493022420735,
+      0.33152331207066726,
+      0.7104196067673205
+    ],
+    "entryPatternCluster": 0.8218094666218447,
+    "volatilityAffinity": 0.5227350697757926
+  },
+  {
+    "avgHoldingPeriod": 0.0013567279942279943,
+    "tradeFrequency": 1,
+    "directionBias": 0.02564102564102555,
+    "regimePreference": [
+      0,
+      0.7618185857601552,
+      0.6732959391710108,
+      0.3267040608289892,
+      0.2279956976345956,
+      0.8228222451375866
+    ],
+    "entryPatternCluster": 0.39696226482871366,
+    "volatilityAffinity": 0.6732959391710108
+  },
+  {
+    "avgHoldingPeriod": 0.0013185119785212721,
+    "tradeFrequency": 1,
+    "directionBias": -0.007407407407407418,
+    "regimePreference": [
+      0.984528768508246,
+      0,
+      0.5227350697757926,
+      0.47726493022420735,
+      0.33152331207066726,
+      0.7104196067673205
+    ],
+    "entryPatternCluster": 0.8218094666218447,
+    "volatilityAffinity": 0.5227350697757926
+  },
+  {
+    "avgHoldingPeriod": 0.0015689444444444444,
+    "tradeFrequency": 1,
+    "directionBias": 0.030303030303030276,
+    "regimePreference": [
+      0.7399545022699503,
+      0,
+      0.28508689281157673,
+      0.7149131071884233,
+      0.2741573827275282,
+      0.4226187928086381
+    ],
+    "entryPatternCluster": 0.45159546941500905,
+    "volatilityAffinity": 0.28508689281157673
+  },
+  {
+    "avgHoldingPeriod": 0.0008459555173730432,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.889714189133454,
+      0,
+      0.6001702233468558,
+      0.39982977665314423,
+      0.25528569398584416,
+      0.3357572896790682
+    ],
+    "entryPatternCluster": 0.7681128769349231,
+    "volatilityAffinity": 0.6001702233468558
+  },
+  {
+    "avgHoldingPeriod": 0.0011261492890995261,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.889714189133454,
+      0,
+      0.6001702233468558,
+      0.39982977665314423,
+      0.25528569398584416,
+      0.3357572896790682
+    ],
+    "entryPatternCluster": 0.7681128769349231,
+    "volatilityAffinity": 0.6001702233468558
+  },
+  {
+    "avgHoldingPeriod": 0.0011891200324412004,
+    "tradeFrequency": 1,
+    "directionBias": 0.01449275362318847,
+    "regimePreference": [
+      0.7439384499735577,
+      0,
+      0.4206067607214496,
+      0.5793932392785504,
+      0.5157181954657508,
+      0.42723419317659206
+    ],
+    "entryPatternCluster": 0.9427297604306466,
+    "volatilityAffinity": 0.4206067607214496
+  },
+  {
+    "avgHoldingPeriod": 0.0008740364061456245,
+    "tradeFrequency": 1,
+    "directionBias": -0.02400000000000002,
+    "regimePreference": [
+      0.5325892354318351,
+      0,
+      0.6773698668503455,
+      0.3226301331496545,
+      0.7225780976163909,
+      0.403270835167494
+    ],
+    "entryPatternCluster": 0.908495979008893,
+    "volatilityAffinity": 0.6773698668503455
+  },
+  {
+    "avgHoldingPeriod": 0.0012221949891067538,
+    "tradeFrequency": 1,
+    "directionBias": 0.01298701298701288,
+    "regimePreference": [
+      0.5200991453659121,
+      0,
+      0.6732431625673249,
+      0.32675683743267514,
+      0.4880415879365408,
+      0.6547159127859222
+    ],
+    "entryPatternCluster": 0.9600700642799691,
+    "volatilityAffinity": 0.6732431625673249
+  },
+  {
+    "avgHoldingPeriod": 0.0012142474747474747,
+    "tradeFrequency": 1,
+    "directionBias": 0.012048192771084265,
+    "regimePreference": [
+      0.9371469900959333,
+      0,
+      0.6771258213434257,
+      0.3228741786565743,
+      0.3879118180305307,
+      0.7473180930272065
+    ],
+    "entryPatternCluster": 0.9803714897818565,
+    "volatilityAffinity": 0.6771258213434257
+  },
+  {
+    "avgHoldingPeriod": 0.0008122389222890225,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9917099215020604,
+      0,
+      0.6461622508392127,
+      0.35383774916078725,
+      0.5263692123631241,
+      0.3237345311159213
+    ],
+    "entryPatternCluster": 0.9384048291146556,
+    "volatilityAffinity": 0.6461622508392127
+  },
+  {
+    "avgHoldingPeriod": 0.0004781290849673203,
+    "tradeFrequency": 1,
+    "directionBias": -0.30434782608695654,
+    "regimePreference": [
+      0.6051226331765278,
+      0,
+      0.4778774131075484,
+      0.5221225868924516,
+      0.5965999377423303,
+      0.6736856821232803
+    ],
+    "entryPatternCluster": 0.809541775494138,
+    "volatilityAffinity": 0.4778774131075484
+  },
+  {
+    "avgHoldingPeriod": 0.0004711996779388084,
+    "tradeFrequency": 1,
+    "directionBias": -0.3142857142857143,
+    "regimePreference": [
+      0.6051226331765278,
+      0,
+      0.4778774131075484,
+      0.5221225868924516,
+      0.5965999377423303,
+      0.6736856821232803
+    ],
+    "entryPatternCluster": 0.809541775494138,
+    "volatilityAffinity": 0.4778774131075484
+  },
+  {
+    "avgHoldingPeriod": 0.0008677972611890448,
+    "tradeFrequency": 1,
+    "directionBias": -0.07999999999999996,
+    "regimePreference": [
+      0.744548339646401,
+      0,
+      0.6220642152960495,
+      0.3779357847039505,
+      0.49990493650266965,
+      0.7149453280492271
+    ],
+    "entryPatternCluster": 0.8147347017793396,
+    "volatilityAffinity": 0.6220642152960495
+  },
+  {
+    "avgHoldingPeriod": 0.0012859057697152934,
+    "tradeFrequency": 1,
+    "directionBias": -0.004524886877828038,
+    "regimePreference": [
+      0.9398448769378058,
+      0,
+      0.6122151383382869,
+      0.3877848616617131,
+      0.7732579521156635,
+      0.5160321692622596
+    ],
+    "entryPatternCluster": 0.9918928433311245,
+    "volatilityAffinity": 0.6122151383382869
+  },
+  {
+    "avgHoldingPeriod": 0.0004646253618347807,
+    "tradeFrequency": 1,
+    "directionBias": -0.33599999999999997,
+    "regimePreference": [
+      0.9146985544779396,
+      0,
+      0.5577508587342717,
+      0.44224914126572834,
+      0.4603504350654656,
+      0.3675076789783993
+    ],
+    "entryPatternCluster": 0.9836148450344204,
+    "volatilityAffinity": 0.5577508587342717
+  },
+  {
+    "avgHoldingPeriod": 0.0006981835894010242,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9772746944548043,
+      0,
+      0.6228672509714928,
+      0.37713274902850724,
+      0.5696353701111783,
+      0.6521198572977811
+    ],
+    "entryPatternCluster": 0.998898183808076,
+    "volatilityAffinity": 0.6228672509714928
+  },
+  {
+    "avgHoldingPeriod": 0.0010499090177133656,
+    "tradeFrequency": 1,
+    "directionBias": 0.005780346820809301,
+    "regimePreference": [
+      0.9634188581286284,
+      0,
+      0.6157840956501743,
+      0.38421590434982567,
+      0.3023741292048506,
+      0.43801268653880526
+    ],
+    "entryPatternCluster": 0.9949771733999615,
+    "volatilityAffinity": 0.6157840956501743
+  },
+  {
+    "avgHoldingPeriod": 0.0012715736688548504,
+    "tradeFrequency": 1,
+    "directionBias": -0.004366812227074246,
+    "regimePreference": [
+      0.5871453823991832,
+      0,
+      0.3322919999180256,
+      0.6677080000819744,
+      0.633069009261348,
+      0.4776590921457472
+    ],
+    "entryPatternCluster": 0.9112589837700058,
+    "volatilityAffinity": 0.3322919999180256
+  },
+  {
+    "avgHoldingPeriod": 0.0007423780895123581,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.6074275465178904,
+      0,
+      0.6736530247176549,
+      0.32634697528234513,
+      0.5224786756320897,
+      0.31250132192459984
+    ],
+    "entryPatternCluster": 0.7873614272803809,
+    "volatilityAffinity": 0.6736530247176549
+  },
+  {
+    "avgHoldingPeriod": 0.0007054102649743932,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7157703855553827,
+      0,
+      0.6768197819665471,
+      0.32318021803345287,
+      0.6683507525941487,
+      0.7969830383878098
+    ],
+    "entryPatternCluster": 0.8862554783908323,
+    "volatilityAffinity": 0.6768197819665471
+  },
+  {
+    "avgHoldingPeriod": 0.001036279261457303,
+    "tradeFrequency": 1,
+    "directionBias": -0.00591715976331364,
+    "regimePreference": [
+      0.7575025449617125,
+      0,
+      0.3938152851865222,
+      0.6061847148134778,
+      0.26326857729459524,
+      0.6103526067158878
+    ],
+    "entryPatternCluster": 0.9788109263132234,
+    "volatilityAffinity": 0.3938152851865222
+  },
+  {
+    "avgHoldingPeriod": 0.0009700484301937208,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.7700513267101372,
+      0,
+      0.34641163387675794,
+      0.653588366123242,
+      0.20871779092424486,
+      0.3580143341141021
+    ],
+    "entryPatternCluster": 0.8278615635485017,
+    "volatilityAffinity": 0.34641163387675794
+  },
+  {
+    "avgHoldingPeriod": 0.0011410878336436995,
+    "tradeFrequency": 1,
+    "directionBias": -0.022222222222222254,
+    "regimePreference": [
+      0.93399288303798,
+      0,
+      0.5533387371334864,
+      0.44666126286651364,
+      0.38583968608061936,
+      0.7626962546165678
+    ],
+    "entryPatternCluster": 0.9491187891249218,
+    "volatilityAffinity": 0.5533387371334864
+  },
+  {
+    "avgHoldingPeriod": 0.0011405334438916528,
+    "tradeFrequency": 1,
+    "directionBias": 0.00990099009900991,
+    "regimePreference": [
+      0.5783803775094406,
+      0,
+      0.4792249531147471,
+      0.5207750468852529,
+      0.2800184598089761,
+      0.3569217385972321
+    ],
+    "entryPatternCluster": 0.9331625767482601,
+    "volatilityAffinity": 0.4792249531147471
+  },
+  {
+    "avgHoldingPeriod": 0.0012623852813852814,
+    "tradeFrequency": 1,
+    "directionBias": -0.005181347150259086,
+    "regimePreference": [
+      0.9917099215020604,
+      0,
+      0.6461622508392127,
+      0.35383774916078725,
+      0.5263692123631241,
+      0.3237345311159213
+    ],
+    "entryPatternCluster": 0.9384048291146556,
+    "volatilityAffinity": 0.6461622508392127
+  },
+  {
+    "avgHoldingPeriod": 0.0009387534643487025,
+    "tradeFrequency": 1,
+    "directionBias": -0.09502262443438914,
+    "regimePreference": [
+      0.990533857367671,
+      0,
+      0.6224269482678355,
+      0.3775730517321645,
+      0.20873363196614675,
+      0.5772395759981311
+    ],
+    "entryPatternCluster": 0.9751015326767855,
+    "volatilityAffinity": 0.6224269482678355
+  },
+  {
+    "avgHoldingPeriod": 0.001063458071278826,
+    "tradeFrequency": 1,
+    "directionBias": 0.007518796992481258,
+    "regimePreference": [
+      0.9138502747176562,
+      0,
+      0.30541340590636734,
+      0.6945865940936327,
+      0.5581897335296597,
+      0.5100866940360242
+    ],
+    "entryPatternCluster": 0.777852965310493,
+    "volatilityAffinity": 0.30541340590636734
+  },
+  {
+    "avgHoldingPeriod": 0.0010019195402298851,
+    "tradeFrequency": 1,
+    "directionBias": -0.00917431192660545,
+    "regimePreference": [
+      0.8214469103513358,
+      0,
+      0.5717333456507222,
+      0.4282666543492778,
+      0.6926835915206733,
+      0.5885319544918132
+    ],
+    "entryPatternCluster": 0.7996237187497243,
+    "volatilityAffinity": 0.5717333456507222
+  },
+  {
+    "avgHoldingPeriod": 0.0010038655640373197,
+    "tradeFrequency": 1,
+    "directionBias": 0.0050761421319796,
+    "regimePreference": [
+      0.9792417105208926,
+      0,
+      0.669164689734944,
+      0.33083531026505597,
+      0.3368504675486572,
+      0.717851985389064
+    ],
+    "entryPatternCluster": 0.826242906436522,
+    "volatilityAffinity": 0.669164689734944
+  },
+  {
+    "avgHoldingPeriod": 0.0008346071556993887,
+    "tradeFrequency": 1,
+    "directionBias": 0.006451612903225712,
+    "regimePreference": [
+      0.8462443131521481,
+      0,
+      0.4085361584465319,
+      0.5914638415534681,
+      0.35915509518712474,
+      0.3737392388548928
+    ],
+    "entryPatternCluster": 0.974156077927526,
+    "volatilityAffinity": 0.4085361584465319
+  },
+  {
+    "avgHoldingPeriod": 0.0010745783242258652,
+    "tradeFrequency": 1,
+    "directionBias": 0.006535947712418277,
+    "regimePreference": [
+      0.927872806990258,
+      0,
+      0.6972654913501929,
+      0.3027345086498071,
+      0.7906946357009672,
+      0.560664613755315
+    ],
+    "entryPatternCluster": 0.9062274994147098,
+    "volatilityAffinity": 0.6972654913501929
+  },
+  {
+    "avgHoldingPeriod": 0.0012662962962962964,
+    "tradeFrequency": 1,
+    "directionBias": -0.3023255813953488,
+    "regimePreference": [
+      0.7740647336280062,
+      0,
+      0.45231701669494795,
+      0.547682983305052,
+      0.6465353943273597,
+      0.7260972751863504
+    ],
+    "entryPatternCluster": 0.9366242889239778,
+    "volatilityAffinity": 0.45231701669494795
+  },
+  {
+    "avgHoldingPeriod": 0.0011805956471935854,
+    "tradeFrequency": 1,
+    "directionBias": 0.020408163265306145,
+    "regimePreference": [
+      0.6048229982197847,
+      0,
+      0.5081370563120043,
+      0.49186294368799566,
+      0.5945948950137635,
+      0.7838334235395834
+    ],
+    "entryPatternCluster": 0.6471919910447103,
+    "volatilityAffinity": 0.5081370563120043
+  },
+  {
+    "avgHoldingPeriod": 0.001214667060677699,
+    "tradeFrequency": 1,
+    "directionBias": 0.014084507042253502,
+    "regimePreference": [
+      0.9859059288729018,
+      0,
+      0.6586138358214503,
+      0.3413861641785497,
+      0.35047933680380117,
+      0.33545616370688586
+    ],
+    "entryPatternCluster": 0.9605697588714263,
+    "volatilityAffinity": 0.6586138358214503
+  },
+  {
+    "avgHoldingPeriod": 0.0011161191626409019,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.8187800851136017,
+      0,
+      0.6351160216467725,
+      0.3648839783532275,
+      0.26439097878856443,
+      0.656224843819709
+    ],
+    "entryPatternCluster": 0.9069529574618626,
+    "volatilityAffinity": 0.6351160216467725
+  },
+  {
+    "avgHoldingPeriod": 0.0010710942760942762,
+    "tradeFrequency": 1,
+    "directionBias": 0.006711409395973256,
+    "regimePreference": [
+      0.9309906638052545,
+      0,
+      0.3292936406947015,
+      0.6707063593052984,
+      0.7543511743326414,
+      0.44236520018220593
+    ],
+    "entryPatternCluster": 0.966810021960489,
+    "volatilityAffinity": 0.3292936406947015
+  },
+  {
+    "avgHoldingPeriod": 0.0008004236250278335,
+    "tradeFrequency": 1,
+    "directionBias": 0,
+    "regimePreference": [
+      0.9093936348469654,
+      0,
+      0.3692928539605279,
+      0.6307071460394721,
+      0.45882857384400055,
+      0.6803733887529273
+    ],
+    "entryPatternCluster": 0.9823816483710415,
+    "volatilityAffinity": 0.3692928539605279
+  },
+  {
+    "avgHoldingPeriod": 0.0010055019016571584,
+    "tradeFrequency": 1,
+    "directionBias": -0.004878048780487809,
+    "regimePreference": [
+      0.7479337948169846,
+      0,
+      0.35760028425343554,
+      0.6423997157465644,
+      0.49189806409368503,
+      0.5559503827633021
+    ],
+    "entryPatternCluster": 0.8247412319995391,
+    "volatilityAffinity": 0.35760028425343554
+  },
+  {
+    "avgHoldingPeriod": 0.0012381042382588773,
+    "tradeFrequency": 1,
+    "directionBias": 0.020408163265306145,
+    "regimePreference": [
+      0.6342957257528424,
+      0,
+      0.6195678117581394,
+      0.38043218824186065,
+      0.7257118826830407,
+      0.6300521085518449
+    ],
+    "entryPatternCluster": 0.913768040691017,
+    "volatilityAffinity": 0.6195678117581394
+  },
+  {
+    "avgHoldingPeriod": 0.0011998212321232124,
+    "tradeFrequency": 1,
+    "directionBias": 0.019607843137254832,
+    "regimePreference": [
+      0.7485594744417472,
+      0,
+      0.5333149757836578,
+      0.46668502421634217,
+      0.31579045731910615,
+      0.5822866562514966
+    ],
+    "entryPatternCluster": 0.9230589434107159,
+    "volatilityAffinity": 0.5333149757836578
+  },
+  {
+    "avgHoldingPeriod": 0.0010292325227963526,
+    "tradeFrequency": 1,
+    "directionBias": -0.0060606060606061,
+    "regimePreference": [
+      0.5622308159593775,
+      0,
+      0.373799032143675,
+      0.626200967856325,
+      0.4347940099782859,
+      0.7164724718259379
+    ],
+    "entryPatternCluster": 0.8771074467643094,
+    "volatilityAffinity": 0.373799032143675
+  }
+]
