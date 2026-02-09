@@ -151,7 +151,7 @@ export const CRYPTO_SYMBOLS: Record<string, { binance: string; coingecko: string
 const FX_SYMBOLS = new Set(['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD']);
 
 // Commodity symbols used in the arena
-const COMMODITY_SYMBOLS = new Set(['CL=F', 'NG=F', 'SI=F', 'HG=F', 'GC=F', 'LTHM']);
+const COMMODITY_SYMBOLS = new Set(['CL=F', 'NG=F', 'SI=F', 'HG=F', 'GC=F', 'LAC']);
 
 // Detect if a symbol is forex
 export function isFxSymbol(symbol: string): boolean {
@@ -192,8 +192,8 @@ const EODHD_SYMBOL_MAP: Record<string, EODHDSymbolInfo> = {
   'SI=F':     { wsSymbol: 'XAGUSD',  wsEndpoint: 'forex',    restSymbol: 'XAGUSD.FOREX' },
   'HG=F':     { wsSymbol: 'XCUUSD',  wsEndpoint: 'forex',    restSymbol: 'XCUUSD.FOREX' },
   // Oil & Gas — no EODHD coverage, routed to Yahoo Finance by getAdapter()
-  // LTHM as stock on US exchange
-  'LTHM':     { wsSymbol: 'LTHM',    wsEndpoint: 'us-quote', restSymbol: 'LTHM.US' },
+  // LAC (Lithium Americas) as stock on US exchange
+  'LAC':      { wsSymbol: 'LAC',     wsEndpoint: 'us-quote', restSymbol: 'LAC.US' },
   // Crypto
   'BTC':      { wsSymbol: 'BTC-USD',  wsEndpoint: 'crypto',   restSymbol: 'BTC-USD.CC' },
 };

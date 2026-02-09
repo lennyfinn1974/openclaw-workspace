@@ -166,7 +166,7 @@ export const BOT_GROUPS: Record<BotGroupName, { assetClass: string; symbols: str
   },
   Gamma: {
     assetClass: 'Commodities',
-    symbols: ['CL=F', 'NG=F', 'BTC', 'SI=F', 'HG=F', 'GC=F', 'LTHM'],
+    symbols: ['CL=F', 'NG=F', 'BTC', 'SI=F', 'HG=F', 'GC=F', 'LAC'],
   },
 };
 

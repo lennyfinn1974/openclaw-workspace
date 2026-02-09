@@ -149,8 +149,8 @@ export function getSymbolSession(symbol: string, groupName: BotGroupName): Sessi
     case 'Beta':
       return getUSStockSession();
     case 'Gamma':
-      // LTHM is a stock
-      if (symbol === 'LTHM') return getUSStockSession();
+      // LAC (Lithium Americas) is a stock
+      if (symbol === 'LAC') return getUSStockSession();
       // Gold/Silver spot trade like FX (nearly 24h)
       if (symbol === 'GC=F' || symbol === 'SI=F') return getFxSession();
       // Other commodities use futures schedule

@@ -19,7 +19,7 @@ const COMMODITIES: Record<string, CommodityConfig> = {
   'SI=F':  { symbol: 'SI=F', displayName: 'Silver', basePrice: 80.00, dailyVolatility: 0.022, avgDailyVolume: 60000, spreadBps: 5, contractMultiplier: 5000, tradingHours: 'us_futures' },
   'HG=F':  { symbol: 'HG=F', displayName: 'Copper', basePrice: 1.35, dailyVolatility: 0.020, avgDailyVolume: 50000, spreadBps: 5, contractMultiplier: 25000, tradingHours: 'us_futures' },
   'GC=F':  { symbol: 'GC=F', displayName: 'Gold', basePrice: 4970.00, dailyVolatility: 0.012, avgDailyVolume: 200000, spreadBps: 2, contractMultiplier: 100, tradingHours: 'nearly_24h' },
-  'LTHM':  { symbol: 'LTHM', displayName: 'Lithium Americas', basePrice: 5.80, dailyVolatility: 0.055, avgDailyVolume: 3000000, spreadBps: 20, contractMultiplier: 1, tradingHours: 'us_futures' },
+  'LAC':   { symbol: 'LAC', displayName: 'Lithium Americas', basePrice: 4.65, dailyVolatility: 0.055, avgDailyVolume: 2000000, spreadBps: 20, contractMultiplier: 1, tradingHours: 'us_futures' },
   // BTC is handled by Binance adapter, but we keep a config for fallback
   'BTC':   { symbol: 'BTC', displayName: 'Bitcoin', basePrice: 68000, dailyVolatility: 0.035, avgDailyVolume: 25000000000, spreadBps: 5, contractMultiplier: 1, tradingHours: 'crypto' },
 };

@@ -49,7 +49,7 @@ const technicalAnalysis = new TechnicalAnalysis();
 const ARENA_SYMBOLS = new Set([
   'GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD',
   'NVDA', 'TSLA', 'AMD', 'COIN', 'ROKU', 'PLTR', 'MSTR',
-  'GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F', 'LTHM', 'BTC'
+  'GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F', 'LAC', 'BTC'
 ]);
 const arenaSimRejected = new Set<string>(); // track logged rejections
 

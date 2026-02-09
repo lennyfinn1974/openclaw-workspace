@@ -30,7 +30,7 @@ export class ArenaMarketDataHub extends EventEmitter {
   private readonly ARENA_SYMBOLS = {
     Alpha: ['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD'], // FX
     Beta: ['NVDA', 'TSLA', 'AMD', 'COIN', 'ROKU', 'PLTR', 'MSTR'], // Stocks  
-    Gamma: ['GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F', 'LTHM'] // Commodities
+    Gamma: ['GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F', 'LAC'] // Commodities
   };
 
   constructor(apiKey: string) {
