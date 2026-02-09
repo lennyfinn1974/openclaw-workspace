@@ -1,11 +1,11 @@
 {
-  "mutationRate": 0.15,
+  "mutationRate": 0.1720152970933074,
   "selectionPressure": 4,
-  "noveltyWeight": 0.3,
-  "explorationRate": 0.2,
-  "retirementThreshold": -0.5,
-  "populationSize": 26,
-  "lastTuned": 1770632342252,
+  "noveltyWeight": 0.267758857631271,
+  "explorationRate": 0.19658397839992878,
+  "retirementThreshold": -0.7439897715145909,
+  "populationSize": 27,
+  "lastTuned": 1770649122058,
   "tuningHistory": [
     {
       "params": {
@@ -54,6 +54,234 @@
       },
       "fitness": 0.29294553254184547,
       "timestamp": 1770632342252
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.3,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770632942254
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.2953150351061634,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770634184202
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.33095479268511085,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770634784208
+    },
+    {
+      "params": {
+        "mutationRate": 0.15,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.33095479268511085,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770640032221
+    },
+    {
+      "params": {
+        "mutationRate": 0.14693558189021305,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.33095479268511085,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770640632220
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.33095479268511085,
+        "explorationRate": 0.2,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770641232219
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.33095479268511085,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770641921998
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.2935519624668874,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.5,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770642521999
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.2935519624668874,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.4377360277258375,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770643122005
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.2935519624668874,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.47443950724501566,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770643722009
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.47443950724501566,
+        "populationSize": 26
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770644322015
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.47443950724501566,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770644922021
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.5647094766802624,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770645522025
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.219969613970881,
+        "retirementThreshold": -0.645098769676759,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770646122030
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.20500913381548597,
+        "retirementThreshold": -0.645098769676759,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770646722037
+    },
+    {
+      "params": {
+        "mutationRate": 0.16540851832112893,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.20500913381548597,
+        "retirementThreshold": -0.7439897715145909,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770647322043
+    },
+    {
+      "params": {
+        "mutationRate": 0.1720152970933074,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.20500913381548597,
+        "retirementThreshold": -0.7439897715145909,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770647922048
+    },
+    {
+      "params": {
+        "mutationRate": 0.1720152970933074,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.17851397088794901,
+        "retirementThreshold": -0.7439897715145909,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770648522052
+    },
+    {
+      "params": {
+        "mutationRate": 0.1720152970933074,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.267758857631271,
+        "explorationRate": 0.16790449067673766,
+        "retirementThreshold": -0.7439897715145909,
+        "populationSize": 27
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770649122058
     }
   ]
 }
