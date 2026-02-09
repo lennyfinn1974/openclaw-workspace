@@ -1,11 +1,11 @@
 {
-  "mutationRate": 0.1720152970933074,
+  "mutationRate": 0.17507263670887865,
   "selectionPressure": 4,
-  "noveltyWeight": 0.267758857631271,
-  "explorationRate": 0.19658397839992878,
-  "retirementThreshold": -0.7439897715145909,
-  "populationSize": 27,
-  "lastTuned": 1770649122058,
+  "noveltyWeight": 0.34423165285612584,
+  "explorationRate": 0.147331560695021,
+  "retirementThreshold": -0.631059423535877,
+  "populationSize": 42,
+  "lastTuned": 1770651197188,
   "tuningHistory": [
     {
       "params": {
@@ -137,151 +137,187 @@
         "populationSize": 26
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770641921998
+      "timestamp": 1770641832223
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.2935519624668874,
+        "noveltyWeight": 0.3237376664654286,
         "explorationRate": 0.219969613970881,
         "retirementThreshold": -0.5,
         "populationSize": 26
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770642521999
+      "timestamp": 1770642432230
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.2935519624668874,
+        "noveltyWeight": 0.3237376664654286,
         "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.4377360277258375,
-        "populationSize": 26
+        "retirementThreshold": -0.5,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770643122005
+      "timestamp": 1770643032238
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.2935519624668874,
-        "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.47443950724501566,
-        "populationSize": 26
+        "noveltyWeight": 0.3237376664654286,
+        "explorationRate": 0.1960064912196232,
+        "retirementThreshold": -0.5,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770643722009
+      "timestamp": 1770643632241
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.47443950724501566,
-        "populationSize": 26
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.1960064912196232,
+        "retirementThreshold": -0.5,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770644322015
+      "timestamp": 1770644597134
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.47443950724501566,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.1960064912196232,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770644922021
+      "timestamp": 1770645197141
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.5647094766802624,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.1960064912196232,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770645522025
+      "timestamp": 1770645797146
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.219969613970881,
-        "retirementThreshold": -0.645098769676759,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 28
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770646122030
+      "timestamp": 1770646397151
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.20500913381548597,
-        "retirementThreshold": -0.645098769676759,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 32
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770646722037
+      "timestamp": 1770646997157
     },
     {
       "params": {
         "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.20500913381548597,
-        "retirementThreshold": -0.7439897715145909,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 32
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770647322043
+      "timestamp": 1770647597161
     },
     {
       "params": {
-        "mutationRate": 0.1720152970933074,
+        "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.20500913381548597,
-        "retirementThreshold": -0.7439897715145909,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.5334110258872217,
+        "populationSize": 35
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770647922048
+      "timestamp": 1770648197167
     },
     {
       "params": {
-        "mutationRate": 0.1720152970933074,
+        "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.17851397088794901,
-        "retirementThreshold": -0.7439897715145909,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.631059423535877,
+        "populationSize": 35
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770648522052
+      "timestamp": 1770648797171
     },
     {
       "params": {
-        "mutationRate": 0.1720152970933074,
+        "mutationRate": 0.16540851832112893,
         "selectionPressure": 4,
-        "noveltyWeight": 0.267758857631271,
-        "explorationRate": 0.16790449067673766,
-        "retirementThreshold": -0.7439897715145909,
-        "populationSize": 27
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.631059423535877,
+        "populationSize": 39
       },
       "fitness": 0.29294553254184547,
-      "timestamp": 1770649122058
+      "timestamp": 1770649397174
+    },
+    {
+      "params": {
+        "mutationRate": 0.17507263670887865,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.16704978288027864,
+        "retirementThreshold": -0.631059423535877,
+        "populationSize": 39
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770649997179
+    },
+    {
+      "params": {
+        "mutationRate": 0.17507263670887865,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.1379810785275756,
+        "retirementThreshold": -0.631059423535877,
+        "populationSize": 39
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770650597184
+    },
+    {
+      "params": {
+        "mutationRate": 0.17507263670887865,
+        "selectionPressure": 4,
+        "noveltyWeight": 0.34423165285612584,
+        "explorationRate": 0.147331560695021,
+        "retirementThreshold": -0.631059423535877,
+        "populationSize": 39
+      },
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770651197188
     }
   ]
 }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Wargames Arena - 21 Bot Tournament</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Monaco', 'Courier New', monospace; 
+            background: #0a0a0a; 
+            color: #00ff00; 
+            overflow-x: auto;
+        }
+        .header {
+            background: linear-gradient(90deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #00ff00;
+        }
+        .arena-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .bot-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .bot-card:hover { border-color: #00ff00; }
+        .bot-name { color: #00ffff; font-weight: bold; }
+        .bot-group { color: #ffaa00; }
+        .bot-symbol { color: #ff6666; }
+        .pnl-positive { color: #00ff00; }
+        .pnl-negative { color: #ff4444; }
+        .status-panel {
+            background: #111;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .refresh-btn {
+            background: #00aa00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .refresh-btn:hover { background: #00ff00; color: #000; }
+        .loading { text-align: center; color: #ffaa00; padding: 20px; }
+        .error { color: #ff4444; text-align: center; padding: 20px; }
+        .tournament-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.5em; color: #00ffff; }
+        .stat-label { color: #999; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 WARGAMES ARENA - 21 BOT TOURNAMENT</h1>
+        <p>Meta-Cognitive Trading Intelligence vs Static Bots</p>
+        <button class="refresh-btn" onclick="loadArenaData()">🔄 Refresh Data</button>
+        <span id="lastUpdate"></span>
+    </div>
+
+    <div id="content">
+        <div class="loading">🔄 Loading Arena Data...</div>
+    </div>
+
+    <script>
+        let updateInterval;
+
+        async function loadArenaData() {
+            try {
+                const response = await fetch('http://localhost:8101/api/arena/status');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const data = await response.json();
+                displayArenaData(data);
+                document.getElementById('lastUpdate').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div class="error">❌ Error loading arena data: ${error.message}</div>
+                    <div class="error">Make sure the Arena API is running on localhost:8101</div>
+                `;
+            }
+        }
+
+        function displayArenaData(data) {
+            const tournament = data.tournament;
+            const bots = data.dataFeed || [];
+            const groups = data.groups || [];
+            
+            const html = `
+                <div class="status-panel">
+                    <h2>🎯 Tournament Status</h2>
+                    <div class="tournament-status">
+                        <div class="stat-box">
+                            <div class="stat-value">${data.generation}</div>
+                            <div class="stat-label">Generation</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${tournament.currentRound}/${tournament.totalRounds}</div>
+                            <div class="stat-label">Round</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${data.totalBots}</div>
+                            <div class="stat-label">Total Bots</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${data.totalTrades}</div>
+                            <div class="stat-label">Total Trades</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${tournament.status.toUpperCase()}</div>
+                            <div class="stat-label">Status</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">${data.localTime}</div>
+                            <div class="stat-label">Local Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-panel">
+                    <h2>📊 Asset Class Groups</h2>
+                    <div class="tournament-status">
+                        ${groups.map(group => `
+                            <div class="stat-box">
+                                <div class="stat-value ${group.avgPnL >= 0 ? 'pnl-positive' : 'pnl-negative'}">
+                                    $${group.avgPnL.toFixed(2)}
+                                </div>
+                                <div class="stat-label">${group.name} (${group.assetClass})</div>
+                                <div class="stat-label">${group.botCount} bots</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="status-panel">
+                    <h2>🤖 Live Trading Bots</h2>
+                    <div class="arena-grid">
+                        ${bots.map(bot => `
+                            <div class="bot-card">
+                                <div class="bot-name">🤖 ${bot.botName}</div>
+                                <div class="bot-group">[${bot.group}] ${bot.symbol}</div>
+                                <div class="bot-symbol">💰 Price: $${bot.price?.toFixed(2) || 'N/A'}</div>
+                                <div style="margin-top: 8px;">
+                                    ${bot.isLive ? '🟢 LIVE' : '🔴 OFFLINE'} | 
+                                    ${bot.canTrade ? '✅ Trading' : '⛔ No Trade'}
+                                </div>
+                                <div style="margin-top: 4px; color: #999;">
+                                    Session: ${bot.sessionName}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('content').innerHTML = html;
+        }
+
+        // Auto-refresh every 5 seconds
+        function startAutoRefresh() {
+            loadArenaData(); // Initial load
+            updateInterval = setInterval(loadArenaData, 5000);
+        }
+
+        // Start when page loads
+        window.addEventListener('load', startAutoRefresh);
+
+        // Clean up interval on page unload
+        window.addEventListener('beforeunload', () => {
+            if (updateInterval) clearInterval(updateInterval);
+        });
+    </script>
+</body>
+</html>
