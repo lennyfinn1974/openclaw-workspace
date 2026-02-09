@@ -32,6 +32,8 @@ export class ArenaSocketClient extends EventEmitter {
         clearTimeout(connectTimeout);
         this.connected = true;
         this.reconnectAttempts = 0;
+        // Subscribe to the arena room
+        this.socket!.emit('arena:subscribe');
         this.emit('connected');
         resolve();
       });
@@ -49,39 +51,38 @@ export class ArenaSocketClient extends EventEmitter {
         }
       });
 
-      // Arena events
-      this.socket.on('trade', (data: any) => {
+      // Arena-specific events (arena: prefix)
+      this.socket.on('arena:bot:trade', (data: any) => {
         const trade = this.normalizeTrade(data);
         if (trade) this.emit('trade', trade);
       });
 
-      this.socket.on('trade:executed', (data: any) => {
-        const trade = this.normalizeTrade(data);
-        if (trade) this.emit('trade', trade);
-      });
-
-      this.socket.on('leaderboard', (data: any) => {
+      this.socket.on('arena:leaderboard', (data: any) => {
         this.emit('leaderboard', this.normalizeLeaderboard(data));
       });
 
-      this.socket.on('leaderboard:update', (data: any) => {
-        this.emit('leaderboard', this.normalizeLeaderboard(data));
-      });
-
-      this.socket.on('fitness:update', (data: any) => {
-        this.emit('fitness', data);
-      });
-
-      this.socket.on('dna:mutation', (data: any) => {
-        this.emit('dna_change', data);
-      });
-
-      this.socket.on('evolution:cycle', (data: any) => {
+      this.socket.on('arena:evolution', (data: any) => {
         this.emit('evolution', data);
       });
 
-      this.socket.on('regime:change', (data: any) => {
-        this.emit('regime_change', data);
+      this.socket.on('arena:tournament', (data: any) => {
+        this.emit('tournament', data);
+      });
+
+      this.socket.on('arena:status', (data: any) => {
+        this.emit('arena_status', data);
+      });
+
+      // Continuous arena events
+      this.socket.on('continuous:trade', (data: any) => {
+        const trade = this.normalizeTrade(data);
+        if (trade) this.emit('trade', trade);
+      });
+
+      // General trade events (fallback)
+      this.socket.on('trade', (data: any) => {
+        const trade = this.normalizeTrade(data);
+        if (trade) this.emit('trade', trade);
       });
     });
   }
@@ -95,7 +96,7 @@ export class ArenaSocketClient extends EventEmitter {
       direction: (data.direction || data.action || data.side || 'buy').toLowerCase() as 'buy' | 'sell',
       quantity: data.quantity || data.amount || data.size || 0,
       price: data.price || 0,
-      timestamp: data.timestamp || Date.now(),
+      timestamp: typeof data.timestamp === 'string' ? new Date(data.timestamp).getTime() : (data.timestamp || Date.now()),
       regime: (data.regime || data.market_regime || 'RANGING') as MarketRegime,
       confidence: data.confidence,
       indicators: data.indicators || data.preTradeIndicators,
@@ -104,16 +105,16 @@ export class ArenaSocketClient extends EventEmitter {
   }
 
   private normalizeLeaderboard(data: any): LeaderboardEntry[] {
-    const items = Array.isArray(data) ? data : (data?.leaderboard || data?.data || []);
+    const items = Array.isArray(data) ? data : (data?.entries || data?.leaderboard || data?.data || []);
     return items.map((e: any, i: number) => ({
       botId: e.botId || e.bot_id || e.id,
       rank: e.rank || i + 1,
       fitness: e.fitness || 0,
-      pnl: e.pnl || e.totalPnl || 0,
-      winRate: e.winRate || e.win_rate || 0,
-      sharpe: e.sharpe || e.sharpeRatio || 0,
-      drawdown: e.drawdown || e.maxDrawdown || 0,
-      tradeCount: e.tradeCount || e.trade_count || e.trades || 0
+      pnl: e.totalPnL ?? e.pnl ?? e.totalPnl ?? 0,
+      winRate: e.winRate ?? e.win_rate ?? 0,
+      sharpe: e.sharpeRatio ?? e.sharpe ?? 0,
+      drawdown: e.maxDrawdown ?? e.drawdown ?? 0,
+      tradeCount: e.totalTrades ?? e.tradeCount ?? e.trade_count ?? 0
     }));
   }
 

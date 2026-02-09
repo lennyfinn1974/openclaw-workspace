@@ -31,14 +31,14 @@ export class ArenaRestClient extends EventEmitter {
   }
 
   async fetchHealth(): Promise<any> {
-    const resp = await fetch(`${this.baseUrl}/health`);
+    const resp = await fetch(`${this.baseUrl}/api/health`);
     if (!resp.ok) throw new Error(`Arena health check failed: ${resp.status}`);
     return resp.json();
   }
 
   async fetchLeaderboard(): Promise<LeaderboardEntry[]> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/leaderboard`);
+      const resp = await fetch(`${this.baseUrl}/api/arena/leaderboard`);
       if (!resp.ok) return [];
       const data = await resp.json();
       return this.normalizeLeaderboard(data);
@@ -49,7 +49,7 @@ export class ArenaRestClient extends EventEmitter {
 
   async fetchBotTrades(botId: string, limit = 100): Promise<ArenaTrade[]> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/bots/${botId}/trades?limit=${limit}`);
+      const resp = await fetch(`${this.baseUrl}/api/arena/bots/${botId}/trades?limit=${limit}`);
       if (!resp.ok) return [];
       const data = await resp.json();
       return this.normalizeTrades(data);
@@ -60,11 +60,11 @@ export class ArenaRestClient extends EventEmitter {
 
   async fetchAllBots(): Promise<string[]> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/bots`);
+      const resp = await fetch(`${this.baseUrl}/api/arena/bots`);
       if (!resp.ok) return [];
       const data = await resp.json();
       if (Array.isArray(data)) {
-        return data.map((b: any) => b.id || b.botId || b);
+        return data.map((b: any) => b.botId || b.id || b);
       }
       return [];
     } catch {
@@ -74,7 +74,7 @@ export class ArenaRestClient extends EventEmitter {
 
   async fetchRecentTrades(limit = 50): Promise<ArenaTrade[]> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/trades/recent?limit=${limit}`);
+      const resp = await fetch(`${this.baseUrl}/api/trades?limit=${limit}`);
       if (!resp.ok) return [];
       const data = await resp.json();
       return this.normalizeTrades(data);
@@ -85,7 +85,7 @@ export class ArenaRestClient extends EventEmitter {
 
   async fetchBotDNA(botId: string): Promise<BotDNA | null> {
     try {
-      const resp = await fetch(`${this.baseUrl}/api/bots/${botId}/dna`);
+      const resp = await fetch(`${this.baseUrl}/api/arena/bots/${botId}/dna-history`);
       if (!resp.ok) return null;
       return resp.json() as Promise<BotDNA>;
     } catch {
@@ -120,7 +120,7 @@ export class ArenaRestClient extends EventEmitter {
       direction: (t.direction || t.action || t.side || 'buy').toLowerCase() as 'buy' | 'sell',
       quantity: t.quantity || t.amount || t.size || 0,
       price: t.price || 0,
-      timestamp: t.timestamp || Date.now(),
+      timestamp: typeof t.timestamp === 'string' ? new Date(t.timestamp).getTime() : (t.timestamp || Date.now()),
       regime: (t.regime || t.market_regime || 'RANGING') as MarketRegime,
       confidence: t.confidence,
       indicators: t.indicators || t.preTradeIndicators || undefined,
@@ -129,16 +129,16 @@ export class ArenaRestClient extends EventEmitter {
   }
 
   private normalizeLeaderboard(data: any): LeaderboardEntry[] {
-    const items = Array.isArray(data) ? data : (data?.leaderboard || data?.data || []);
+    const items = Array.isArray(data) ? data : (data?.entries || data?.leaderboard || data?.data || []);
     return items.map((e: any, i: number) => ({
       botId: e.botId || e.bot_id || e.id,
       rank: e.rank || i + 1,
       fitness: e.fitness || 0,
-      pnl: e.pnl || e.totalPnl || 0,
-      winRate: e.winRate || e.win_rate || 0,
-      sharpe: e.sharpe || e.sharpeRatio || 0,
-      drawdown: e.drawdown || e.maxDrawdown || 0,
-      tradeCount: e.tradeCount || e.trade_count || e.trades || 0
+      pnl: e.totalPnL ?? e.pnl ?? e.totalPnl ?? 0,
+      winRate: e.winRate ?? e.win_rate ?? 0,
+      sharpe: e.sharpeRatio ?? e.sharpe ?? 0,
+      drawdown: e.maxDrawdown ?? e.drawdown ?? 0,
+      tradeCount: e.totalTrades ?? e.tradeCount ?? e.trade_count ?? 0
     }));
   }
 
