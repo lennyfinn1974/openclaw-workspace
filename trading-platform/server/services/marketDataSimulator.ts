@@ -462,9 +462,11 @@ export class MarketDataSimulator extends EventEmitter {
     if (['BTC', 'ETH', 'SOL', 'BNB', 'XRP'].includes(symbol)) {
       return 'binance';
     }
-    if (['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'GC=F', 'SI=F', 'CL=F', 'NG=F', 'HG=F'].includes(symbol)) {
+    // EODHD covers forex + gold/silver/copper via FOREX endpoint
+    if (['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'GC=F', 'SI=F', 'HG=F'].includes(symbol)) {
       return 'eodhd';
     }
+    // Oil, natural gas, LTHM → Yahoo Finance
     // Default to yahoo for stocks
     return 'yahoo';
   }

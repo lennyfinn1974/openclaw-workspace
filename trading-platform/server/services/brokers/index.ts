@@ -192,11 +192,13 @@ export class MarketDataProvider extends EventEmitter {
     }
 
     if (assetType === 'forex') {
+      // EODHD failed or not available → fall back to simulator
       return forexSimulator;
     }
 
     if (assetType === 'commodity') {
-      return commoditySimulator;
+      // Commodities without EODHD mapping (CL=F, NG=F) → Yahoo Finance
+      return this.yahooAdapter;
     }
 
     // For stocks: EODHD if available, then Alpaca, then Yahoo
@@ -227,8 +229,9 @@ export class MarketDataProvider extends EventEmitter {
     }
 
     if (assetType === 'commodity') {
-      // EODHD failed → fall back to simulator
-      if (failedSource === 'eodhd') return commoditySimulator;
+      // EODHD failed → try Yahoo Finance; Yahoo failed → simulator
+      if (failedSource === 'eodhd') return this.yahooAdapter;
+      if (failedSource === 'yahoo') return commoditySimulator;
     }
 
     if (assetType === 'crypto') {
