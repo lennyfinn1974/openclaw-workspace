@@ -21,32 +21,41 @@ const STALE_THRESHOLD_MS = 60_000; // 60 seconds
 export class MarketDataCache extends EventEmitter {
   private quotes: Map<string, CachedQuote> = new Map();
   private priceHistories: Map<string, { price: number; timestamp: number }[]> = new Map();
+  private lastHistoryUpdate: Map<string, number> = new Map();
   private maxHistoryLength = 500;
+  private historyThrottleMs = 1000; // Only record price history once per second per symbol
 
   /**
    * Update the cache with a new quote from the arena.
    */
   update(quote: { symbol: string; price: number; bid?: number; ask?: number; volume?: number }): void {
+    if (!quote.price || !isFinite(quote.price)) return;
+
+    const now = Date.now();
     const cached: CachedQuote = {
       symbol: quote.symbol,
       price: quote.price,
       bid: quote.bid ?? quote.price * 0.9999,
       ask: quote.ask ?? quote.price * 1.0001,
-      timestamp: Date.now(),
+      timestamp: now,
       volume: quote.volume,
     };
 
     this.quotes.set(quote.symbol, cached);
 
-    // Track price history
-    let history = this.priceHistories.get(quote.symbol);
-    if (!history) {
-      history = [];
-      this.priceHistories.set(quote.symbol, history);
-    }
-    history.push({ price: quote.price, timestamp: cached.timestamp });
-    if (history.length > this.maxHistoryLength) {
-      history.shift();
+    // Track price history (throttled: max once per second per symbol)
+    const lastUpdate = this.lastHistoryUpdate.get(quote.symbol) || 0;
+    if (now - lastUpdate >= this.historyThrottleMs) {
+      let history = this.priceHistories.get(quote.symbol);
+      if (!history) {
+        history = [];
+        this.priceHistories.set(quote.symbol, history);
+      }
+      history.push({ price: quote.price, timestamp: now });
+      if (history.length > this.maxHistoryLength) {
+        history.shift();
+      }
+      this.lastHistoryUpdate.set(quote.symbol, now);
     }
 
     this.emit('quote:updated', cached);

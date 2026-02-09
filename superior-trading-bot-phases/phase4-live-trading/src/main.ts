@@ -207,8 +207,15 @@ async function main(): Promise<void> {
   // 10. Wire event connections
 
   // Arena → MarketDataCache (quotes)
+  // Arena sends { symbol, bid, ask, last, volume, ... }
   arena.on('quote', (quote: any) => {
-    marketData.update(quote);
+    marketData.update({
+      symbol: quote.symbol,
+      price: quote.last ?? quote.price ?? 0,
+      bid: quote.bid,
+      ask: quote.ask,
+      volume: quote.volume,
+    });
   });
 
   // Arena → MarketDataCache (trade prices as quotes)

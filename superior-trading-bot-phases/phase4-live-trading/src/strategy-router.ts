@@ -125,10 +125,11 @@ export class StrategyRouter extends EventEmitter {
       if (regimeSig) signals.push(regimeSig);
     }
 
-    // Pick the best signal (highest strength) and emit as proposal
-    if (signals.length > 0) {
-      signals.sort((a, b) => b.strength - a.strength);
-      const best = signals[0];
+    // Filter out any NaN strength signals and pick the best
+    const validSignals = signals.filter(s => isFinite(s.strength) && s.strength > 0);
+    if (validSignals.length > 0) {
+      validSignals.sort((a, b) => b.strength - a.strength);
+      const best = validSignals[0];
 
       console.log(
         `[STRATEGY] Signal: ${best.strategyName} ` +
@@ -144,8 +145,11 @@ export class StrategyRouter extends EventEmitter {
   // ===================== STRATEGIES =====================
 
   private momentumStrategy(symbol: string, price: number): StrategySignal | null {
+    const history = this.marketData.getPriceHistory(symbol, 20);
+    if (history.length < 5) return null; // Need minimum data
+
     const momentum = this.marketData.getMomentum(symbol, 20);
-    if (momentum === null) return null;
+    if (momentum === null || !isFinite(momentum)) return null;
 
     const threshold = 0.002; // 0.2% price move
     if (Math.abs(momentum) < threshold) return null;
@@ -153,17 +157,21 @@ export class StrategyRouter extends EventEmitter {
     const direction: TradeDirection = momentum > 0 ? 'buy' : 'sell';
     const strength = Math.min(1, Math.abs(momentum) / 0.01); // normalize to 1% max
 
-    if (strength < 0.3) return null;
+    if (!isFinite(strength) || strength < 0.3) return null;
 
     return this.buildSignal('momentum', 'Momentum Breakout', symbol, direction, strength,
       `Price momentum ${(momentum * 100).toFixed(2)}% over 20 periods`);
   }
 
   private meanReversionStrategy(symbol: string, price: number): StrategySignal | null {
+    const history = this.marketData.getPriceHistory(symbol, 30);
+    if (history.length < 5) return null;
+
     const avgPrice = this.marketData.getAveragePrice(symbol, 30);
-    if (avgPrice === null) return null;
+    if (avgPrice === null || avgPrice === 0) return null;
 
     const deviation = (price - avgPrice) / avgPrice;
+    if (!isFinite(deviation)) return null;
     const threshold = 0.003; // 0.3% deviation
     if (Math.abs(deviation) < threshold) return null;
 
@@ -171,7 +179,7 @@ export class StrategyRouter extends EventEmitter {
     const direction: TradeDirection = deviation < 0 ? 'buy' : 'sell';
     const strength = Math.min(1, Math.abs(deviation) / 0.01);
 
-    if (strength < 0.3) return null;
+    if (!isFinite(strength) || strength < 0.3) return null;
 
     return this.buildSignal('mean-reversion', 'Mean Reversion', symbol, direction, strength,
       `Price deviation ${(deviation * 100).toFixed(2)}% from 30-period average`);
@@ -262,7 +270,7 @@ export class StrategyRouter extends EventEmitter {
       case 'TRENDING': {
         // In trending regime, go with momentum
         const momentum = this.marketData.getMomentum(symbol, 10);
-        if (momentum === null || Math.abs(momentum) < 0.001) return null;
+        if (momentum === null || !isFinite(momentum) || Math.abs(momentum) < 0.001) return null;
         const direction: TradeDirection = momentum > 0 ? 'buy' : 'sell';
         return this.buildSignal('regime-adaptive', 'Regime Adaptive', symbol, direction,
           Math.min(1, Math.abs(momentum) / 0.008 + 0.2),

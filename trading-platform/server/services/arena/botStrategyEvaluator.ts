@@ -193,7 +193,7 @@ export class BotStrategyEvaluator {
     }
 
     // ============ DECISION ============
-    const threshold = 0.15 + dna.timing.entryPatience * 0.25; // range 0.15-0.40
+    const threshold = 0.05 + dna.timing.entryPatience * 0.10; // range 0.05-0.15 (aggressive for testing)
 
     // Check max open positions
     const maxPositions = Math.round(dna.positionSizing.maxOpenPositions);
@@ -268,8 +268,8 @@ export class BotStrategyEvaluator {
 
     // Time stop (bars since entry - simplified, check recent trend)
     const recentTrend = (closes[closes.length - 1] - closes[closes.length - Math.min(10, closes.length)]) / closes[closes.length - Math.min(10, closes.length)];
-    if (Math.abs(recentTrend) < 0.001 && dna.exitStrategy.timeStopBars < 20) {
-      return { strength: 0.4, reason: 'Time stop - no movement' };
+    if (Math.abs(recentTrend) < 0.01) { // loosened for testing (was 0.001 + timeStopBars check)
+      return { strength: 0.4, reason: 'Time stop - low movement' };
     }
 
     // Trailing stop concept
@@ -279,6 +279,13 @@ export class BotStrategyEvaluator {
       if (dropFromHigh > dna.exitStrategy.trailingStopAtr * atr / currentPrice) {
         return { strength: 0.8, reason: 'Trailing stop hit' };
       }
+    }
+
+    // Forced profit-taking / stop-loss (testing: any 1% move triggers exit)
+    const entryApprox = closes[Math.max(0, closes.length - 20)];
+    const pctMove = Math.abs(currentPrice - entryApprox) / entryApprox;
+    if (pctMove > 0.01) {
+      return { strength: 0.6, reason: `Price moved ${(pctMove * 100).toFixed(1)}% from recent` };
     }
 
     return null;

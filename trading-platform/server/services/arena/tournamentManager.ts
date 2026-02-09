@@ -188,7 +188,7 @@ export class TournamentManager extends EventEmitter {
     const roundId = uuidv4();
 
     this.db.prepare(`
-      INSERT INTO tournament_rounds (id, tournament_id, round_number, status, started_at)
+      INSERT OR REPLACE INTO tournament_rounds (id, tournament_id, round_number, status, started_at)
       VALUES (?, ?, ?, 'running', datetime('now'))
     `).run(roundId, t.id, roundNumber);
 

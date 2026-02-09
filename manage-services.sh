@@ -4,6 +4,7 @@
 LAUNCHD_DIR="$HOME/Library/LaunchAgents"
 SERVICES=(
     "com.openclaw.gateway"
+    "com.openclaw.nexus-agent"
     "com.openclaw.trading-platform" 
     "com.openclaw.hybrid-kanban"
     "com.openclaw.sovereign-core"

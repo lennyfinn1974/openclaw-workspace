@@ -8,6 +8,7 @@ import { getArenaStatus, getBots, getLeaderboard, getMasterBot } from '@/service
 import { ArenaHeader } from './ArenaHeader';
 import { TournamentControls } from './TournamentControls';
 import { TournamentTimer } from './TournamentTimer';
+import { ContinuousControls } from './ContinuousControls';
 import { ArenaStats } from './ArenaStats';
 import { GroupCard } from './GroupCard';
 import { Leaderboard } from './Leaderboard';
@@ -134,6 +135,9 @@ export function ArenaDashboard() {
         <TournamentControls />
         <TournamentTimer />
       </div>
+
+      {/* Continuous Arena Controls */}
+      <ContinuousControls />
 
       {/* Stats */}
       <ArenaStats />
