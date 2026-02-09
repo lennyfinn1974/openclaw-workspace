@@ -1,11 +1,11 @@
 {
   "mutationRate": 0.15,
   "selectionPressure": 4,
-  "noveltyWeight": 0.3046741593432949,
+  "noveltyWeight": 0.3,
   "explorationRate": 0.2,
   "retirementThreshold": -0.5,
-  "populationSize": 24,
-  "lastTuned": 1770632225894,
+  "populationSize": 26,
+  "lastTuned": 1770632342252,
   "tuningHistory": [
     {
       "params": {
@@ -52,8 +52,8 @@
         "retirementThreshold": -0.5,
         "populationSize": 24
       },
-      "fitness": 0.28554691713459357,
-      "timestamp": 1770632225894
+      "fitness": 0.29294553254184547,
+      "timestamp": 1770632342252
     }
   ]
 }

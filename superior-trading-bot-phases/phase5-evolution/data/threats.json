@@ -2,8 +2,8 @@
   {
     "botId": "95bf3684-c267-4c80-87be-432529702016",
     "botName": "Silicon Shark",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.5,
@@ -21,8 +21,8 @@
   {
     "botId": "a59cd732-4d6c-405f-91d6-02fe946b2cd5",
     "botName": "Crypto King",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.3564356435643564,
@@ -40,15 +40,15 @@
   {
     "botId": "2c2a74fc-b020-4194-8909-a05bb882ad9e",
     "botName": "Gas Guzzler",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.5,
-      -0.20084762243862894,
+      -0.20145670275645375,
       0,
       1,
-      0.2024962795547435
+      0.20299289392984224
     ],
     "weaknesses": [
       "low_win_rate",
@@ -59,34 +59,15 @@
   {
     "botId": "542626e7-a7ce-4c3a-bb6f-1df311e6683c",
     "botName": "Lithium Lion",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
-      0.5,
-      -0.17927539612037366,
+      0.4979253112033195,
+      -0.17809753518976898,
       0,
       1,
-      0.18533745609151753
-    ],
-    "weaknesses": [
-      "low_win_rate",
-      "low_sharpe",
-      "recent_underperformance"
-    ]
-  },
-  {
-    "botId": "e54b7dd8-c833-407a-bdf5-022759ed398a",
-    "botName": "Oil Baron",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
-    "dominanceScore": 1,
-    "dnaFingerprint": [
-      0.488,
-      -0.1800916476334645,
-      0,
-      1,
-      0.18640919572926665
+      0.18371278004941957
     ],
     "weaknesses": [
       "low_win_rate",
@@ -97,15 +78,34 @@
   {
     "botId": "3eb3b266-7c3d-4327-a101-82ebfe81f9c5",
     "botName": "Data Dragon",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.5,
-      -0.20294803199995323,
+      -0.1966728959999547,
       0,
       1,
-      0.20704072111430505
+      0.19767551334757422
+    ],
+    "weaknesses": [
+      "low_win_rate",
+      "low_sharpe",
+      "recent_underperformance"
+    ]
+  },
+  {
+    "botId": "e54b7dd8-c833-407a-bdf5-022759ed398a",
+    "botName": "Oil Baron",
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
+    "dominanceScore": 1,
+    "dnaFingerprint": [
+      0.464,
+      -0.16732640188890177,
+      0,
+      1,
+      0.17914205755075202
     ],
     "weaknesses": [
       "low_win_rate",
@@ -116,15 +116,15 @@
   {
     "botId": "cc93de7c-9ac3-459f-9b25-1f3c3a57d265",
     "botName": "Silver Surfer",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
-      0.484,
-      -0.1852694400260827,
+      0.492,
+      -0.19415708152563296,
       0,
       1,
-      0.19225958236151808
+      0.19642330373125833
     ],
     "weaknesses": [
       "low_win_rate",
@@ -135,15 +135,15 @@
   {
     "botId": "09af10cd-1c46-494d-8743-8978f1afe146",
     "botName": "Gold Golem",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
-      0.336,
-      -0.07777768217302027,
+      0.332,
+      -0.07776254288604709,
       0,
       1,
-      0.06449783048039673
+      0.06402918478270342
     ],
     "weaknesses": [
       "low_win_rate",
@@ -154,15 +154,15 @@
   {
     "botId": "54ab9080-1824-4726-9c7b-922ccb3c7024",
     "botName": "Coin Cobra",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.5,
-      -0.18076967999994054,
+      -0.1616994719999468,
       0,
       1,
-      0.2080499976156435
+      0.16457887895291937
     ],
     "weaknesses": [
       "low_win_rate",
@@ -173,15 +173,15 @@
   {
     "botId": "50c25587-ca18-483f-84c3-1d1fbbf62041",
     "botName": "Meme Machine",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
+    "winsAgainstUs": 7,
+    "totalMatchups": 7,
     "dominanceScore": 1,
     "dnaFingerprint": [
       0.5,
-      -0.19909241599990402,
+      -0.18345542399991155,
       0,
       1,
-      0.2283702970649567
+      0.19617930986625298
     ],
     "weaknesses": [
       "low_win_rate",
@@ -192,15 +192,34 @@
   {
     "botId": "0684ca7d-ddab-43af-a975-a17a21a7208b",
     "botName": "Yen Yogi",
-    "winsAgainstUs": 5,
-    "totalMatchups": 5,
-    "dominanceScore": 1,
+    "winsAgainstUs": 6,
+    "totalMatchups": 7,
+    "dominanceScore": 0.8571428571428571,
     "dnaFingerprint": [
       0.5,
-      -0.26812206151525425,
+      -0.28999652470435544,
       0,
       1,
-      0.32719855692828437
+      0.3510148346420542
+    ],
+    "weaknesses": [
+      "low_win_rate",
+      "low_sharpe",
+      "recent_underperformance"
+    ]
+  },
+  {
+    "botId": "26fbad6d-ebc5-4dfd-9f60-390afa1ffd16",
+    "botName": "Stream Sniper",
+    "winsAgainstUs": 5,
+    "totalMatchups": 7,
+    "dominanceScore": 0.7142857142857143,
+    "dnaFingerprint": [
+      0.5,
+      -0.2866694399999111,
+      0,
+      1,
+      0.2902181203723058
     ],
     "weaknesses": [
       "low_win_rate",
@@ -212,14 +231,14 @@
     "botId": "c0c95a22-f834-4715-b44d-3e719726e5c9",
     "botName": "Sat Stacker",
     "winsAgainstUs": 5,
-    "totalMatchups": 5,
-    "dominanceScore": 1,
+    "totalMatchups": 7,
+    "dominanceScore": 0.7142857142857143,
     "dnaFingerprint": [
       0.5,
-      -0.35674720791434317,
+      -0.353727344624658,
       0,
       1,
-      0.3690262343797725
+      0.36580751565885095
     ],
     "weaknesses": [
       "low_win_rate",
@@ -231,33 +250,14 @@
     "botId": "2eadc000-75cd-4621-bff3-3efeae5e1459",
     "botName": "Forex Fox",
     "winsAgainstUs": 5,
-    "totalMatchups": 5,
-    "dominanceScore": 1,
+    "totalMatchups": 7,
+    "dominanceScore": 0.7142857142857143,
     "dnaFingerprint": [
       0.5,
-      -0.4145111601968481,
+      -0.4134646640844833,
       0,
       1,
-      0.44058666743376873
-    ],
-    "weaknesses": [
-      "low_win_rate",
-      "low_sharpe",
-      "recent_underperformance"
-    ]
-  },
-  {
-    "botId": "26fbad6d-ebc5-4dfd-9f60-390afa1ffd16",
-    "botName": "Stream Sniper",
-    "winsAgainstUs": 4,
-    "totalMatchups": 5,
-    "dominanceScore": 0.8,
-    "dnaFingerprint": [
-      0.5,
-      -0.29306015999990914,
-      0,
-      1,
-      0.29469025357469847
+      0.43936158635365435
     ],
     "weaknesses": [
       "low_win_rate",
@@ -268,34 +268,15 @@
   {
     "botId": "1e9098aa-f57b-4685-a968-3d34ea9b10fd",
     "botName": "Carry Hawk",
-    "winsAgainstUs": 3,
-    "totalMatchups": 5,
-    "dominanceScore": 0.6,
+    "winsAgainstUs": 4,
+    "totalMatchups": 7,
+    "dominanceScore": 0.5714285714285714,
     "dnaFingerprint": [
       0.5,
-      -0.4759827964535042,
+      -0.4709492342510399,
       0,
       1,
-      0.4847886550492035
-    ],
-    "weaknesses": [
-      "low_win_rate",
-      "low_sharpe",
-      "recent_underperformance"
-    ]
-  },
-  {
-    "botId": "04a73a95-359b-4c30-9a01-c53b778e444e",
-    "botName": "Pip Predator",
-    "winsAgainstUs": 3,
-    "totalMatchups": 5,
-    "dominanceScore": 0.6,
-    "dnaFingerprint": [
-      0.5,
-      -0.4648521866750814,
-      0,
-      1,
-      0.47832374735128663
+      0.4808858953562009
     ],
     "weaknesses": [
       "low_win_rate",
@@ -306,15 +287,15 @@
   {
     "botId": "d9e891be-8fc4-421a-b94f-f113864253ef",
     "botName": "Aussie Ace",
-    "winsAgainstUs": 3,
-    "totalMatchups": 5,
-    "dominanceScore": 0.6,
+    "winsAgainstUs": 4,
+    "totalMatchups": 7,
+    "dominanceScore": 0.5714285714285714,
     "dnaFingerprint": [
       0.5,
-      -0.48792758956426796,
+      -0.48778092866253037,
       0,
       1,
-      0.48845183812516785
+      0.488306902076735
     ],
     "weaknesses": [
       "low_win_rate",
@@ -325,15 +306,53 @@
   {
     "botId": "a6f80b40-9ed7-4dbe-88b6-296c03c10d19",
     "botName": "Spread Eagle",
-    "winsAgainstUs": 3,
-    "totalMatchups": 5,
-    "dominanceScore": 0.6,
+    "winsAgainstUs": 4,
+    "totalMatchups": 7,
+    "dominanceScore": 0.5714285714285714,
     "dnaFingerprint": [
       0.5,
-      -0.47337401271426277,
+      -0.4611049893398341,
       0,
       1,
-      0.4819880445798563
+      0.4763332302809666
+    ],
+    "weaknesses": [
+      "low_win_rate",
+      "low_sharpe",
+      "recent_underperformance"
+    ]
+  },
+  {
+    "botId": "04a73a95-359b-4c30-9a01-c53b778e444e",
+    "botName": "Pip Predator",
+    "winsAgainstUs": 4,
+    "totalMatchups": 7,
+    "dominanceScore": 0.5714285714285714,
+    "dnaFingerprint": [
+      0.5,
+      -0.4394417561964449,
+      0,
+      1,
+      0.46514807743029285
+    ],
+    "weaknesses": [
+      "low_win_rate",
+      "low_sharpe",
+      "recent_underperformance"
+    ]
+  },
+  {
+    "botId": "ee462ec5-cd57-47b3-8c8d-70ecf8a38147",
+    "botName": "Copper Coyote",
+    "winsAgainstUs": 1,
+    "totalMatchups": 7,
+    "dominanceScore": 0.14285714285714285,
+    "dnaFingerprint": [
+      0.5,
+      -0.1976380829260022,
+      0,
+      1,
+      0.1980548476962852
     ],
     "weaknesses": [
       "low_win_rate",
@@ -345,33 +364,14 @@
     "botId": "bc06c5d3-2aa9-48b6-94e4-9c91b9d908d9",
     "botName": "Chip Chaser",
     "winsAgainstUs": 0,
-    "totalMatchups": 5,
+    "totalMatchups": 7,
     "dominanceScore": 0,
     "dnaFingerprint": [
       0.5,
-      -0.1764136399999602,
+      -0.17625309599996125,
       0,
       1,
-      0.1764462961083869
-    ],
-    "weaknesses": [
-      "low_win_rate",
-      "low_sharpe",
-      "recent_underperformance"
-    ]
-  },
-  {
-    "botId": "ee462ec5-cd57-47b3-8c8d-70ecf8a38147",
-    "botName": "Copper Coyote",
-    "winsAgainstUs": 0,
-    "totalMatchups": 5,
-    "dominanceScore": 0,
-    "dnaFingerprint": [
-      0.5,
-      -0.1981073166244434,
-      0,
-      1,
-      0.19851188366505065
+      0.17627918840090298
     ],
     "weaknesses": [
       "low_win_rate",
@@ -383,14 +383,14 @@
     "botId": "5689609e-411e-4d47-a151-07cdbcaa1fd0",
     "botName": "Cable Crusher",
     "winsAgainstUs": 0,
-    "totalMatchups": 5,
+    "totalMatchups": 7,
     "dominanceScore": 0,
     "dnaFingerprint": [
       0.5,
-      -0.4857613666850823,
+      -0.48539603116202884,
       0,
       1,
-      0.48609096095665566
+      0.48572541886886395
     ],
     "weaknesses": [
       "low_win_rate",
