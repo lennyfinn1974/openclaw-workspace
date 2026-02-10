@@ -187,11 +187,10 @@ const EODHD_SYMBOL_MAP: Record<string, EODHDSymbolInfo> = {
   'ROKU':     { wsSymbol: 'ROKU',    wsEndpoint: 'us-quote', restSymbol: 'ROKU.US' },
   'PLTR':     { wsSymbol: 'PLTR',    wsEndpoint: 'us-quote', restSymbol: 'PLTR.US' },
   'MSTR':     { wsSymbol: 'MSTR',    wsEndpoint: 'us-quote', restSymbol: 'MSTR.US' },
-  // Gamma (Commodities) - Gold/Silver/Copper via forex WS as spot
+  // Gamma (Commodities) - Gold/Silver via forex WS as spot
   'GC=F':     { wsSymbol: 'XAUUSD',  wsEndpoint: 'forex',    restSymbol: 'XAUUSD.FOREX' },
   'SI=F':     { wsSymbol: 'XAGUSD',  wsEndpoint: 'forex',    restSymbol: 'XAGUSD.FOREX' },
-  'HG=F':     { wsSymbol: 'XCUUSD',  wsEndpoint: 'forex',    restSymbol: 'XCUUSD.FOREX' },
-  // Oil & Gas — no EODHD coverage, routed to Yahoo Finance by getAdapter()
+  // Oil, Gas, Copper — no EODHD coverage, routed to Yahoo Finance by getAdapter()
   // LAC (Lithium Americas) as stock on US exchange
   'LAC':      { wsSymbol: 'LAC',     wsEndpoint: 'us-quote', restSymbol: 'LAC.US' },
   // Crypto

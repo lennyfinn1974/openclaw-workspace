@@ -56,7 +56,7 @@ const SYMBOLS: SymbolConfig[] = [
   { symbol: 'SI=F', basePrice: 80.00, volatility: 0.022, avgVolume: 60000, sector: 'Commodity', assetType: 'commodity' },
   { symbol: 'CL=F', basePrice: 64.00, volatility: 0.025, avgVolume: 800000, sector: 'Commodity', assetType: 'commodity' },
   { symbol: 'NG=F', basePrice: 3.17, volatility: 0.045, avgVolume: 400000, sector: 'Commodity', assetType: 'commodity' },
-  { symbol: 'HG=F', basePrice: 1.35, volatility: 0.020, avgVolume: 50000, sector: 'Commodity', assetType: 'commodity' },
+  { symbol: 'HG=F', basePrice: 5.91, volatility: 0.020, avgVolume: 50000, sector: 'Commodity', assetType: 'commodity' },
   { symbol: 'LAC', basePrice: 4.65, volatility: 0.055, avgVolume: 2000000, sector: 'Commodity', assetType: 'commodity' },
 ];
 
@@ -468,8 +468,8 @@ export class MarketDataSimulator extends EventEmitter {
     if (['BTC', 'ETH', 'SOL', 'BNB', 'XRP'].includes(symbol)) {
       return 'binance';
     }
-    // EODHD covers forex + gold/silver/copper via FOREX endpoint
-    if (['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'GC=F', 'SI=F', 'HG=F'].includes(symbol)) {
+    // EODHD covers forex + gold/silver via FOREX endpoint
+    if (['GBP/JPY', 'USD/TRY', 'USD/ZAR', 'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'GC=F', 'SI=F'].includes(symbol)) {
       return 'eodhd';
     }
     // Oil, natural gas, LAC → Yahoo Finance
